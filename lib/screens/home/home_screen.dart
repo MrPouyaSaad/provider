@@ -57,14 +57,19 @@ class HomeScreen extends StatelessWidget {
                         AxisTitles(sideTitles: SideTitles(showTitles: false)),
                     topTitles:
                         AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                    //?--------------------------
                     bottomTitles: AxisTitles(
                       sideTitles: SideTitles(
-                          showTitles: true, getTitlesWidget: bottomTitles),
+                        showTitles: true,
+                        reservedSize: 50,
+                        getTitlesWidget: bottomTitles,
+                      ),
                     ),
+                    //?------------------------
                     leftTitles: AxisTitles(
                       sideTitles: SideTitles(
                         showTitles: true,
-                        reservedSize: 40, // حاشیه بیشتر برای نمایش اعداد
+                        reservedSize: 40,
                         getTitlesWidget: (value, meta) {
                           const style = TextStyle(
                             fontSize: 14,
@@ -91,7 +96,11 @@ class HomeScreen extends StatelessWidget {
                         FlSpot(4, 600),
                         FlSpot(5, 800),
                         FlSpot(6, 900),
-                        FlSpot(7, 1200),
+                        FlSpot(8, 1200),
+                        FlSpot(9, 950),
+                        FlSpot(10, 750),
+                        FlSpot(11, 900),
+                        FlSpot(12, 1800),
                       ],
                       isCurved: true,
                       color: Colors.blue,
@@ -119,7 +128,10 @@ class HomeScreen extends StatelessWidget {
                         AxisTitles(sideTitles: SideTitles(showTitles: false)),
                     bottomTitles: AxisTitles(
                       sideTitles: SideTitles(
-                          showTitles: true, getTitlesWidget: bottomTitles),
+                        reservedSize: 50,
+                        showTitles: true,
+                        getTitlesWidget: bottomTitles,
+                      ),
                     ),
                     leftTitles: AxisTitles(
                       sideTitles: SideTitles(
@@ -127,7 +139,6 @@ class HomeScreen extends StatelessWidget {
                         reservedSize: 40, // حاشیه بیشتر برای نمایش اعداد
                         getTitlesWidget: (value, meta) {
                           const style = TextStyle(fontSize: 14);
-
                           return Padding(
                             padding: EdgeInsets.only(right: 4),
                             child: Text(
@@ -140,65 +151,14 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  barGroups: [
-                    BarChartGroupData(
-                      x: 1,
-                      barRods: [
-                        BarChartRodData(
-                          toY: 10,
-                          color: Colors.orange,
-                          borderRadius: barBorderRadius,
-                        )
-                      ],
-                    ),
-                    BarChartGroupData(x: 2, barRods: [
-                      BarChartRodData(
-                        toY: 15,
-                        color: Colors.orange,
-                        borderRadius: barBorderRadius,
-                      )
-                    ]),
-                    BarChartGroupData(x: 3, barRods: [
-                      BarChartRodData(
-                        toY: 8,
-                        color: Colors.orange,
-                        borderRadius: barBorderRadius,
-                      )
-                    ]),
-                    BarChartGroupData(x: 4, barRods: [
-                      BarChartRodData(
-                        toY: 12,
-                        color: Colors.orange,
-                        borderRadius: barBorderRadius,
-                      )
-                    ]),
-                    BarChartGroupData(x: 5, barRods: [
-                      BarChartRodData(
-                        toY: 18,
-                        color: Colors.orange,
-                        borderRadius: barBorderRadius,
-                      )
-                    ]),
-                    BarChartGroupData(x: 6, barRods: [
-                      BarChartRodData(
-                        toY: 20,
-                        color: Colors.orange,
-                        borderRadius: barBorderRadius,
-                      )
-                    ]),
-                    BarChartGroupData(x: 7, barRods: [
-                      BarChartRodData(
-                        toY: 25,
-                        color: Colors.orange,
-                        borderRadius: barBorderRadius,
-                      )
-                    ]),
-                  ],
                   borderData: FlBorderData(show: true),
                   gridData: FlGridData(show: true),
+                  barGroups:
+                      getBarChartData(), // تابع برای دریافت داده‌های بهینه‌شده
                 ),
               ),
             ),
+
             //? Divider
             MyDivider(),
             //? Pie Chart
@@ -218,41 +178,87 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  List<BarChartGroupData> getBarChartData() {
+    // مقادیر مربوط به هر ماه (این مقادیر را می‌توان دینامیک کرد)
+    List<double> monthlySales = [10, 15, 8, 12, 18, 20, 25, 30, 17, 14, 19, 22];
+
+    return List.generate(12, (index) {
+      // تولید داده‌ها برای هر ماه
+      return BarChartGroupData(
+        x: index + 1, // شماره ماه
+        barRods: [
+          BarChartRodData(
+            toY: monthlySales[index], // مقدار فروش ماهانه
+            color: Colors.orange,
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(12),
+            ),
+          ),
+        ],
+      );
+    });
+  }
+
   Widget bottomTitles(double value, TitleMeta meta) {
-    const style = TextStyle(
-      fontWeight: FontWeight.bold,
-      fontSize: 12,
-    );
-    Widget text;
+    String text;
     switch (value.toInt()) {
       case 1:
-        text = Text('فروردین', style: style);
+        text = 'فروردین';
         break;
       case 2:
-        text = Text('اردیبهشت', style: style);
+        text = 'اردیبهشت';
         break;
       case 3:
-        text = Text('خرداد', style: style);
+        text = 'خرداد';
         break;
       case 4:
-        text = Text('تیر', style: style);
+        text = 'تیر';
         break;
       case 5:
-        text = Text('مرداد', style: style);
+        text = 'مرداد';
         break;
       case 6:
-        text = Text('شهریور', style: style);
+        text = 'شهریور';
         break;
       case 7:
-        text = Text('مهر', style: style);
+        text = 'مهر';
+        break;
+      case 8:
+        text = 'آبان';
+        break;
+      case 9:
+        text = 'آذر';
+        break;
+      case 10:
+        text = 'دی';
+        break;
+      case 11:
+        text = 'بهمن';
+        break;
+      case 12:
+        text = 'اسفند';
         break;
       default:
-        text = Text('');
+        text = '';
         break;
     }
+
+    // Apply padding and slight rotation to avoid overlap
     return SideTitleWidget(
       axisSide: meta.axisSide,
-      child: text,
+      angle: -70,
+      space: 0,
+      child: Container(
+        padding: const EdgeInsets.only(top: 10, right: 8),
+        child: Text(
+          text,
+          textDirection: TextDirection.rtl,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 11,
+          ),
+        ),
+      ),
     );
   }
 }
