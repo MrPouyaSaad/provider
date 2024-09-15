@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class Constants {
   //!
@@ -9,6 +10,7 @@ class Constants {
   static const double primaryButtonHeight = 52;
 
   //static final duration = 180.ms;
+  static final duration = 180.ms;
   static const animationCurve = Curves.ease;
   //!
   // static Animate itemAnimation(

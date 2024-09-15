@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
+import 'package:provider/screens/home/drawer/drawer.dart';
 import 'charts/pie_chart.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,12 +11,12 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
-    final barBorderRadius = BorderRadius.vertical(
-      top: Radius.circular(12),
-    );
+
     return Scaffold(
+      drawer: MyDrawer(),
       appBar: AppBar(
         elevation: 1,
+        centerTitle: true,
         backgroundColor: themeData.colorScheme.surface,
         title: Text('ویزی دشت'),
       ),
