@@ -169,49 +169,55 @@ class _AddProductDetailsState extends State<AddProductDetails> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    setState(() {
-                      if (isDiscount == true) {
+                    if (isDiscount == true) {
+                      setState(() {
                         isDiscount = false;
                         dicountController.clear();
-                      } else
+                      });
+                    } else
+                      setState(() {
                         isDiscount = true;
-                    });
+                      });
                   },
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 20,
-                        height: 20,
-                        decoration: BoxDecoration(
-                          border: !isDiscount
-                              ? Border.all(
-                                  color: themeData.colorScheme.primary,
-                                  width: 2.5)
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        vertical: Constants.primaryPadding - 4),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 20,
+                          height: 20,
+                          decoration: BoxDecoration(
+                            border: !isDiscount
+                                ? Border.all(
+                                    color: themeData.colorScheme.primary,
+                                    width: 2.5)
+                                : null,
+                            borderRadius: BorderRadius.circular(
+                                Constants.primaryRadiusValue / 2),
+                            color: isDiscount
+                                ? themeData.primaryColor
+                                : themeData.colorScheme.surface,
+                          ),
+                          child: isDiscount
+                              ? Icon(
+                                  Icons.check,
+                                  color: Colors.white,
+                                  size: 18,
+                                )
                               : null,
-                          borderRadius: BorderRadius.circular(
-                              Constants.primaryRadiusValue / 2),
-                          color: isDiscount
-                              ? themeData.primaryColor
-                              : themeData.colorScheme.surface,
                         ),
-                        child: isDiscount
-                            ? Icon(
-                                Icons.check,
-                                color: Colors.white,
-                                size: 18,
-                              )
-                            : null,
-                      ),
-                      SizedBox(width: Constants.primaryPadding / 2),
-                      Text(
-                        'تخفیف',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 16),
-                      ),
-                    ],
-                  ).marginOnly(left: Constants.primaryPadding),
+                        SizedBox(width: Constants.primaryPadding / 2),
+                        Text(
+                          'تخفیف',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 16),
+                        ),
+                      ],
+                    ).marginOnly(left: Constants.primaryPadding),
+                  ),
                 ),
                 Expanded(
                   child: MyTextField(
@@ -229,7 +235,7 @@ class _AddProductDetailsState extends State<AddProductDetails> {
               height: Constants.primaryButtonHeight,
               child: MyElevatedButton(
                 title: 'تایید',
-                onTap: !confirm
+                onTap: confirm
                     ? null
                     : () {
                         Navigator.of(context).push(
