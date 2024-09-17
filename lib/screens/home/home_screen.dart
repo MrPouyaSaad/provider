@@ -1,8 +1,10 @@
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
 import 'package:provider/screens/home/drawer/drawer.dart';
+import 'package:provider/screens/home/products/products_list.dart';
 import 'charts/pie_chart.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,6 +21,9 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: themeData.colorScheme.surface,
         title: Text('ویزی دشت'),
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.person_circle))
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -63,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                       sideTitles: SideTitles(
                         showTitles: true,
                         reservedSize: 50,
-                        getTitlesWidget: bottomTitles,
+                        getTitlesWidget: monthTitles,
                       ),
                     ),
                     //?------------------------
@@ -131,7 +136,7 @@ class HomeScreen extends StatelessWidget {
                       sideTitles: SideTitles(
                         reservedSize: 50,
                         showTitles: true,
-                        getTitlesWidget: bottomTitles,
+                        getTitlesWidget: monthTitles,
                       ),
                     ),
                     leftTitles: AxisTitles(
@@ -159,7 +164,59 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-
+            //?
+            MyDivider(),
+            //? best products Chart
+            DashboardTitle(title: 'پرفروش ترین ها'),
+            AspectRatio(
+              aspectRatio: 1,
+              child: BarChart(
+                BarChartData(
+                  alignment: BarChartAlignment.spaceAround,
+                  titlesData: FlTitlesData(
+                    rightTitles:
+                        AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                    topTitles:
+                        AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                    bottomTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        reservedSize: 50,
+                        showTitles: true,
+                        getTitlesWidget: productsTitles,
+                      ),
+                    ),
+                    leftTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        reservedSize: 40, // حاشیه بیشتر برای نمایش اعداد
+                        getTitlesWidget: (value, meta) {
+                          const style = TextStyle(fontSize: 14);
+                          return Padding(
+                            padding: EdgeInsets.only(right: 4),
+                            child: Text(
+                              value.toInt().toString(),
+                              style: style,
+                              textAlign: TextAlign.center,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  borderData: FlBorderData(show: true),
+                  gridData: FlGridData(show: true),
+                  barGroups: getBarChartProductsSaleData(
+                      context), // تابع برای دریافت داده‌های بهینه‌شده
+                ),
+              ),
+            ),
+            //? Divider
+            MyDivider(),
+            DashboardTitle(
+              title: 'پرفروش ترین محصولات',
+              isBottomPadding: false,
+            ),
+            BestProductsList(),
             //? Divider
             MyDivider(),
             //? Pie Chart
@@ -183,7 +240,7 @@ class HomeScreen extends StatelessWidget {
     // مقادیر مربوط به هر ماه (این مقادیر را می‌توان دینامیک کرد)
     List<double> monthlySales = [10, 15, 8, 12, 18, 20, 25, 30, 17, 14, 19, 22];
 
-    return List.generate(12, (index) {
+    return List.generate(monthlySales.length, (index) {
       // تولید داده‌ها برای هر ماه
       return BarChartGroupData(
         x: index + 1, // شماره ماه
@@ -200,7 +257,74 @@ class HomeScreen extends StatelessWidget {
     });
   }
 
-  Widget bottomTitles(double value, TitleMeta meta) {
+  List<BarChartGroupData> getBarChartProductsSaleData(BuildContext context) {
+    // مقادیر مربوط به هر ماه (این مقادیر را می‌توان دینامیک کرد)
+    List<double> monthlySales = [10, 15, 8, 12, 18, 20];
+
+    return List.generate(monthlySales.length, (index) {
+      // تولید داده‌ها برای هر ماه
+      return BarChartGroupData(
+        x: index + 1, // شماره ماه
+        barRods: [
+          BarChartRodData(
+            width: 16,
+            toY: monthlySales[index], // مقدار فروش ماهانه
+            color: Theme.of(context).colorScheme.primary,
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(12),
+            ),
+          ),
+        ],
+      );
+    });
+  }
+
+  Widget productsTitles(double value, TitleMeta meta) {
+    String text;
+    switch (value.toInt()) {
+      case 1:
+        text = 'روغن اویلا';
+        break;
+      case 2:
+        text = 'نوشابه کوکاکولا زیرو';
+        break;
+      case 3:
+        text = 'کیک دوقلو آناتا';
+        break;
+      case 4:
+        text = 'کلوچه نادری';
+        break;
+      case 5:
+        text = 'آب معدنی کوکاکولا';
+        break;
+      case 6:
+        text = 'تن ماهی ساحل';
+        break;
+      default:
+        text = '';
+        break;
+    }
+
+    // Apply padding and slight rotation to avoid overlap
+    return SideTitleWidget(
+      axisSide: meta.axisSide,
+      angle: 6,
+      space: 2,
+      child: Container(
+        padding: const EdgeInsets.only(top: 10, right: 8),
+        child: Text(
+          text,
+          textDirection: TextDirection.rtl,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 11,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget monthTitles(double value, TitleMeta meta) {
     String text;
     switch (value.toInt()) {
       case 1:
