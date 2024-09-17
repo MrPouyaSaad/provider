@@ -21,17 +21,11 @@ class MyDrawer extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // CircleAvatar(
-                //   radius: 42,
-                //   backgroundColor: themeData.colorScheme.secondary,
-                //   child: ClipRRect(
-                //     borderRadius: BorderRadius.circular(50),
-                //     child: Image.asset(
-                //       'assets/images/prof.jpg',
-                //       fit: BoxFit.fill,
-                //     ),
-                //   ),
-                // ),
+                Icon(
+                  CupertinoIcons.person_crop_circle,
+                  size: 62,
+                  color: themeData.colorScheme.primary,
+                ),
                 const SizedBox(
                   height: 11,
                 ),
