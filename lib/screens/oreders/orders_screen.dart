@@ -11,6 +11,7 @@ class OrdersScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('سفارش‌ها'),
+        actions: [TextButton(onPressed: () {}, child: Text('تاریخچه سفارشات'))],
       ),
       body: SafeArea(
         child: ListView.builder(
