@@ -21,17 +21,17 @@ class MyDrawer extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircleAvatar(
-                  radius: 42,
-                  backgroundColor: themeData.colorScheme.secondary,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Image.asset(
-                      'assets/images/prof.jpg',
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
+                // CircleAvatar(
+                //   radius: 42,
+                //   backgroundColor: themeData.colorScheme.secondary,
+                //   child: ClipRRect(
+                //     borderRadius: BorderRadius.circular(50),
+                //     child: Image.asset(
+                //       'assets/images/prof.jpg',
+                //       fit: BoxFit.fill,
+                //     ),
+                //   ),
+                // ),
                 const SizedBox(
                   height: 11,
                 ),
@@ -56,9 +56,9 @@ class MyDrawer extends StatelessWidget {
               duration: Constants.duration,
               curve: Constants.animationCurve),
           DrawerTile(
-            title: 'محصولات مورد علاقه',
-            icon: Icons.star,
-            isEven: false,
+            title: 'برداشت ها',
+            icon: Icons.credit_card,
+            isEven: true,
             onTap: () {
               // Navigator.of(context).push(CupertinoPageRoute(
               //   builder: (context) => const FavoritesScreen(),
@@ -66,9 +66,9 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           DrawerTile(
-            title: 'دریافت تخفیف',
-            icon: Icons.wallet_giftcard,
-            isEven: true,
+            title: 'آموزش',
+            icon: Icons.cast_for_education,
+            isEven: false,
             onTap: () {
               // Navigator.of(context, rootNavigator: true)
               //     .push(CupertinoPageRoute(
@@ -76,18 +76,18 @@ class MyDrawer extends StatelessWidget {
               // ));
             },
           ),
-          DrawerTile(
-            title: 'تخفیف ها',
-            icon: Icons.percent,
-            isEven: false,
-            onTap: () {
-              // Navigator.of(context, rootNavigator: true).push(
-              //   CupertinoPageRoute(
-              //     builder: (context) => const BonusScreen(),
-              //   ),
-              // );
-            },
-          ),
+          // DrawerTile(
+          //   title: 'تخفیف ها',
+          //   icon: Icons.percent,
+          //   isEven: false,
+          //   onTap: () {
+          //     // Navigator.of(context, rootNavigator: true).push(
+          //     //   CupertinoPageRoute(
+          //     //     builder: (context) => const BonusScreen(),
+          //     //   ),
+          //     // );
+          //   },
+          // ),
           DrawerTile(
             title: 'پیشنهاد و انتقاد',
             icon: Icons.feed_outlined,
