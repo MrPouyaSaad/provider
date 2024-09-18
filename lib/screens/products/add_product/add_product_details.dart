@@ -1,15 +1,21 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:provider/common/const.dart';
 import 'package:provider/widgets/button.dart';
 import 'package:provider/widgets/text_field.dart';
 
 class AddProductDetails extends StatefulWidget {
-  const AddProductDetails({super.key, required this.id});
+  const AddProductDetails({
+    Key? key,
+    required this.id,
+    this.isEdit = false,
+  }) : super(key: key);
   final int id;
-
+  final bool isEdit;
   @override
   State<AddProductDetails> createState() => _AddProductDetailsState();
 }
@@ -55,63 +61,74 @@ class _AddProductDetailsState extends State<AddProductDetails> {
     final themeData = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('جزییات محصول'),
-      ),
+          title: Text(widget.isEdit ? 'ویرایش محصول' : 'جزییات محصول'),
+          actions: widget.isEdit
+              ? [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      CupertinoIcons.delete,
+                      color: themeData.colorScheme.error,
+                    ),
+                  )
+                ]
+              : null),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Searchable Dropdown for select product
-            DropdownSearch<String>(
-              popupProps: PopupProps.menu(
-                showSearchBox: true, // فعال‌سازی جستجو
-                searchFieldProps: const TextFieldProps(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'جستجو',
+            if (!widget.isEdit)
+              DropdownSearch<String>(
+                popupProps: PopupProps.menu(
+                  showSearchBox: true, // فعال‌سازی جستجو
+                  searchFieldProps: const TextFieldProps(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'جستجو',
+                    ),
+                  ),
+                  itemBuilder: (context, item, isSelected) {
+                    final product = products
+                        .firstWhere((product) => product['name'] == item);
+                    return ListTile(
+                      leading: Image.asset(
+                        product['image']!,
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.cover,
+                      ),
+                      title: Text(
+                        product['name']!,
+                        style: const TextStyle(fontSize: 14),
+                      ),
+                    );
+                  },
+                  menuProps: MenuProps(
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                itemBuilder: (context, item, isSelected) {
-                  final product =
-                      products.firstWhere((product) => product['name'] == item);
-                  return ListTile(
-                    leading: Image.asset(
-                      product['image']!,
-                      width: 40,
-                      height: 40,
-                      fit: BoxFit.cover,
+                items: products.map((product) => product['name']!).toList(),
+                dropdownDecoratorProps: DropDownDecoratorProps(
+                  dropdownSearchDecoration: InputDecoration(
+                    labelText: 'انتخاب محصول',
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: Constants.primaryPadding,
+                      vertical: 10,
                     ),
-                    title: Text(
-                      product['name']!,
-                      style: const TextStyle(fontSize: 14),
-                    ),
-                  );
+                    border: const OutlineInputBorder(),
+                  ),
+                  baseStyle: const TextStyle(
+                    fontSize: 12, // تنظیم سایز متن برای محصول انتخاب‌شده
+                  ),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    selectedProduct = value;
+                  });
                 },
-                menuProps: MenuProps(
-                  borderRadius: BorderRadius.circular(10),
-                ),
+                selectedItem: selectedProduct,
               ),
-              items: products.map((product) => product['name']!).toList(),
-              dropdownDecoratorProps: DropDownDecoratorProps(
-                dropdownSearchDecoration: InputDecoration(
-                  labelText: 'انتخاب محصول',
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: Constants.primaryPadding,
-                    vertical: 10,
-                  ),
-                  border: const OutlineInputBorder(),
-                ),
-                baseStyle: const TextStyle(
-                  fontSize: 12, // تنظیم سایز متن برای محصول انتخاب‌شده
-                ),
-              ),
-              onChanged: (value) {
-                setState(() {
-                  selectedProduct = value;
-                });
-              },
-              selectedItem: selectedProduct,
-            ),
             const SizedBox(height: 20),
             // نمایش محصول انتخاب‌شده
             if (selectedProduct != null)

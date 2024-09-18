@@ -61,19 +61,22 @@ class OrdersScreen extends StatelessWidget {
                           ),
                         ],
                       ).marginOnly(top: 16, left: 16, right: 16),
-                      SizedBox(height: 8),
+                      SizedBox(height: 20),
                       SizedBox(
-                        height: 96, // ارتفاع لیست افقی آیتم‌ها
+                        height: 100, // ارتفاع لیست افقی آیتم‌ها
                         child: ListView.builder(
+                          padding: EdgeInsets.only(bottom: 16),
                           scrollDirection: Axis.horizontal, // نمایش افقی
                           itemCount: 5, // تعداد آیتم‌های سفارش
                           itemBuilder: (context, itemIndex) {
                             return Container(
+                              height: 84,
+                              width: 84,
                               padding: EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 8),
                               margin: EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: Constants.primaryPadding),
+                                horizontal: 8,
+                              ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                                 color: themeData.colorScheme.secondary
