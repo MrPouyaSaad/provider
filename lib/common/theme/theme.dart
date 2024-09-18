@@ -65,6 +65,7 @@ class MyTheme {
       errorContainer: const Color(0xffef4444),
       surfaceDim: const Color(0xffdc2626),
       surfaceContainerHighest: const Color(0xff22A699),
+      surfaceContainerHigh: const Color(0xff1a7f75),
       secondaryContainer: const Color(0xffFFB000),
       secondaryFixed: const Color(0xffeab308),
       secondaryFixedDim: const Color(0xffca8a04),
