@@ -3,11 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
-import 'package:provider/common/custom_underline.dart';
-import 'package:provider/common/number_formatter/number_formatter.dart';
+
 import 'package:provider/screens/home/drawer/drawer.dart';
 import 'package:provider/screens/home/products/products_list.dart';
 import 'package:provider/widgets/custom_shadow_box.dart';
+import '../../widgets/decorated_container.dart';
+import '../../widgets/dvider.dart';
+import '../../widgets/row_title_value.dart';
+import '../../widgets/title.dart';
 import 'charts/pie_chart.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -42,17 +45,17 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ReportsContainer(
+            MyDecoratedContainer(
               color: themeData.colorScheme.primary,
               child: Column(
                 children: [
-                  SalaryWidget(
+                  RowTitleValue(
                     title: 'درامد کل:',
                     amount: '150,000,000 تومان',
                     color: themeData.colorScheme.primaryFixedDim,
                   ),
                   SizedBox(height: Constants.primaryPadding / 2),
-                  SalaryWidget(
+                  RowTitleValue(
                     title: 'واریز نشده:',
                     amount: '18,000,000 تومان',
                     color: themeData.colorScheme.primaryFixedDim,
@@ -69,17 +72,17 @@ class _HomeScreenState extends State<HomeScreen> {
               subTitle: 'تا 15:45:12',
               isBottomPadding: false,
             ).marginOnly(bottom: Constants.primaryPadding),
-            ReportsContainer(
+            MyDecoratedContainer(
               color: themeData.colorScheme.surfaceContainerHighest,
               child: Column(
                 children: [
-                  SalaryWidget(
+                  RowTitleValue(
                     title: 'تعداد سفارش:',
                     amount: '73',
                     color: themeData.colorScheme.surfaceContainerHigh,
                   ),
                   SizedBox(height: Constants.primaryPadding / 2),
-                  SalaryWidget(
+                  RowTitleValue(
                     title: 'مبلغ فروش:',
                     amount: '192,582,000 تومان',
                     color: themeData.colorScheme.surfaceContainerHigh,
@@ -452,124 +455,6 @@ class _HomeScreenState extends State<HomeScreen> {
             fontSize: 11,
           ),
         ),
-      ),
-    );
-  }
-}
-
-class ReportsContainer extends StatelessWidget {
-  const ReportsContainer({
-    super.key,
-    required this.child,
-    required this.color,
-  });
-
-  final Widget child;
-  final Color color;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        boxShadow: Constants.primaryBoxShadow(context),
-        borderRadius: Constants.primaryRadius,
-        color: color,
-      ),
-      child: child,
-    );
-  }
-}
-
-class MyDivider extends StatelessWidget {
-  const MyDivider({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-    return Divider(color: themeData.colorScheme.secondary)
-        .marginOnly(top: Constants.primaryPadding, left: 4, right: 4);
-  }
-}
-
-class DashboardTitle extends StatelessWidget {
-  const DashboardTitle(
-      {super.key,
-      required this.title,
-      this.isBottomPadding = true,
-      this.subTitle});
-  final String title;
-  final bool isBottomPadding;
-  final String? subTitle;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        CustomUnderLine(
-          child: Text(
-            title,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              wordSpacing: -2,
-            ),
-          ),
-        ),
-        SizedBox(width: 8),
-        if (subTitle != null)
-          Text(
-            subTitle!,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.secondary,
-              fontWeight: FontWeight.bold,
-              wordSpacing: -3.5,
-            ),
-          ),
-      ],
-    ).marginOnly(
-        top: Constants.primaryPadding,
-        bottom: isBottomPadding ? Constants.primaryPadding : 0);
-  }
-}
-
-class SalaryWidget extends StatelessWidget {
-  const SalaryWidget({
-    super.key,
-    required this.title,
-    required this.amount,
-    required this.color,
-  });
-  final String title;
-  final String amount;
-  final Color color;
-  @override
-  Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-    final TextStyle style = TextStyle(
-      fontSize: 14,
-      wordSpacing: -2,
-      letterSpacing: -0.1,
-      fontWeight: FontWeight.bold,
-      color: themeData.colorScheme.surface,
-    );
-    return Container(
-      padding: EdgeInsets.all(Constants.primaryPadding / 2),
-      decoration:
-          BoxDecoration(borderRadius: Constants.primaryRadius, color: color),
-      child: Row(
-        children: [
-          Text(
-            title,
-            style: style,
-          ),
-          Expanded(
-              child: Text(
-            amount,
-            style: style,
-            textAlign: TextAlign.left,
-          )),
-        ],
       ),
     );
   }
