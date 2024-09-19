@@ -26,9 +26,7 @@ class MyDrawer extends StatelessWidget {
                   size: 62,
                   color: themeData.colorScheme.primary,
                 ),
-                const SizedBox(
-                  height: 11,
-                ),
+                const SizedBox(height: 12),
                 const Text(
                   'بازرگانی غفاری',
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
@@ -46,9 +44,11 @@ class MyDrawer extends StatelessWidget {
               ],
             ),
           ).animate().slideX(
-              begin: 1,
-              duration: Constants.duration,
-              curve: Constants.animationCurve),
+                begin: 1,
+                duration: Constants.duration,
+                curve: Constants.animationCurve,
+              ),
+          const SizedBox(height: 12),
           DrawerTile(
             title: 'برداشت ها',
             icon: Icons.credit_card,
