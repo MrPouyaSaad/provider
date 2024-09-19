@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
+import 'package:provider/screens/home/drawer/screens/withdraw.dart';
 import 'package:provider/widgets/decorated_container.dart';
 import 'package:provider/widgets/dvider.dart';
 
@@ -16,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('پروفایل'),
+        title: Text('حساب کاربری'),
       ),
       body: SafeArea(
         child: Column(
@@ -68,18 +69,18 @@ class ProfileScreen extends StatelessWidget {
             ),
             DrawerTile(
               title: 'امور مالی',
-              icon: Icons.cast_for_education,
+              icon: Icons.attach_money,
               isEven: false,
               onTap: () {
-                // Navigator.of(context, rootNavigator: true)
-                //     .push(CupertinoPageRoute(
-                //   builder: (context) => const ReferralScreen(),
-                // ));
+                Navigator.of(context, rootNavigator: true)
+                    .push(CupertinoPageRoute(
+                  builder: (context) => const FinancScreen(),
+                ));
               },
             ),
             DrawerTile(
               title: 'تاریخچه سفارشات',
-              icon: Icons.cast_for_education,
+              icon: CupertinoIcons.rectangle_on_rectangle_angled,
               isEven: true,
               onTap: () {
                 // Navigator.of(context, rootNavigator: true)
@@ -90,7 +91,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             DrawerTile(
               title: 'نظرات',
-              icon: Icons.percent,
+              icon: Icons.comment,
               isEven: false,
               onTap: () {
                 // Navigator.of(context, rootNavigator: true).push(
@@ -113,8 +114,8 @@ class ProfileScreen extends StatelessWidget {
             ),
             DrawerTile(
               title: 'پیشنهاد و انتقاد',
-              icon: Icons.feed_outlined,
-              isEven: true,
+              icon: Icons.feed,
+              isEven: false,
               onTap: () {
                 // Navigator.of(context, rootNavigator: true).push(
                 //   CupertinoPageRoute(
@@ -125,7 +126,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             DrawerTile(
               title: 'سوالات متدال',
-              icon: Icons.cast_for_education,
+              icon: Icons.question_answer_outlined,
               isEven: true,
               onTap: () {
                 // Navigator.of(context, rootNavigator: true)

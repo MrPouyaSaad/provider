@@ -1,5 +1,7 @@
 import 'package:floating_snackbar/floating_snackbar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/screens/home/drawer/screens/profile/profile_screen.dart';
 import 'package:provider/screens/home/home_screen.dart';
 import 'package:provider/screens/oreders/orders_screen.dart';
 import 'package:provider/screens/products/products_screen.dart';
@@ -8,6 +10,7 @@ import 'package:provider/widgets/badge.dart';
 const int homeIndex = 0;
 const int ordersIndex = 1;
 const int productsIndex = 2;
+const int profileIndex = 3;
 
 class RootScreen extends StatefulWidget {
   const RootScreen({super.key});
@@ -22,12 +25,14 @@ class _RootScreenState extends State<RootScreen> {
 
   final GlobalKey<NavigatorState> _homeKey = GlobalKey();
   final GlobalKey<NavigatorState> _cartKey = GlobalKey();
+  final GlobalKey<NavigatorState> _productseKey = GlobalKey();
   final GlobalKey<NavigatorState> _profileKey = GlobalKey();
 
   late final map = {
     homeIndex: _homeKey,
     ordersIndex: _cartKey,
-    productsIndex: _profileKey,
+    productsIndex: _productseKey,
+    profileIndex: _profileKey,
   };
 
   bool canPop = false;
@@ -89,7 +94,8 @@ class _RootScreenState extends State<RootScreen> {
             children: [
               _navigator(_homeKey, homeIndex, const HomeScreen()),
               _navigator(_cartKey, ordersIndex, const OrdersScreen()),
-              _navigator(_profileKey, productsIndex, const ProductsScreen()),
+              _navigator(_productseKey, productsIndex, const ProductsScreen()),
+              _navigator(_profileKey, profileIndex, const ProfileScreen()),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(
@@ -139,10 +145,13 @@ class _RootScreenState extends State<RootScreen> {
                     color: deActiveColor,
                   ),
                   label: 'محصولات من'),
-              // BottomNavigationBarItem(
-              //     activeIcon: Icon(CupertinoIcons.person_fill),
-              //     icon: Icon(CupertinoIcons.person),
-              //     label: 'پروفایل'),
+              BottomNavigationBarItem(
+                  activeIcon: Icon(CupertinoIcons.person_fill),
+                  icon: Icon(
+                    CupertinoIcons.person_fill,
+                    color: deActiveColor,
+                  ),
+                  label: 'پروفایل'),
             ],
             currentIndex: selectedScreenIndex,
             onTap: (selectedIndex) {
