@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:provider/screens/home/drawer/screens/withdraw.dart';
 
-import '../../common/const.dart';
+import '../../../common/const.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({
@@ -50,13 +51,13 @@ class MyDrawer extends StatelessWidget {
               ),
           const SizedBox(height: 12),
           DrawerTile(
-            title: 'برداشت ها',
+            title: 'امور مالی',
             icon: Icons.credit_card,
             isEven: true,
             onTap: () {
-              // Navigator.of(context).push(CupertinoPageRoute(
-              //   builder: (context) => const FavoritesScreen(),
-              // ));
+              Navigator.of(context).push(CupertinoPageRoute(
+                builder: (context) => const WithdrawScreen(),
+              ));
             },
           ),
           DrawerTile(

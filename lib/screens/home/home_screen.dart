@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
 
-import 'package:provider/widgets/drawer/drawer.dart';
+import 'package:provider/screens/home/drawer/drawer.dart';
 import 'package:provider/screens/home/products/products_list.dart';
 import 'package:provider/widgets/custom_shadow_box.dart';
+import 'package:provider/widgets/factor.dart';
 import '../../widgets/decorated_container.dart';
 import '../../widgets/dvider.dart';
-import '../../widgets/row_title_value.dart';
 import '../../widgets/title.dart';
 import 'charts/pie_chart.dart';
 
@@ -49,16 +49,17 @@ class _HomeScreenState extends State<HomeScreen> {
               color: themeData.colorScheme.primary,
               child: Column(
                 children: [
-                  RowTitleValue(
+                  FactorItem(
                     title: 'درامد کل:',
-                    amount: '150,000,000 تومان',
+                    secTitle: '150,000,000 تومان',
                     color: themeData.colorScheme.primaryFixedDim,
+                    textColor: themeData.colorScheme.surface,
                   ),
-                  SizedBox(height: Constants.primaryPadding / 2),
-                  RowTitleValue(
+                  FactorItem(
                     title: 'واریز نشده:',
-                    amount: '18,000,000 تومان',
+                    secTitle: '18,000,000 تومان',
                     color: themeData.colorScheme.primaryFixedDim,
+                    textColor: themeData.colorScheme.surface,
                   ),
                 ],
               ),
@@ -76,15 +77,16 @@ class _HomeScreenState extends State<HomeScreen> {
               color: themeData.colorScheme.surfaceContainerHighest,
               child: Column(
                 children: [
-                  RowTitleValue(
+                  FactorItem(
                     title: 'تعداد سفارش:',
-                    amount: '73',
+                    secTitle: '73',
                     color: themeData.colorScheme.surfaceContainerHigh,
+                    textColor: themeData.colorScheme.surface,
                   ),
-                  SizedBox(height: Constants.primaryPadding / 2),
-                  RowTitleValue(
+                  FactorItem(
                     title: 'مبلغ فروش:',
-                    amount: '192,582,000 تومان',
+                    secTitle: '192,582,000 تومان',
+                    textColor: themeData.colorScheme.surface,
                     color: themeData.colorScheme.surfaceContainerHigh,
                   ),
                 ],

@@ -23,7 +23,7 @@ class MyDecoratedContainer extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: Constants.primaryBoxShadow(context),
         borderRadius: Constants.primaryRadius,
-        color: isOutlined ? themeData.surface : color,
+        color: isOutlined ? themeData.surface : color ?? themeData.surface,
         border: isOutlined
             ? Border.all(width: 1.5, color: color ?? themeData.primary)
             : null,

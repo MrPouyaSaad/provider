@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
 import 'package:provider/screens/oreders/order_details_screen.dart';
-import 'package:provider/widgets/decorated_container.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});

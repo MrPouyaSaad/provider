@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../common/const.dart';
-import '../button.dart';
-import '../text_field.dart';
+import '../../../../common/const.dart';
+import '../../../../widgets/button.dart';
+import '../../../../widgets/text_field.dart';
 
 class CriticismScreen extends StatelessWidget {
   const CriticismScreen({super.key});
