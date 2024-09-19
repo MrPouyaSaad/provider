@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
 import 'package:provider/screens/oreders/order_details_screen.dart';
+import 'package:provider/widgets/decorated_container.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});
@@ -10,13 +11,29 @@ class OrdersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
+    final style = TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.bold,
+      color: themeData.colorScheme.secondary,
+    );
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
           title: Text('سفارش‌ها'),
+          centerTitle: true,
+          leading: IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.headset_mic_sharp),
+          ),
           actions: [
-            TextButton(onPressed: () {}, child: Text('تاریخچه سفارشات'))
+            TextButton(
+              onPressed: () {},
+              child: IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.history),
+              ),
+            )
           ],
         ),
         body: SafeArea(
@@ -48,15 +65,19 @@ class OrdersScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('سفارش شماره ${index + 1}',
-                              style: themeData.textTheme.bodyMedium),
+                          Text(
+                            '14,000,000 تومان',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: themeData.colorScheme.onSurface,
+                            ),
+                          ),
                           Column(
                             children: [
-                              Text('تاریخ: 2024/09/15',
-                                  style: themeData.textTheme.bodySmall),
+                              Text('تاریخ: 2024/09/15', style: style),
                               SizedBox(height: 8),
-                              Text('ساعت: 12:53:12',
-                                  style: themeData.textTheme.bodySmall),
+                              Text('ساعت: 12:53:12', style: style),
                             ],
                           ),
                         ],
@@ -70,24 +91,24 @@ class OrdersScreen extends StatelessWidget {
                           itemCount: 5, // تعداد آیتم‌های سفارش
                           itemBuilder: (context, itemIndex) {
                             return Container(
-                              height: 84,
-                              width: 84,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 8),
-                              margin: EdgeInsets.symmetric(
-                                horizontal: 8,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: themeData.colorScheme.secondary
-                                    .withOpacity(0.1),
-                                border: Border.all(
-                                    color: themeData.colorScheme.secondary),
-                              ),
-                              child: Center(
-                                child: Text('آیتم ${itemIndex + 1}'),
-                              ),
-                            );
+                                height: 84,
+                                width: 84,
+                                margin: EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: Constants.primaryRadius,
+                                  color: themeData.colorScheme.secondary
+                                      .withOpacity(0.1),
+                                  border: Border.all(
+                                      color: themeData.colorScheme.secondary),
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: Constants.primaryRadius,
+                                  child: Image.asset(
+                                    'assets/images/1526890419.jpg',
+                                  ),
+                                ));
                           },
                         ),
                       ),

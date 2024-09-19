@@ -19,6 +19,12 @@ class OrderDetailsScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text('جزئیات سفارش'),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.headset_mic_sharp),
+            ),
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(
