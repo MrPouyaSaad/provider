@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import '../../../common/const.dart';
+import '../../common/const.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({
@@ -96,7 +96,7 @@ class MyDrawer extends StatelessWidget {
           ),
           DrawerTile(
             title: 'پشتیبانی',
-            icon: CupertinoIcons.chat_bubble_2_fill,
+            icon: Icons.headset_mic_sharp,
             isEven: false,
             onTap: () {},
           ),
