@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
 
 import 'package:provider/screens/home/drawer/drawer.dart';
+import 'package:provider/screens/home/drawer/screens/profile/profile_screen.dart';
 import 'package:provider/screens/products/products_list.dart';
 import 'package:provider/widgets/custom_shadow_box.dart';
 import 'package:provider/widgets/factor.dart';
@@ -27,19 +28,12 @@ class _HomeScreenState extends State<HomeScreen> {
     final ThemeData themeData = Theme.of(context);
     List<int> dailySales = [10, 15, 8, 12, 18, 20, 1];
     return Scaffold(
-      drawer: MyDrawer(),
       key: _scaffoldKey,
       appBar: AppBar(
         elevation: 1,
         centerTitle: true,
         backgroundColor: themeData.colorScheme.surface,
         title: Text('ویزی دشت'),
-        leading: IconButton(
-            onPressed: () => _scaffoldKey.currentState!.openDrawer(),
-            icon: Icon(Icons.menu)),
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.person_circle))
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
