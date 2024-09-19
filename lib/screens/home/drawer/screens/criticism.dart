@@ -34,7 +34,9 @@ class CriticismScreen extends StatelessWidget {
               ),
               const MyTextField(
                 labelText: 'توضیحات',
-              ).marginSymmetric(vertical: Constants.primaryPadding),
+                maxLines: 20,
+                minLines: 5,
+              ),
             ],
           ).paddingAll(Constants.primaryPadding),
         ),

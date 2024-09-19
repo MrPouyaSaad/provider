@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../common/const.dart';
+import '../../common/const.dart';
 
 class BestProductsList extends StatelessWidget {
   BestProductsList({

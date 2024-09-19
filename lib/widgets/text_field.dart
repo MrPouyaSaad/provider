@@ -13,7 +13,9 @@ class MyTextField extends StatelessWidget {
       this.alignLabelWithHint = true,
       this.textAlign = TextAlign.start,
       this.textAlignVertical,
-      this.controller});
+      this.controller,
+      this.maxLines,
+      this.minLines});
   final String? labelText;
   final String? hintText;
   final Widget? prefixIcon;
@@ -23,9 +25,13 @@ class MyTextField extends StatelessWidget {
   final TextAlign textAlign;
   final TextAlignVertical? textAlignVertical;
   final bool alignLabelWithHint;
+  final int? maxLines;
+  final int? minLines;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      minLines: minLines,
+      maxLines: maxLines,
       textAlign: textAlign,
       textAlignVertical: textAlignVertical,
       controller: controller,

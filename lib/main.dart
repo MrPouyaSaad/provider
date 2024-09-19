@@ -17,14 +17,22 @@ class MyApp extends StatelessWidget {
         MediaQuery.of(context).size.height) {
       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     }
-    return MaterialApp(
-      title: 'Visita Provider',
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.light,
-      theme: MyTheme.lightTheme,
-      home: Directionality(
-        textDirection: TextDirection.rtl,
-        child: const RootScreen(),
+    final mediaQueryData = MediaQuery.of(context);
+    final constrainedTextScaleFactor = mediaQueryData.textScaler.clamp(
+      minScaleFactor: 1,
+      maxScaleFactor: 1,
+    );
+    return MediaQuery(
+      data: mediaQueryData.copyWith(textScaler: constrainedTextScaleFactor),
+      child: MaterialApp(
+        title: 'Visita Provider',
+        debugShowCheckedModeBanner: false,
+        themeMode: ThemeMode.light,
+        theme: MyTheme.lightTheme,
+        home: Directionality(
+          textDirection: TextDirection.rtl,
+          child: const RootScreen(),
+        ),
       ),
     );
   }

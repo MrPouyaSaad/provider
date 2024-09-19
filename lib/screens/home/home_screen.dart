@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
 
 import 'package:provider/screens/home/drawer/drawer.dart';
-import 'package:provider/screens/home/products/products_list.dart';
+import 'package:provider/screens/products/products_list.dart';
 import 'package:provider/widgets/custom_shadow_box.dart';
 import 'package:provider/widgets/factor.dart';
 import '../../widgets/decorated_container.dart';

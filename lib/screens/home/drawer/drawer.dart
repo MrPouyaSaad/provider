@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/screens/home/drawer/screens/withdraw.dart';
 
 import '../../../common/const.dart';
+import 'screens/criticism.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({
@@ -88,11 +89,11 @@ class MyDrawer extends StatelessWidget {
             icon: Icons.feed_outlined,
             isEven: true,
             onTap: () {
-              // Navigator.of(context, rootNavigator: true).push(
-              //   CupertinoPageRoute(
-              //     builder: (context) => const CriticismScreen(),
-              //   ),
-              // );
+              Navigator.of(context, rootNavigator: true).push(
+                CupertinoPageRoute(
+                  builder: (context) => const CriticismScreen(),
+                ),
+              );
             },
           ),
           DrawerTile(

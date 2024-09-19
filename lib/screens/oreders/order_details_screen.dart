@@ -84,36 +84,36 @@ class OrderDetailsScreen extends StatelessWidget {
                                 vertical: 2, horizontal: 4),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  '12',
+                                  '5',
                                   style: TextStyle(
                                       color: themeData.colorScheme.primary,
-                                      fontSize: 18,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
                                   '×',
                                   style: TextStyle(
                                       color: themeData.colorScheme.primary,
-                                      fontSize: 18,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
                           ),
-                          Spacer(),
+                          SizedBox(width: 16),
                           Flexible(
                             child: MyDecoratedContainer(
                               color: themeData.colorScheme.primary,
                               padding: EdgeInsets.symmetric(
-                                  vertical: 4, horizontal: 8),
+                                  vertical: 5, horizontal: 8),
                               child: Text(
                                 '15,000,000 تومان',
                                 style: TextStyle(
                                     color: themeData.colorScheme.surface,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
