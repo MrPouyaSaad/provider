@@ -55,15 +55,15 @@ class OrderDetailsScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Image.asset(
-                            'assets/images/6260100320116(1).jpg',
-                            width: 100,
-                            height: 100,
+                            'assets/images/1526890419.jpg',
+                            width: 84,
+                            height: 84,
                             fit: BoxFit.cover,
                           ),
                           const SizedBox(width: 10),
                           Expanded(
                             child: Text(
-                              'ماکارونی فرمی شوئینگر هورنلی 500 گرمی تک‌ماکارون',
+                              'روغن کنجد بی بو 450 میلی‌لیتری احمد اردایران',
                               style: const TextStyle(
                                 fontSize: 12, // تنظیم سایز متن
                                 fontWeight: FontWeight.bold,
@@ -72,11 +72,10 @@ class OrderDetailsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: Constants.primaryPadding / 2),
+                      SizedBox(height: Constants.primaryPadding),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SizedBox(width: Constants.primaryPadding + 10),
                           MyDecoratedContainer(
                             isOutlined: true,
                             color: themeData.colorScheme.primary,
@@ -102,8 +101,8 @@ class OrderDetailsScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          ),
-                          SizedBox(width: 16),
+                          ).marginSymmetric(
+                              horizontal: Constants.primaryPadding + 8),
                           Flexible(
                             child: MyDecoratedContainer(
                               color: themeData.colorScheme.primary,

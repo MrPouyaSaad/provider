@@ -1,11 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
-
-import 'package:provider/screens/home/drawer/drawer.dart';
-import 'package:provider/screens/home/drawer/screens/profile/profile_screen.dart';
 import 'package:provider/screens/products/products_list.dart';
 import 'package:provider/widgets/custom_shadow_box.dart';
 import 'package:provider/widgets/factor.dart';

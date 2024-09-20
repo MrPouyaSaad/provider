@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     }
     final mediaQueryData = MediaQuery.of(context);
     final constrainedTextScaleFactor = mediaQueryData.textScaler.clamp(
-      minScaleFactor: 1,
+      minScaleFactor: 0.8,
       maxScaleFactor: 1,
     );
     return MediaQuery(

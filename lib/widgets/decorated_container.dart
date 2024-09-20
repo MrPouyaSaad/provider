@@ -15,13 +15,14 @@ class MyDecoratedContainer extends StatelessWidget {
   final Color? color;
   final EdgeInsetsGeometry? padding;
   final bool isOutlined;
+
   @override
   Widget build(BuildContext context) {
     final themeData = Theme.of(context).colorScheme;
     return Container(
       padding: padding ?? EdgeInsets.all(12),
       decoration: BoxDecoration(
-        boxShadow: Constants.primaryBoxShadow(context),
+        boxShadow: isOutlined ? null : Constants.primaryBoxShadow(context),
         borderRadius: Constants.primaryRadius,
         color: isOutlined ? themeData.surface : color ?? themeData.surface,
         border: isOutlined
