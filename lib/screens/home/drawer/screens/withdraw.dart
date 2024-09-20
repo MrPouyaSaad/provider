@@ -6,8 +6,8 @@ import 'package:provider/widgets/dvider.dart';
 import 'package:provider/widgets/factor.dart';
 import 'package:provider/widgets/title.dart';
 
-class FinancScreen extends StatelessWidget {
-  const FinancScreen({super.key});
+class FinanceScreen extends StatelessWidget {
+  const FinanceScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

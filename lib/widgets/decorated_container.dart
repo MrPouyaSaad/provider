@@ -20,7 +20,7 @@ class MyDecoratedContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeData = Theme.of(context).colorScheme;
     return Container(
-      padding: padding ?? EdgeInsets.all(12),
+      padding: padding ?? EdgeInsets.all(8),
       decoration: BoxDecoration(
         boxShadow: isOutlined ? null : Constants.primaryBoxShadow(context),
         borderRadius: Constants.primaryRadius,

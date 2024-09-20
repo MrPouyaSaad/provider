@@ -1,8 +1,11 @@
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
+import 'package:provider/screens/home/drawer/screens/withdraw.dart';
 import 'package:provider/screens/products/products_list.dart';
+import 'package:provider/widgets/button.dart';
 import 'package:provider/widgets/custom_shadow_box.dart';
 import 'package:provider/widgets/factor.dart';
 import '../../widgets/decorated_container.dart';
@@ -35,21 +38,40 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                DashboardTitle(
+                  title: 'گزارش مالی',
+                  isBottomPadding: false,
+                ),
+                InkWell(
+                  borderRadius: Constants.primaryRadius,
+                  child: Text(
+                    'جزئیات',
+                    style: TextStyle(
+                        color: themeData.colorScheme.primary,
+                        fontWeight: FontWeight.bold),
+                  ).paddingSymmetric(vertical: 4, horizontal: 8),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => FinanceScreen(),
+                    ));
+                  },
+                )
+              ],
+            ).marginOnly(bottom: Constants.primaryPadding - 2),
             MyDecoratedContainer(
-              color: themeData.colorScheme.primary,
+              color: themeData.colorScheme.tertiary,
               child: Column(
                 children: [
                   FactorItem(
                     title: 'درامد کل:',
                     secTitle: '150,000,000 تومان',
-                    color: themeData.colorScheme.primaryFixedDim,
-                    textColor: themeData.colorScheme.surface,
                   ),
                   FactorItem(
                     title: 'واریز نشده:',
                     secTitle: '18,000,000 تومان',
-                    color: themeData.colorScheme.primaryFixedDim,
-                    textColor: themeData.colorScheme.surface,
                   ),
                 ],
               ),

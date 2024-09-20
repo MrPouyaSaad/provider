@@ -19,7 +19,8 @@ class FactorItem extends StatelessWidget {
     final ptimaryTextColor = textColor ?? Color(0xff52525b);
     return Container(
       padding: const EdgeInsets.all(Constants.primaryPadding / 3),
-      margin: const EdgeInsets.all(Constants.primaryPadding / 3),
+      margin:
+          const EdgeInsets.symmetric(vertical: Constants.primaryPadding / 3),
       decoration: BoxDecoration(
         borderRadius: Constants.primaryRadius,
         color: color ?? const Color(0xfff3f4f6),

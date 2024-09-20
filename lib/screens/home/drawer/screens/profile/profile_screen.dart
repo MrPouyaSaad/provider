@@ -74,7 +74,7 @@ class ProfileScreen extends StatelessWidget {
               onTap: () {
                 Navigator.of(context, rootNavigator: true)
                     .push(CupertinoPageRoute(
-                  builder: (context) => const FinancScreen(),
+                  builder: (context) => const FinanceScreen(),
                 ));
               },
             ),

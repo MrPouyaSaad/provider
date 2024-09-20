@@ -57,7 +57,7 @@ class MyDrawer extends StatelessWidget {
             isEven: true,
             onTap: () {
               Navigator.of(context).push(CupertinoPageRoute(
-                builder: (context) => const FinancScreen(),
+                builder: (context) => const FinanceScreen(),
               ));
             },
           ),
