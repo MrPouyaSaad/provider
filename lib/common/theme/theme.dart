@@ -10,6 +10,7 @@ final secondary = Colors.grey.shade600;
 class MyTheme {
   static final lightTheme = ThemeData(
     fontFamily: iranSans,
+
     //? Text Theme
     textTheme: TextTheme(
       bodySmall: TextStyle(color: Colors.grey.shade600),
@@ -58,7 +59,7 @@ class MyTheme {
       primary: primaryColor,
       primaryFixed: const Color(0XFF3B82F6),
       primaryFixedDim: const Color(0xff2563eb),
-      onPrimary: const Color(0xffEFEFEF),
+      onPrimary: const Color(0xfff2f2f2),
       surface: Colors.white,
       onSurface: const Color(0xff101010),
       secondary: secondary,

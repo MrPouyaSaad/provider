@@ -154,10 +154,6 @@ class DrawerTile extends StatelessWidget {
             : themeData.colorScheme.primary,
       ),
       onTap: onTap,
-    ).animate().slideY(
-          begin: -1,
-          curve: Constants.animationCurve,
-          duration: Constants.duration,
-        );
+    );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
+import 'package:provider/screens/profile/screens/f_a_q.dart';
 import 'package:provider/widgets/decorated_container.dart';
 import 'package:provider/widgets/dvider.dart';
 import 'screens/drawer.dart';
@@ -13,7 +14,6 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(
         title: Text('حساب کاربری'),
@@ -67,28 +67,7 @@ class ProfileScreen extends StatelessWidget {
                   // ));
                 },
               ),
-              // DrawerTile(
-              //   title: 'امور مالی',
-              //   icon: Icons.attach_money,
-              //   isEven: false,
-              //   onTap: () {
-              //     Navigator.of(context, rootNavigator: true)
-              //         .push(CupertinoPageRoute(
-              //       builder: (context) => const FinanceScreen(),
-              //     ));
-              //   },
-              // ),
-              // DrawerTile(
-              //   title: 'تاریخچه سفارشات',
-              //   icon: CupertinoIcons.rectangle_on_rectangle_angled,
-              //   isEven: true,
-              //   onTap: () {
-              //     // Navigator.of(context, rootNavigator: true)
-              //     //     .push(CupertinoPageRoute(
-              //     //   builder: (context) => const ReferralScreen(),
-              //     // ));
-              //   },
-              // ),
+
               DrawerTile(
                 title: 'نظرات',
                 icon: Icons.comment,
@@ -129,10 +108,10 @@ class ProfileScreen extends StatelessWidget {
                 icon: Icons.question_answer_outlined,
                 isEven: true,
                 onTap: () {
-                  // Navigator.of(context, rootNavigator: true)
-                  //     .push(CupertinoPageRoute(
-                  //   builder: (context) => const ReferralScreen(),
-                  // ));
+                  Navigator.of(context, rootNavigator: true)
+                      .push(CupertinoPageRoute(
+                    builder: (context) => FAQScreen(),
+                  ));
                 },
               ),
               DrawerTile(
