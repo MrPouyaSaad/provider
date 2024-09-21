@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/screens/home/drawer/screens/withdraw.dart';
+import 'package:provider/screens/home/finance.dart';
 
 import '../../../common/const.dart';
-import 'screens/criticism.dart';
+import 'criticism.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({

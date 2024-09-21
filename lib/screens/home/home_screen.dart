@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
-import 'package:provider/screens/home/drawer/screens/withdraw.dart';
+import 'package:provider/screens/home/finance.dart';
 import 'package:provider/screens/products/products_list.dart';
 import 'package:provider/widgets/button.dart';
 import 'package:provider/widgets/custom_shadow_box.dart';
