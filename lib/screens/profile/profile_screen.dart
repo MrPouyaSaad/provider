@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
+import 'package:provider/screens/profile/screens/bank_cart/card_manager.dart';
 import 'package:provider/screens/profile/screens/comments.dart';
 import 'package:provider/screens/profile/screens/f_a_q.dart';
 import 'package:provider/widgets/decorated_container.dart';
@@ -63,9 +64,9 @@ class ProfileScreen extends StatelessWidget {
                 icon: Icons.credit_card,
                 isEven: true,
                 onTap: () {
-                  // Navigator.of(context).push(CupertinoPageRoute(
-                  //   builder: (context) => const WithdrawScreen(),
-                  // ));
+                  Navigator.of(context).push(CupertinoPageRoute(
+                    builder: (context) => BankCardManagerPage(),
+                  ));
                 },
               ),
 
