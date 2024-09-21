@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/common/const.dart';
+import 'package:provider/widgets/text_field.dart';
 
 import '../../../../widgets/button.dart';
 
@@ -103,9 +104,9 @@ class _AddOrEditBankCardPageState extends State<AddOrEditBankCardPage> {
                 SizedBox(height: 20),
 
                 // فیلدهای ورودی
-                TextFormField(
+                MyTextField(
                   controller: _cardNumberController,
-                  decoration: InputDecoration(labelText: 'شماره کارت'),
+                  labelText: 'شماره کارت',
                   keyboardType: TextInputType.number,
                   maxLength: 16,
                   validator: (value) {
@@ -117,9 +118,9 @@ class _AddOrEditBankCardPageState extends State<AddOrEditBankCardPage> {
                 ),
                 SizedBox(height: Constants.primaryPadding),
 
-                TextFormField(
+                MyTextField(
                   controller: _shabaNumberController,
-                  decoration: InputDecoration(labelText: 'شماره شبا'),
+                  labelText: 'شماره شبا',
                   keyboardType: TextInputType.number,
                   maxLength: 24,
                   validator: (value) {
@@ -131,9 +132,9 @@ class _AddOrEditBankCardPageState extends State<AddOrEditBankCardPage> {
                 ),
                 SizedBox(height: Constants.primaryPadding),
 
-                TextFormField(
+                MyTextField(
                   controller: _accountNumberController,
-                  decoration: InputDecoration(labelText: 'شماره حساب'),
+                  labelText: 'شماره حساب',
                   keyboardType: TextInputType.number,
                   maxLength: 18,
                   validator: (value) {
@@ -144,9 +145,9 @@ class _AddOrEditBankCardPageState extends State<AddOrEditBankCardPage> {
                   },
                 ),
                 SizedBox(height: Constants.primaryPadding),
-                TextFormField(
+                MyTextField(
                   controller: _holderNameController,
-                  decoration: InputDecoration(labelText: 'نام دارنده کارت'),
+                  labelText: 'نام دارنده کارت',
                   keyboardType: TextInputType.text,
                   validator: (value) {
                     if (value == null || value.isEmpty) {

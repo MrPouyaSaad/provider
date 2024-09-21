@@ -13,7 +13,6 @@ class ProductsScreen extends StatelessWidget {
     final themeData = Theme.of(context);
 
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(

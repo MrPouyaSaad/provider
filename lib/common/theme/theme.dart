@@ -44,6 +44,7 @@ class MyTheme {
     ),
     //? floating action button
     floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: Color(0xff22A699),
       shape: RoundedRectangleBorder(borderRadius: Constants.primaryRadius),
     ),
     //? App Bar

@@ -79,7 +79,7 @@ class BankCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
     return Card(
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.all(16),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       elevation: 5,
       child: Container(

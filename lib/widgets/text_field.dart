@@ -3,19 +3,6 @@ import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
 
 class MyTextField extends StatelessWidget {
-  const MyTextField(
-      {super.key,
-      this.labelText,
-      this.hintText,
-      this.prefixIcon,
-      this.enabled = true,
-      this.keyboardType,
-      this.alignLabelWithHint = true,
-      this.textAlign = TextAlign.start,
-      this.textAlignVertical,
-      this.controller,
-      this.maxLines,
-      this.minLines});
   final String? labelText;
   final String? hintText;
   final Widget? prefixIcon;
@@ -27,23 +14,45 @@ class MyTextField extends StatelessWidget {
   final bool alignLabelWithHint;
   final int? maxLines;
   final int? minLines;
+  final int? maxLength;
+  final FormFieldValidator<String>? validator;
+
+  const MyTextField({
+    Key? key,
+    this.labelText,
+    this.hintText,
+    this.prefixIcon,
+    this.controller,
+    this.keyboardType = TextInputType.text,
+    this.enabled = true,
+    this.textAlign = TextAlign.start,
+    this.textAlignVertical,
+    this.alignLabelWithHint = false,
+    this.maxLines = 1,
+    this.minLines,
+    this.maxLength,
+    this.validator,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      minLines: minLines,
-      maxLines: maxLines,
-      textAlign: textAlign,
-      textAlignVertical: textAlignVertical,
+    return TextFormField(
       controller: controller,
       onTapOutside: Constants.dismisTextField,
       keyboardType: keyboardType,
+      maxLength: maxLength,
+      maxLines: maxLines,
+      minLines: minLines,
+      textAlign: textAlign,
+      textAlignVertical: textAlignVertical,
       enabled: enabled,
       decoration: InputDecoration(
-        alignLabelWithHint: alignLabelWithHint,
         labelText: labelText,
         hintText: hintText,
         prefixIcon: prefixIcon,
+        alignLabelWithHint: alignLabelWithHint,
       ),
+      validator: validator,
     ).marginSymmetric(vertical: Constants.primaryPadding / 2);
   }
 }
