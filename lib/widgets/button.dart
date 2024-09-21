@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
 
 class MyElevatedButton extends StatelessWidget {
@@ -35,6 +36,36 @@ class MyElevatedButton extends StatelessWidget {
       label: Text(
         title!,
         style: style ?? const TextStyle(fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+}
+
+class MyTextButton extends StatelessWidget {
+  const MyTextButton({
+    super.key,
+    this.onTap,
+    required this.title,
+  });
+  final Function()? onTap;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
+
+    return Material(
+      color: themeData.colorScheme.surface,
+      child: InkWell(
+        borderRadius: Constants.primaryRadius,
+        child: Text(
+          title,
+          style: TextStyle(
+              color: onTap != null
+                  ? themeData.colorScheme.primary
+                  : themeData.colorScheme.secondary),
+        ).paddingSymmetric(vertical: 4, horizontal: 8),
+        onTap: onTap,
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
+import 'package:provider/screens/profile/screens/comments.dart';
 import 'package:provider/screens/profile/screens/f_a_q.dart';
 import 'package:provider/widgets/decorated_container.dart';
 import 'package:provider/widgets/dvider.dart';
@@ -73,11 +74,11 @@ class ProfileScreen extends StatelessWidget {
                 icon: Icons.comment,
                 isEven: false,
                 onTap: () {
-                  // Navigator.of(context, rootNavigator: true).push(
-                  //   CupertinoPageRoute(
-                  //     builder: (context) => const BonusScreen(),
-                  //   ),
-                  // );
+                  Navigator.of(context, rootNavigator: true).push(
+                    CupertinoPageRoute(
+                      builder: (context) => const CommentsList(),
+                    ),
+                  );
                 },
               ),
               DrawerTile(

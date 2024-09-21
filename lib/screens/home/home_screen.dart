@@ -45,14 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   title: 'گزارش مالی',
                   isBottomPadding: false,
                 ),
-                InkWell(
-                  borderRadius: Constants.primaryRadius,
-                  child: Text(
-                    'جزئیات',
-                    style: TextStyle(
-                        color: themeData.colorScheme.primary,
-                        fontWeight: FontWeight.bold),
-                  ).paddingSymmetric(vertical: 4, horizontal: 8),
+                MyTextButton(
+                  title: 'جزئیات',
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => FinanceScreen(),
