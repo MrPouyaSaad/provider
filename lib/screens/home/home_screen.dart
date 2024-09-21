@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ).marginOnly(bottom: Constants.primaryPadding - 2),
             MyDecoratedContainer(
-              color: themeData.colorScheme.tertiary,
+              color: themeData.colorScheme.primary,
               child: Column(
                 children: [
                   FactorItem(
@@ -153,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     gridData: FlGridData(show: false),
                     barGroups:
-                        getBarChartProductsSaleData(context), // داده‌های فروش
+                        getBarChartWeeklyReport(context), // داده‌های فروش
                   ),
                 ),
               ),
@@ -283,8 +283,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     gridData: FlGridData(show: false),
-                    barGroups:
-                        getBarChartData(), // تابع برای دریافت داده‌های بهینه‌شده
+                    barGroups: getBarChartMonthlyReport(
+                        context), // تابع برای دریافت داده‌های بهینه‌شده
                   ),
                 ),
               ),
@@ -316,7 +316,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  List<BarChartGroupData> getBarChartData() {
+  List<BarChartGroupData> getBarChartMonthlyReport(BuildContext context) {
     // مقادیر مربوط به هر ماه (این مقادیر را می‌توان دینامیک کرد)
     List<double> monthlySales = [10, 15, 8, 12, 18, 20, 25, 30, 17, 14, 19, 22];
 
@@ -327,7 +327,7 @@ class _HomeScreenState extends State<HomeScreen> {
         barRods: [
           BarChartRodData(
             toY: monthlySales[index], // مقدار فروش ماهانه
-            color: Colors.orange,
+            color: Theme.of(context).colorScheme.secondaryContainer,
             borderRadius: BorderRadius.vertical(
               top: Radius.circular(12),
             ),
@@ -337,7 +337,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  List<BarChartGroupData> getBarChartProductsSaleData(BuildContext context) {
+  List<BarChartGroupData> getBarChartWeeklyReport(BuildContext context) {
     // مقادیر فروش روزانه
     List<int> dailySales = [10, 15, 8, 12, 18, 20, 1];
     return List.generate(dailySales.length, (index) {
@@ -347,7 +347,7 @@ class _HomeScreenState extends State<HomeScreen> {
           BarChartRodData(
             width: 20,
             toY: dailySales[index].toDouble(), // مقدار فروش روزانه
-            color: Theme.of(context).colorScheme.tertiary,
+            color: Theme.of(context).colorScheme.primary,
             borderRadius: Constants.primaryRadius,
           ),
         ],

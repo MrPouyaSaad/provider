@@ -22,7 +22,7 @@ class FinanceScreen extends StatelessWidget {
           child: Column(
             children: [
               MyDecoratedContainer(
-                color: themeData.colorScheme.tertiary,
+                color: themeData.colorScheme.primary,
                 child: Column(
                   children: [
                     FactorItem(

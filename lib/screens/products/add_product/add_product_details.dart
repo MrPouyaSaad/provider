@@ -55,6 +55,7 @@ class _AddProductDetailsState extends State<AddProductDetails> {
       'image': 'assets/images/6260100320116(1).jpg'
     },
   ];
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -154,97 +155,177 @@ class _AddProductDetailsState extends State<AddProductDetails> {
                   ),
                 ],
               ),
-            MyTextField(
-              labelText: 'تعداد موجود برای فروش',
-              keyboardType: TextInputType.number,
-            ),
-            MyTextField(
-              labelText: 'تعداد در هر بسته',
-              keyboardType: TextInputType.number,
-            ),
-            MyTextField(
-              labelText: 'تاریخ انقضاء',
-            ),
-            MyTextField(
-              labelText: 'قیمت هر بسته',
-              keyboardType: TextInputType.number,
-            ),
-            MyTextField(
-              labelText: 'قیمت 5 بسته',
-              keyboardType: TextInputType.number,
-            ),
-            MyTextField(
-              labelText: 'قیمت 10 بسته',
-              keyboardType: TextInputType.number,
-            ),
-            MyTextField(
-              labelText: 'قیمت برای مصرف کننده(روی جلد)',
-              keyboardType: TextInputType.number,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    if (isDiscount == true) {
-                      setState(() {
-                        isDiscount = false;
-                        dicountController.clear();
-                      });
-                    } else
-                      setState(() {
-                        isDiscount = true;
-                      });
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                        vertical: Constants.primaryPadding - 4),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 20,
-                          height: 20,
-                          decoration: BoxDecoration(
-                            border: !isDiscount
-                                ? Border.all(
-                                    color: themeData.colorScheme.primary,
-                                    width: 2.5)
-                                : null,
-                            borderRadius: BorderRadius.circular(
-                                Constants.primaryRadiusValue / 2),
-                            color: isDiscount
-                                ? themeData.primaryColor
-                                : themeData.colorScheme.surface,
-                          ),
-                          child: isDiscount
-                              ? Icon(
-                                  Icons.check,
-                                  color: Colors.white,
-                                  size: 18,
-                                )
-                              : null,
-                        ),
-                        SizedBox(width: Constants.primaryPadding / 2),
-                        Text(
-                          'تخفیف',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 16),
-                        ),
-                      ],
-                    ).marginOnly(left: Constants.primaryPadding),
-                  ),
-                ),
-                Expanded(
-                  child: MyTextField(
-                    labelText: 'درصد تخفیف',
-                    enabled: isDiscount,
-                    controller: dicountController,
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  MyTextField(
+                    labelText: 'تعداد موجود برای فروش',
                     keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'لطفا تعداد موجود برای فروش را وارد کنید';
+                      }
+                      if (int.tryParse(value) == null) {
+                        return 'مقدار وارد شده باید یک عدد باشد';
+                      }
+                      return null;
+                    },
                   ),
-                ),
-              ],
+                  MyTextField(
+                    labelText: 'تعداد در هر بسته',
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'لطفا تعداد در هر بسته را وارد کنید';
+                      }
+                      if (int.tryParse(value) == null) {
+                        return 'مقدار وارد شده باید یک عدد باشد';
+                      }
+                      return null;
+                    },
+                  ),
+                  MyTextField(
+                    labelText: 'تاریخ انقضاء',
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'لطفا تاریخ انقضاء را وارد کنید';
+                      }
+                      // می‌توانید اینجا یک اعتبارسنجی برای فرمت تاریخ اضافه کنید
+                      return null;
+                    },
+                  ),
+                  MyTextField(
+                    labelText: 'قیمت هر بسته',
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'لطفا قیمت هر بسته را وارد کنید';
+                      }
+                      if (double.tryParse(value) == null) {
+                        return 'مقدار وارد شده باید یک عدد باشد';
+                      }
+                      return null;
+                    },
+                  ),
+                  MyTextField(
+                    labelText: 'قیمت 5 بسته',
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'لطفا قیمت 5 بسته را وارد کنید';
+                      }
+                      if (double.tryParse(value) == null) {
+                        return 'مقدار وارد شده باید یک عدد باشد';
+                      }
+                      return null;
+                    },
+                  ),
+                  MyTextField(
+                    labelText: 'قیمت 10 بسته',
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'لطفا قیمت 10 بسته را وارد کنید';
+                      }
+                      if (double.tryParse(value) == null) {
+                        return 'مقدار وارد شده باید یک عدد باشد';
+                      }
+                      return null;
+                    },
+                  ),
+                  MyTextField(
+                    labelText: 'قیمت برای مصرف کننده(روی جلد)',
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'لطفا قیمت برای مصرف کننده را وارد کنید';
+                      }
+                      if (double.tryParse(value) == null) {
+                        return 'مقدار وارد شده باید یک عدد باشد';
+                      }
+                      return null;
+                    },
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          if (isDiscount == true) {
+                            setState(() {
+                              isDiscount = false;
+                              dicountController.clear();
+                            });
+                          } else {
+                            setState(() {
+                              isDiscount = true;
+                            });
+                          }
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: Constants.primaryPadding - 4),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 20,
+                                height: 20,
+                                decoration: BoxDecoration(
+                                  border: !isDiscount
+                                      ? Border.all(
+                                          color: themeData.colorScheme.primary,
+                                          width: 2.5)
+                                      : null,
+                                  borderRadius: BorderRadius.circular(
+                                      Constants.primaryRadiusValue / 2),
+                                  color: isDiscount
+                                      ? themeData.primaryColor
+                                      : themeData.colorScheme.surface,
+                                ),
+                                child: isDiscount
+                                    ? Icon(
+                                        Icons.check,
+                                        color: Colors.white,
+                                        size: 18,
+                                      )
+                                    : null,
+                              ),
+                              SizedBox(width: Constants.primaryPadding / 2),
+                              Text(
+                                'تخفیف',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: 16),
+                              ),
+                            ],
+                          ).marginOnly(left: Constants.primaryPadding),
+                        ),
+                      ),
+                      Expanded(
+                        child: MyTextField(
+                          labelText: 'درصد تخفیف',
+                          enabled: isDiscount,
+                          controller: dicountController,
+                          keyboardType: TextInputType.number,
+                          validator: (value) {
+                            if (isDiscount) {
+                              if (value == null || value.isEmpty) {
+                                return 'لطفا درصد تخفیف را وارد کنید';
+                              }
+                              if (double.tryParse(value) == null) {
+                                return 'مقدار وارد شده باید یک عدد باشد';
+                              }
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width -
@@ -252,14 +333,13 @@ class _AddProductDetailsState extends State<AddProductDetails> {
               height: Constants.primaryButtonHeight,
               child: MyElevatedButton(
                 title: 'تایید',
-                onTap: confirm
+                onTap: !confirm
                     ? null
                     : () {
-                        Navigator.of(context).push(
-                          CupertinoPageRoute(
-                            builder: (context) => AddProductDetails(id: 1),
-                          ),
-                        );
+                        if (_formKey.currentState!.validate()) {
+                          // انجام عملیات ذخیره کارت
+                          Navigator.popUntil(context, (route) => route.isFirst);
+                        }
                       },
                 icon: const Icon(Icons.check),
               ),

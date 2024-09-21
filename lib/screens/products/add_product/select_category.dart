@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
+import 'package:provider/screens/home/finance.dart';
 import 'package:provider/widgets/button.dart';
 import 'add_product_details.dart';
 
@@ -14,6 +16,7 @@ class AddProduct extends StatefulWidget {
 class _AddProductState extends State<AddProduct> {
   int? selectedIndex; // متغیر برای ذخیره آیتم انتخاب‌شده
   final int itemCount = 10; // تعداد آیتم‌ها
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +49,7 @@ class _AddProductState extends State<AddProduct> {
               left: Constants.primaryPadding * 2,
               right: Constants.primaryPadding * 2),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // دو آیتم در هر سطر
+            crossAxisCount: 3, // دو آیتم در هر سطر
             mainAxisSpacing: 10.0,
             crossAxisSpacing: 10.0,
             childAspectRatio: 0.9, // نسبت برای آیتم‌های دایره‌ای
@@ -81,18 +84,15 @@ class _AddProductState extends State<AddProduct> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const CircleAvatar(
-                      radius: 40,
-                      backgroundImage:
-                          AssetImage('assets/images/1509547706.jpg'),
-                    ),
+                    Flexible(
+                        child: Image.asset('assets/images/1509547706.jpg')),
                     const SizedBox(height: 10),
                     Text(
                       'Item $index',
                       style: const TextStyle(fontSize: 16),
                     ),
                   ],
-                ),
+                ).paddingAll(Constants.primaryPadding),
               ),
             );
           },
