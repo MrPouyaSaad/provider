@@ -27,7 +27,7 @@ class MyTextField extends StatelessWidget {
     this.enabled = true,
     this.textAlign = TextAlign.start,
     this.textAlignVertical,
-    this.alignLabelWithHint = false,
+    this.alignLabelWithHint = true,
     this.maxLines = 1,
     this.minLines,
     this.maxLength,

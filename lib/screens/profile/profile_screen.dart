@@ -75,7 +75,7 @@ class ProfileScreen extends StatelessWidget {
                 icon: Icons.comment,
                 isEven: false,
                 onTap: () {
-                  Navigator.of(context, rootNavigator: true).push(
+                  Navigator.of(context).push(
                     CupertinoPageRoute(
                       builder: (context) => const CommentsList(),
                     ),
@@ -98,7 +98,7 @@ class ProfileScreen extends StatelessWidget {
                 icon: Icons.feed,
                 isEven: false,
                 onTap: () {
-                  Navigator.of(context, rootNavigator: true).push(
+                  Navigator.of(context).push(
                     CupertinoPageRoute(
                       builder: (context) => const CriticismScreen(),
                     ),
@@ -110,8 +110,7 @@ class ProfileScreen extends StatelessWidget {
                 icon: Icons.question_answer_outlined,
                 isEven: true,
                 onTap: () {
-                  Navigator.of(context, rootNavigator: true)
-                      .push(CupertinoPageRoute(
+                  Navigator.of(context).push(CupertinoPageRoute(
                     builder: (context) => FAQScreen(),
                   ));
                 },
