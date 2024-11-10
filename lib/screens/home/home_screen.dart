@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 1,
         centerTitle: true,
         backgroundColor: themeData.colorScheme.surface,
-        title: Text('ویزی دشت'),
+        title: Text('ویزی دخل'),
       ),
       body: SingleChildScrollView(
         child: Column(

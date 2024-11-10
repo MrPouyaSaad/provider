@@ -16,7 +16,7 @@ class MyTextField extends StatelessWidget {
   final int? minLines;
   final int? maxLength;
   final FormFieldValidator<String>? validator;
-
+  final String? caption;
   const MyTextField({
     Key? key,
     this.labelText,
@@ -32,27 +32,43 @@ class MyTextField extends StatelessWidget {
     this.minLines,
     this.maxLength,
     this.validator,
+    this.caption,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      onTapOutside: Constants.dismisTextField,
-      keyboardType: keyboardType,
-      maxLength: maxLength,
-      maxLines: maxLines,
-      minLines: minLines,
-      textAlign: textAlign,
-      textAlignVertical: textAlignVertical,
-      enabled: enabled,
-      decoration: InputDecoration(
-        labelText: labelText,
-        hintText: hintText,
-        prefixIcon: prefixIcon,
-        alignLabelWithHint: alignLabelWithHint,
-      ),
-      validator: validator,
-    ).marginSymmetric(vertical: Constants.primaryPadding / 2);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        if (caption != null)
+          Text(
+            caption!,
+            style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.onSurface),
+          ).marginOnly(bottom: 4, left: 4),
+        TextFormField(
+          controller: controller,
+          onTapOutside: Constants.dismisTextField,
+          keyboardType: keyboardType,
+          maxLength: maxLength,
+          maxLines: maxLines,
+          minLines: minLines,
+          textAlign: textAlign,
+          textAlignVertical: textAlignVertical,
+          enabled: enabled,
+          decoration: InputDecoration(
+            labelText: labelText,
+            hintText: hintText,
+            prefixIcon: prefixIcon,
+            alignLabelWithHint: alignLabelWithHint,
+          ),
+          validator: validator,
+        ),
+      ],
+    ).marginOnly(
+        top: caption != null ? 0 : Constants.primaryPadding / 2,
+        bottom: maxLength != null ? 0 : Constants.primaryPadding);
   }
 }

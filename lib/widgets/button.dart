@@ -23,19 +23,22 @@ class MyElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
 
-    return ElevatedButton.icon(
-      onPressed: onTap,
-      style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Constants.primaryRadiusValue),
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: ElevatedButton.icon(
+        onPressed: onTap,
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(Constants.primaryRadiusValue),
+          ),
+          backgroundColor: backgroundColor ?? themeData.colorScheme.primary,
+          foregroundColor: forgroundColor ?? themeData.colorScheme.surface,
         ),
-        backgroundColor: backgroundColor ?? themeData.colorScheme.primary,
-        foregroundColor: forgroundColor ?? themeData.colorScheme.surface,
-      ),
-      icon: icon,
-      label: Text(
-        title!,
-        style: style ?? const TextStyle(fontWeight: FontWeight.bold),
+        icon: icon,
+        label: Text(
+          title!,
+          style: style ?? const TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }

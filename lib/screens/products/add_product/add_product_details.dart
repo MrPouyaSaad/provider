@@ -321,7 +321,6 @@ class _AddProductDetailsState extends State<AddProductDetails> {
                     ? null
                     : () {
                         if (_formKey.currentState!.validate()) {
-                          // انجام عملیات ذخیره کارت
                           Navigator.popUntil(context, (route) => route.isFirst);
                         }
                       },

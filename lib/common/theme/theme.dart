@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/common/const.dart';
 
 // const String iranSans = 'iran-sans';
-const String iranSans = 'yekan-bakh';
+const String yekanBakh = 'yekan-bakh';
 const primaryColor = Color(0XFF3B82F6);
 //const primaryColor = Color(0XFF0b5c74);
 final secondary = Colors.grey.shade600;
 
 class MyTheme {
   static final lightTheme = ThemeData(
-    fontFamily: iranSans,
+    fontFamily: yekanBakh,
 
     //? Text Theme
     textTheme: TextTheme(
@@ -52,7 +52,7 @@ class MyTheme {
       foregroundColor: primaryColor,
       titleTextStyle: TextStyle(
           fontSize: 16,
-          fontFamily: iranSans,
+          fontFamily: yekanBakh,
           color: primaryColor,
           wordSpacing: -2),
     ),

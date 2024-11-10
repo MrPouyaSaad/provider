@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/screens/products/add_product/add_product_details.dart';
 import 'package:provider/screens/products/add_product/select_category.dart';
 
@@ -37,7 +38,7 @@ class ProductsScreen extends StatelessWidget {
                   hintText: 'جستجو',
                   alignLabelWithHint: true,
                   prefixIcon: Icon(Icons.search),
-                ),
+                ).marginOnly(top: 8),
                 automaticallyImplyLeading: false,
                 centerTitle: true,
                 elevation: 1.0,
