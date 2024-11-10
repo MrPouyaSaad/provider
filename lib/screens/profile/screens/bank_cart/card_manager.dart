@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/screens/profile/profile_screen.dart';
 import 'package:provider/screens/profile/screens/bank_cart/add_cart.dart';
 
 class BankCardManagerPage extends StatefulWidget {
@@ -32,7 +31,7 @@ class _BankCardManagerPageState extends State<BankCardManagerPage> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('مدیریت کارت‌های بانکی'),
+          title: Text('مدیریت کارت‌ ها'),
         ),
         body: ListView.builder(
           itemCount: bankCards.length,

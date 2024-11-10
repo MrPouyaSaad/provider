@@ -18,29 +18,30 @@ class _AddOrEditBankCardPageState extends State<AddOrEditBankCardPage> {
   TextEditingController _accountNumberController = TextEditingController();
   TextEditingController _holderNameController = TextEditingController();
 
-  String? _bankName; // نام بانک شناسایی شده
+  String? _bankName;
 
-  // دیکشنری برای شناسایی بانک‌ها بر اساس شماره BIN
   Map<String, String> binToBankMap = {
-    '6037': 'بانک ملی',
-    '5892': 'بانک صادرات',
-    '6273': 'بانک تجارت',
-    '6221': 'بانک پارسیان',
-    // سایر بانک‌ها را نیز می‌توانید اضافه کنید
+    '603799': 'بانک ملی',
+    '589216': 'بانک صادرات',
+    '627300': 'بانک تجارت',
+    '622102': 'بانک پارسیان',
+    '5022': 'بانک پاسارگاد',
   };
 
-  // متد برای شناسایی بانک بر اساس شماره کارت
   void _identifyBank(String cardNumber) {
-    if (cardNumber.length >= 4) {
-      String bin = cardNumber.substring(0, 4);
-      setState(() {
+    setState(() {
+      if (cardNumber.length >= 4) {
+        String bin = cardNumber.substring(0, 4);
         _bankName = binToBankMap[bin];
-      });
-    } else {
-      setState(() {
+
+        if (_bankName == null && cardNumber.length >= 6) {
+          bin = cardNumber.substring(0, 6);
+          _bankName = binToBankMap[bin];
+        }
+      } else {
         _bankName = null;
-      });
-    }
+      }
+    });
   }
 
   void _extractAccountNumberFromShaba() {
@@ -57,13 +58,11 @@ class _AddOrEditBankCardPageState extends State<AddOrEditBankCardPage> {
   void initState() {
     super.initState();
 
-    // اضافه کردن listener برای شماره کارت
     _cardNumberController.addListener(() {
       _identifyBank(_cardNumberController.text);
-      setState(() {}); // برای آپدیت پیش‌نمایش کارت
+      setState(() {});
     });
 
-    // اضافه کردن listener برای سایر فیلدها جهت به‌روزرسانی پیش‌نمایش
     _shabaNumberController.addListener(() => setState(() {
           _extractAccountNumberFromShaba();
           setState(() {});
