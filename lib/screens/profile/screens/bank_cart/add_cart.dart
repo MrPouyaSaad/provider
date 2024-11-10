@@ -156,15 +156,20 @@ class _AddOrEditBankCardPageState extends State<AddOrEditBankCardPage> {
                   },
                 ),
                 SizedBox(height: 20),
-                MyElevatedButton(
-                  onTap: () {
-                    if (_formKey.currentState!.validate()) {
-                      // انجام عملیات ذخیره کارت
-                      Navigator.pop(context);
-                    }
-                  },
-                  title: ('ذخیره کارت'),
+                SizedBox(
+                  width: double.infinity,
+                  height: Constants.primaryButtonHeight,
+                  child: MyElevatedButton(
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        // انجام عملیات ذخیره کارت
+                        Navigator.pop(context);
+                      }
+                    },
+                    title: ('ذخیره کارت'),
+                  ),
                 ),
+                SizedBox(height: 20),
               ],
             ),
           ),
