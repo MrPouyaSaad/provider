@@ -54,7 +54,7 @@ class ProductsScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               final count = index == 3 ? 0 : 15;
               bool isEmpty = count == 0;
-              return InkWell(
+              return GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(

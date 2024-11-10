@@ -211,28 +211,12 @@ class _AddProductDetailsState extends State<AddProductDetails> {
                   MyTextField(
                     labelText: 'قیمت 5 بسته',
                     keyboardType: TextInputType.number,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'لطفا قیمت 5 بسته را وارد کنید';
-                      }
-                      if (double.tryParse(value) == null) {
-                        return 'مقدار وارد شده باید یک عدد باشد';
-                      }
-                      return null;
-                    },
+                    caption: 'اختیاری',
                   ),
                   MyTextField(
                     labelText: 'قیمت 10 بسته',
                     keyboardType: TextInputType.number,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'لطفا قیمت 10 بسته را وارد کنید';
-                      }
-                      if (double.tryParse(value) == null) {
-                        return 'مقدار وارد شده باید یک عدد باشد';
-                      }
-                      return null;
-                    },
+                    caption: 'اختیاری',
                   ),
                   MyTextField(
                     labelText: 'قیمت برای مصرف کننده(روی جلد)',

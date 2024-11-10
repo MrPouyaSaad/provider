@@ -5,6 +5,7 @@ import 'package:provider/common/const.dart';
 import 'package:provider/screens/profile/screens/bank_cart/card_manager.dart';
 import 'package:provider/screens/profile/screens/comments.dart';
 import 'package:provider/screens/profile/screens/f_a_q.dart';
+import 'package:provider/screens/profile/screens/user_info/user_info_screen.dart';
 import 'package:provider/widgets/decorated_container.dart';
 import 'package:provider/widgets/dvider.dart';
 import 'screens/drawer.dart';
@@ -51,7 +52,13 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     Spacer(),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          CupertinoPageRoute(
+                            builder: (context) => UserInfoScreen(),
+                          ),
+                        );
+                      },
                       child: Text('ویرایش'),
                     )
                   ],
