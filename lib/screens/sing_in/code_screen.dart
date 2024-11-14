@@ -66,6 +66,7 @@ class _CodeScreenState extends State<CodeScreen> {
                       if (widget.isSingUp) ...{
                         Stepper(
                           currentStep: _currentStep,
+                          physics: NeverScrollableScrollPhysics(),
                           controlsBuilder: (context, details) => Container(),
                           steps: [
                             Step(
@@ -84,7 +85,7 @@ class _CodeScreenState extends State<CodeScreen> {
                               title:
                                   Text('تایید شناسه صنفی', style: titleStyle),
                               subtitle: Text(
-                                'مدت زمان انتظار : 1 الی 24 ساعت',
+                                'مدت زمان انتظار : (1) الی (24) ساعت',
                                 style: subTitleStyle,
                               ),
                               content: Container(),
