@@ -40,7 +40,7 @@ class _CodeScreenState extends State<CodeScreen> {
             child: Column(
               children: [
                 Text(
-                  'ویزی دخل',
+                  '${Constants.appName}',
                   style: TextStyle(
                       color: themeData.colorScheme.surface,
                       fontSize: 32,

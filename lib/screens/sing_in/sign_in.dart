@@ -35,7 +35,7 @@ class _SignInScreenState extends State<SignInScreen> {
           child: Column(
             children: [
               Text(
-                'ویزی دخل',
+                '${Constants.appName}',
                 style: TextStyle(
                     color: themeData.colorScheme.surface,
                     fontSize: 32,

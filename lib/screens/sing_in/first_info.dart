@@ -49,7 +49,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               children: [
                 Center(
                   child: Text(
-                    'به ویزی دخل خوش آمدید!',
+                    'به ${Constants.appName} خوش آمدید!',
                     style: TextStyle(
                         color: themeData.colorScheme.surface,
                         fontSize: 24,

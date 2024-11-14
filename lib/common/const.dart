@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class Constants {
+  static final appName = 'ویزی دشت';
   //!
   static final primaryRadius = BorderRadius.circular(6.0);
   static const primaryRadiusValue = 6.0;

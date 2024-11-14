@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 1,
         centerTitle: true,
         backgroundColor: themeData.colorScheme.surface,
-        title: Text('ویزی دخل'),
+        title: Text('${Constants.appName}'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -54,19 +54,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               ],
             ).marginOnly(bottom: Constants.primaryPadding - 2),
-            MyDecoratedContainer(
-              color: themeData.colorScheme.primary,
-              child: Column(
-                children: [
-                  FactorItem(
-                    title: 'درامد کل:',
-                    secTitle: '150,000,000 تومان',
-                  ),
-                  FactorItem(
-                    title: 'واریز نشده:',
-                    secTitle: '18,000,000 تومان',
-                  ),
-                ],
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => FinanceScreen(),
+                ));
+              },
+              child: MyDecoratedContainer(
+                color: themeData.colorScheme.primary,
+                child: Column(
+                  children: [
+                    FactorItem(
+                      title: 'درامد کل:',
+                      secTitle: '150,000,000 تومان',
+                    ),
+                    FactorItem(
+                      title: 'واریز نشده:',
+                      secTitle: '18,000,000 تومان',
+                    ),
+                  ],
+                ),
               ),
             ),
 
