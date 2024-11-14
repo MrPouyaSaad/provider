@@ -59,7 +59,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(height: 32),
 
                     Text(
-                      'شماره همراه ثبت شده را وارد کنید.',
+                      ' لطفا شماره همراه ثبت شده را وارد کنید.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           wordSpacing: -2,

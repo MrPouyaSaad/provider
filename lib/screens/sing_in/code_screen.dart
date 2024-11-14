@@ -63,7 +63,7 @@ class _CodeScreenState extends State<CodeScreen> {
                       ),
                       SizedBox(height: 32),
 
-                      if (widget.isSingUp)
+                      if (widget.isSingUp) ...{
                         Stepper(
                           currentStep: _currentStep,
                           controlsBuilder: (context, details) => Container(),
@@ -97,34 +97,66 @@ class _CodeScreenState extends State<CodeScreen> {
                                 'کد تایید ارسال شده به شماره 09028430830 را وارد کنید.',
                                 style: subTitleStyle,
                               ),
-                              content: Column(
-                                children: [
-                                  Form(
-                                    key: _formKey,
-                                    child: MyTextField(
-                                      labelText: 'کد تایید',
-                                      maxLength: 5,
-                                      textAlign: TextAlign.center,
-                                      letterSpacing: 7,
-                                      controller: controller,
-                                      enabled: _currentStep ==
-                                          2, // غیرفعال تا رسیدن به مرحله 3
-                                      validator: (value) {
-                                        if (value == null || value.isEmpty) {
-                                          return 'کد تایید خود را وارد کنید!';
-                                        } else if (value.length < 5) {
-                                          return 'کد تایید نمیتواند کمتر از 5 رقم باشد!';
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                      keyboardType: TextInputType.number,
-                                    ),
-                                  ),
-                                ],
+                              content: Form(
+                                key: _formKey,
+                                child: MyTextField(
+                                  labelText: 'کد تایید',
+                                  maxLength: 5,
+                                  textAlign: TextAlign.center,
+                                  letterSpacing: 7,
+                                  controller: controller,
+                                  enabled: _currentStep ==
+                                      2, // غیرفعال تا رسیدن به مرحله 3
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'کد تایید خود را وارد کنید!';
+                                    } else if (value.length < 5) {
+                                      return 'کد تایید نمیتواند کمتر از 5 رقم باشد!';
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                  keyboardType: TextInputType.number,
+                                ),
                               ),
                               isActive: _currentStep >= 2,
                             ),
+                          ],
+                        ),
+                      } else
+                        Column(
+                          children: [
+                            Text(
+                              'کد تایید ارسال شده به شماره 09028430830 را وارد کنید.',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  wordSpacing: -2,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12),
+                            ),
+                            SizedBox(height: Constants.primaryPadding),
+                            Form(
+                              key: _formKey,
+                              child: MyTextField(
+                                labelText: 'کد تایید',
+                                maxLength: 5,
+                                textAlign: TextAlign.center,
+                                letterSpacing: 7,
+                                controller: controller,
+                                enabled: _currentStep ==
+                                    2, // غیرفعال تا رسیدن به مرحله 3
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'کد تایید خود را وارد کنید!';
+                                  } else if (value.length < 5) {
+                                    return 'کد تایید نمیتواند کمتر از 5 رقم باشد!';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                keyboardType: TextInputType.number,
+                              ),
+                            ).marginOnly(bottom: Constants.primaryPadding),
                           ],
                         ),
                       // Text(
@@ -135,26 +167,35 @@ class _CodeScreenState extends State<CodeScreen> {
                       //       fontWeight: FontWeight.bold,
                       //       fontSize: 12),
                       // ),
-                      //   SizedBox(height: 16),
+
                       SizedBox(
                         width: double.infinity,
                         height: Constants.primaryButtonHeight,
                         child: MyElevatedButton(
-                          title: 'ورود',
-                          backgroundColor:
-                              themeData.colorScheme.surfaceContainerHighest,
-                          forgroundColor: themeData.colorScheme.surface,
-                          onTap: _currentStep == 2 &&
-                                  _formKey.currentState?.validate() == true
-                              ? () {
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                      builder: (context) => RootScreen(),
-                                    ),
-                                  );
-                                }
-                              : null,
-                        ),
+                            title: 'ورود',
+                            backgroundColor:
+                                themeData.colorScheme.surfaceContainerHighest,
+                            forgroundColor: themeData.colorScheme.surface,
+                            onTap: widget.isSingUp
+                                ? (_currentStep == 2)
+                                    ? () {
+                                        if (_formKey.currentState!.validate()) {
+                                          Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  RootScreen(),
+                                            ),
+                                          );
+                                        }
+                                      }
+                                    : null
+                                : () {
+                                    Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                        builder: (context) => RootScreen(),
+                                      ),
+                                    );
+                                  }),
                       ),
                       SizedBox(height: 8),
                       if (_currentStep == 2)
