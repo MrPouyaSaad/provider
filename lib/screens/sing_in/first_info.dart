@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:provider/common/const.dart';
-import 'package:provider/root.dart';
-import 'package:provider/screens/profile/screens/sing_in/sign_in.dart';
+import 'package:provider/screens/sing_in/code_screen.dart';
+import 'package:provider/screens/sing_in/sign_in.dart';
 import 'package:provider/widgets/button.dart';
 import 'package:provider/widgets/text_field.dart';
 
@@ -47,12 +47,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'به ویزی دخل خوش آمدید!',
-                  style: TextStyle(
-                      color: themeData.colorScheme.surface,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
+                Center(
+                  child: Text(
+                    'به ویزی دخل خوش آمدید!',
+                    style: TextStyle(
+                        color: themeData.colorScheme.surface,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
                 SizedBox(height: 32),
                 Container(
@@ -176,9 +178,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           forgroundColor: themeData.colorScheme.surface,
                           onTap: () {
                             if (_formKey.currentState!.validate()) {
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (context) => RootScreen(),
+                              Navigator.of(context).push(
+                                CupertinoPageRoute(
+                                  builder: (context) =>
+                                      CodeScreen(isSingUp: true),
                                 ),
                               );
                             }

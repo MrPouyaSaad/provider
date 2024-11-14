@@ -6,6 +6,7 @@ class MyTextField extends StatelessWidget {
   final String? labelText;
   final String? hintText;
   final Widget? prefixIcon;
+  final Widget? suffixIcon;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final bool enabled;
@@ -17,9 +18,23 @@ class MyTextField extends StatelessWidget {
   final int? maxLength;
   final FormFieldValidator<String>? validator;
   final String? caption;
+  final EdgeInsetsGeometry? contentPadding;
+  final bool noneBorder;
+  final double? letterSpacing;
+  final double? wordSpacing;
+  final double? fontSize;
+  final TextStyle? hintStyle;
+  final double? pleft;
+  final double? ptop;
+  final double? pright;
+  final double? pbottom;
+  final Widget? suffix;
   const MyTextField({
     Key? key,
     this.labelText,
+    this.noneBorder = false,
+    this.contentPadding,
+    this.suffixIcon,
     this.hintText,
     this.prefixIcon,
     this.controller,
@@ -33,6 +48,15 @@ class MyTextField extends StatelessWidget {
     this.maxLength,
     this.validator,
     this.caption,
+    this.letterSpacing,
+    this.wordSpacing,
+    this.fontSize,
+    this.hintStyle,
+    this.pleft,
+    this.ptop,
+    this.pright,
+    this.pbottom,
+    this.suffix,
   }) : super(key: key);
 
   @override
@@ -50,6 +74,11 @@ class MyTextField extends StatelessWidget {
           ).marginOnly(bottom: 4, left: 4),
         TextFormField(
           controller: controller,
+          style: TextStyle(
+            letterSpacing: letterSpacing,
+            wordSpacing: wordSpacing,
+            fontSize: fontSize ?? 14,
+          ),
           onTapOutside: Constants.dismisTextField,
           keyboardType: keyboardType,
           maxLength: maxLength,
@@ -59,8 +88,19 @@ class MyTextField extends StatelessWidget {
           textAlignVertical: textAlignVertical,
           enabled: enabled,
           decoration: InputDecoration(
+            border: noneBorder ? InputBorder.none : null,
+            disabledBorder: noneBorder ? InputBorder.none : null,
+            // focusedBorder: OutlineInputBorder(
+            //   borderSide: BorderSide(strokeAlign: BorderSide.strokeAlignCenter),
+            // ),
+            enabledBorder: noneBorder ? InputBorder.none : null,
+            contentPadding: contentPadding,
             labelText: labelText,
             hintText: hintText,
+            hintStyle: hintStyle,
+            suffixIcon: suffixIcon,
+
+            suffix: suffix,
             prefixIcon: prefixIcon,
             alignLabelWithHint: alignLabelWithHint,
           ),
@@ -68,7 +108,17 @@ class MyTextField extends StatelessWidget {
         ),
       ],
     ).marginOnly(
-        top: caption != null ? 0 : Constants.primaryPadding / 2,
-        bottom: maxLength != null ? 0 : Constants.primaryPadding);
+        left: pleft ?? 0,
+        right: pright ?? 0,
+        top: ptop != null
+            ? ptop!
+            : caption != null
+                ? 0
+                : Constants.primaryPadding / 2,
+        bottom: pbottom != null
+            ? pbottom!
+            : maxLength != null
+                ? 0
+                : Constants.primaryPadding);
   }
 }

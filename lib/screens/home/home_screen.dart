@@ -153,6 +153,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     gridData: FlGridData(show: false),
                     barGroups:
                         getBarChartWeeklyReport(context), // داده‌های فروش
+                    barTouchData: BarTouchData(
+                      enabled: true,
+                      touchTooltipData: BarTouchTooltipData(
+                        getTooltipItem: (group, groupIndex, rod, rodIndex) {
+                          return BarTooltipItem(
+                            '${rod.toY.toInt()}', // نمایش مقدار فروش
+                            TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white, // رنگ متن Tooltip
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -284,6 +299,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     gridData: FlGridData(show: false),
                     barGroups: getBarChartMonthlyReport(
                         context), // تابع برای دریافت داده‌های بهینه‌شده
+                    barTouchData: BarTouchData(
+                      enabled: true,
+                      touchTooltipData: BarTouchTooltipData(
+                        getTooltipItem: (group, groupIndex, rod, rodIndex) {
+                          return BarTooltipItem(
+                            '${rod.toY.toInt()}', // نمایش مقدار فروش
+                            TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.orange, // رنگ متن Tooltip
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -305,9 +335,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             OrdersPieChart(
-              totalOrders: 100,
-              deliveredOrders: 85,
-              undeliveredOrders: 15,
+              totalOrders: 50,
+              deliveredOrders: 39,
+              undeliveredOrders: 11,
             ),
           ],
         ).paddingAll(Constants.primaryPadding),

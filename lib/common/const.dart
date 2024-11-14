@@ -3,8 +3,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 
 class Constants {
   //!
-  static final primaryRadius = BorderRadius.circular(6.0);
-  static const primaryRadiusValue = 6.0;
+  static final primaryRadius = BorderRadius.circular(9.0);
+  static const primaryRadiusValue = 9.0;
   static const double primaryPadding = 16.0;
   static const double productItemHeight = 300;
   static const double primaryButtonHeight = 52;

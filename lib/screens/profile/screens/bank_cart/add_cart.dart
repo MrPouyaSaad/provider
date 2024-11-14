@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
 import 'package:provider/widgets/text_field.dart';
 
@@ -77,102 +78,99 @@ class _AddOrEditBankCardPageState extends State<AddOrEditBankCardPage> {
       appBar: AppBar(
         title: Text('افزودن کارت بانکی'),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                // پیش‌نمایش کارت
-                BankCardWidget(
-                  bankName: _bankName ?? 'نام بانک',
-                  cardNumber: _cardNumberController.text.isNotEmpty
-                      ? _cardNumberController.text
-                      : '**** **** **** ****',
-                  shabaNumber: _shabaNumberController.text.isNotEmpty
-                      ? 'IR ' + _shabaNumberController.text
-                      : '****************** * *** **IR',
-                  accountNumber: _accountNumberController.text.isNotEmpty
-                      ? _accountNumberController.text
-                      : '**********',
-                  holderName: _holderNameController.text.isNotEmpty
-                      ? _holderNameController.text
-                      : 'نام صاحب کارت',
-                ),
-                SizedBox(height: 20),
+      body: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              // پیش‌نمایش کارت
+              BankCardWidget(
+                bankName: _bankName ?? 'نام بانک',
+                cardNumber: _cardNumberController.text.isNotEmpty
+                    ? _cardNumberController.text
+                    : '**** **** **** ****',
+                shabaNumber: _shabaNumberController.text.isNotEmpty
+                    ? 'IR ' + _shabaNumberController.text
+                    : '****************** * *** **IR',
+                accountNumber: _accountNumberController.text.isNotEmpty
+                    ? _accountNumberController.text
+                    : '**********',
+                holderName: _holderNameController.text.isNotEmpty
+                    ? _holderNameController.text
+                    : 'نام صاحب کارت',
+              ),
+              SizedBox(height: 20),
 
-                // فیلدهای ورودی
-                MyTextField(
-                  controller: _cardNumberController,
-                  labelText: 'شماره کارت',
-                  keyboardType: TextInputType.number,
-                  maxLength: 16,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'شماره کارت را وارد کنید';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: Constants.primaryPadding),
+              // فیلدهای ورودی
+              MyTextField(
+                controller: _cardNumberController,
+                labelText: 'شماره کارت',
+                keyboardType: TextInputType.number,
+                maxLength: 16,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'شماره کارت را وارد کنید';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: Constants.primaryPadding),
 
-                MyTextField(
-                  controller: _shabaNumberController,
-                  labelText: 'شماره شبا',
-                  keyboardType: TextInputType.number,
-                  maxLength: 24,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'شماره شبا را وارد کنید';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: Constants.primaryPadding),
+              MyTextField(
+                controller: _shabaNumberController,
+                labelText: 'شماره شبا',
+                keyboardType: TextInputType.number,
+                maxLength: 24,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'شماره شبا را وارد کنید';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: Constants.primaryPadding),
 
-                MyTextField(
-                  controller: _accountNumberController,
-                  labelText: 'شماره حساب',
-                  keyboardType: TextInputType.number,
-                  maxLength: 18,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'شماره حساب را وارد کنید';
+              MyTextField(
+                controller: _accountNumberController,
+                labelText: 'شماره حساب',
+                keyboardType: TextInputType.number,
+                maxLength: 18,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'شماره حساب را وارد کنید';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: Constants.primaryPadding),
+              MyTextField(
+                controller: _holderNameController,
+                labelText: 'نام دارنده کارت',
+                keyboardType: TextInputType.text,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'نام دارنده کارت را وارد کنید';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                width: double.infinity,
+                height: Constants.primaryButtonHeight,
+                child: MyElevatedButton(
+                  onTap: () {
+                    if (_formKey.currentState!.validate()) {
+                      // انجام عملیات ذخیره کارت
+                      Navigator.pop(context);
                     }
-                    return null;
                   },
+                  title: ('ذخیره کارت'),
                 ),
-                SizedBox(height: Constants.primaryPadding),
-                MyTextField(
-                  controller: _holderNameController,
-                  labelText: 'نام دارنده کارت',
-                  keyboardType: TextInputType.text,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'نام دارنده کارت را وارد کنید';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 20),
-                SizedBox(
-                  width: double.infinity,
-                  height: Constants.primaryButtonHeight,
-                  child: MyElevatedButton(
-                    onTap: () {
-                      if (_formKey.currentState!.validate()) {
-                        // انجام عملیات ذخیره کارت
-                        Navigator.pop(context);
-                      }
-                    },
-                    title: ('ذخیره کارت'),
-                  ),
-                ),
-                SizedBox(height: 20),
-              ],
-            ),
-          ),
+              ),
+              SizedBox(height: 20),
+            ],
+          ).marginAll(Constants.primaryPadding),
         ),
       ),
     );

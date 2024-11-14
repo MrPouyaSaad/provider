@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/common/theme/theme.dart';
-import 'package:provider/root.dart';
-import 'package:provider/screens/profile/screens/sing_in/sign_in.dart';
+import 'package:provider/screens/sing_in/sign_in.dart';
 
 void main() {
   runApp(const MyApp());

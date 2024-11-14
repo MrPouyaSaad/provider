@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/common/const.dart';
-import 'package:provider/root.dart';
-import 'package:provider/screens/profile/screens/sing_in/first_info.dart';
+import 'package:provider/screens/sing_in/code_screen.dart';
+import 'package:provider/screens/sing_in/first_info.dart';
 import 'package:provider/widgets/button.dart';
 import 'package:provider/widgets/text_field.dart';
 
@@ -59,7 +59,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(height: 32),
 
                     Text(
-                      'برای ورود شماره همراه ثبت شده را وارد کنید.',
+                      'شماره همراه ثبت شده را وارد کنید.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           wordSpacing: -2,
@@ -73,6 +73,8 @@ class _SignInScreenState extends State<SignInScreen> {
                       child: MyTextField(
                         labelText: 'شماره همراه',
                         maxLength: 11,
+                        letterSpacing: 5,
+                        textAlign: TextAlign.center,
                         controller: phoneNumberController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -87,7 +89,6 @@ class _SignInScreenState extends State<SignInScreen> {
                           }
                         },
                         keyboardType: TextInputType.number,
-                        prefixIcon: Icon(Icons.phone_android),
                       ),
                     ),
                     SizedBox(height: Constants.primaryPadding),
@@ -100,9 +101,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         forgroundColor: themeData.colorScheme.surface,
                         onTap: () {
                           if (_formKey.currentState!.validate()) {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) => RootScreen(),
+                            Navigator.of(context).push(
+                              CupertinoPageRoute(
+                                builder: (context) => CodeScreen(),
                               ),
                             );
                           }

@@ -56,6 +56,7 @@ class MyTheme {
           color: primaryColor,
           wordSpacing: -2),
     ),
+
     colorScheme: ColorScheme.light(
       primary: primaryColor,
       primaryFixed: const Color(0XFF3B82F6),

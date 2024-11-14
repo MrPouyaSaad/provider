@@ -2,7 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/common/const.dart';
 
-class OrdersPieChart extends StatelessWidget {
+class OrdersPieChart extends StatefulWidget {
   final int totalOrders;
   final int deliveredOrders;
   final int undeliveredOrders;
@@ -14,11 +14,19 @@ class OrdersPieChart extends StatelessWidget {
   });
 
   @override
+  _OrdersPieChartState createState() => _OrdersPieChartState();
+}
+
+class _OrdersPieChartState extends State<OrdersPieChart> {
+  int touchedIndex = -1;
+
+  @override
   Widget build(BuildContext context) {
+    final Color delivered = Theme.of(context).primaryColor;
+    final Color unDelivered = Theme.of(context).colorScheme.errorContainer;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // چارت دایره‌ای
         AspectRatio(
           aspectRatio: 1,
           child: Stack(
@@ -26,12 +34,25 @@ class OrdersPieChart extends StatelessWidget {
             children: [
               PieChart(
                 PieChartData(
-                  sections: _buildPieChartSections(),
-                  centerSpaceRadius: 60, // فضای خالی وسط دایره
-                  sectionsSpace: 2, // فضای بین بخش‌ها
+                  sections: _buildPieChartSections(delivered, unDelivered),
+                  centerSpaceRadius: 60,
+                  sectionsSpace: 2,
+                  pieTouchData: PieTouchData(
+                    touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                      setState(() {
+                        if (!event.isInterestedForInteractions ||
+                            pieTouchResponse == null ||
+                            pieTouchResponse.touchedSection == null) {
+                          touchedIndex = -1;
+                          return;
+                        }
+                        touchedIndex = pieTouchResponse
+                            .touchedSection!.touchedSectionIndex;
+                      });
+                    },
+                  ),
                 ),
               ),
-              // نمایش تعداد کل سفارشات در وسط دایره
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -40,7 +61,7 @@ class OrdersPieChart extends StatelessWidget {
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    '$totalOrders',
+                    '${widget.totalOrders}',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -48,18 +69,17 @@ class OrdersPieChart extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 16), // فاصله بین چارت و راهنما
-        // راهنما در پایین نمودار
+        SizedBox(height: 16),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             LegendItem(
-              color: Colors.green,
+              color: delivered,
               text: 'تحویل داده شده',
             ),
-            SizedBox(width: 16), // فاصله بین دو راهنما
+            SizedBox(width: 16),
             LegendItem(
-              color: Colors.red,
+              color: unDelivered,
               text: 'تحویل داده نشده',
             ),
           ],
@@ -68,31 +88,36 @@ class OrdersPieChart extends StatelessWidget {
     );
   }
 
-  // ساخت بخش‌های چارت
-  List<PieChartSectionData> _buildPieChartSections() {
-    final double deliveredPercentage = (deliveredOrders / totalOrders) * 100;
+  List<PieChartSectionData> _buildPieChartSections(
+      Color delivered, Color unDelivered) {
+    final double deliveredPercentage =
+        (widget.deliveredOrders / widget.totalOrders) * 100;
     final double undeliveredPercentage =
-        (undeliveredOrders / totalOrders) * 100;
+        (widget.undeliveredOrders / widget.totalOrders) * 100;
 
     return [
       PieChartSectionData(
-        value: deliveredOrders.toDouble(),
-        title: '${deliveredPercentage.toStringAsFixed(1)}%',
-        color: Colors.green,
-        radius: 100,
+        value: widget.deliveredOrders.toDouble(),
+        title: touchedIndex == 0
+            ? "${deliveredPercentage.toStringAsFixed(1)}%\n${widget.deliveredOrders}"
+            : '${deliveredPercentage.toStringAsFixed(1)}%',
+        color: delivered,
+        radius: touchedIndex == 0 ? 110 : 100, // افزایش اندازه در صورت لمس
         titleStyle: TextStyle(
-          fontSize: 16,
+          fontSize: touchedIndex == 0 ? 22 : 16,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
       ),
       PieChartSectionData(
-        value: undeliveredOrders.toDouble(),
-        title: '${undeliveredPercentage.toStringAsFixed(1)}%',
-        color: Colors.red,
-        radius: 100,
+        value: widget.undeliveredOrders.toDouble(),
+        title: touchedIndex == 1
+            ? "${undeliveredPercentage.toStringAsFixed(1)}%\n${widget.undeliveredOrders}"
+            : '${undeliveredPercentage.toStringAsFixed(1)}%',
+        color: unDelivered,
+        radius: touchedIndex == 1 ? 110 : 100, // افزایش اندازه در صورت لمس
         titleStyle: TextStyle(
-          fontSize: 16,
+          fontSize: touchedIndex == 1 ? 22 : 16,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
@@ -125,7 +150,7 @@ class LegendItem extends StatelessWidget {
                 BorderRadius.circular(Constants.primaryRadiusValue / 2),
           ),
         ),
-        SizedBox(width: 8), // فاصله بین رنگ و متن
+        SizedBox(width: 8),
         Text(
           text,
           style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
