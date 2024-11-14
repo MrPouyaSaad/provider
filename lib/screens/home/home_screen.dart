@@ -31,7 +31,10 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 1,
         centerTitle: true,
         backgroundColor: themeData.colorScheme.surface,
-        title: Text('${Constants.appName}'),
+        title: Text(
+          '${Constants.appName}',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(

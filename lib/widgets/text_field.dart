@@ -29,6 +29,7 @@ class MyTextField extends StatelessWidget {
   final double? pright;
   final double? pbottom;
   final Widget? suffix;
+  final bool? isDense;
   const MyTextField({
     Key? key,
     this.labelText,
@@ -57,6 +58,7 @@ class MyTextField extends StatelessWidget {
     this.pright,
     this.pbottom,
     this.suffix,
+    this.isDense,
   }) : super(key: key);
 
   @override
@@ -99,7 +101,7 @@ class MyTextField extends StatelessWidget {
             hintText: hintText,
             hintStyle: hintStyle,
             suffixIcon: suffixIcon,
-
+            isDense: isDense,
             suffix: suffix,
             prefixIcon: prefixIcon,
             alignLabelWithHint: alignLabelWithHint,

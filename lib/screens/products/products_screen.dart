@@ -32,13 +32,21 @@ class ProductsScreen extends StatelessWidget {
                 backgroundColor: themeData.colorScheme.surface,
                 shadowColor: themeData.colorScheme.surface,
                 surfaceTintColor: themeData.colorScheme.surface,
+                toolbarHeight: 72,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(18),
+                    bottomRight: Radius.circular(18),
+                  ),
+                ),
                 title: MyTextField(
                   textAlign: TextAlign.right,
                   textAlignVertical: TextAlignVertical.center,
                   hintText: 'جستجو',
+                  isDense: true,
                   alignLabelWithHint: true,
                   prefixIcon: Icon(Icons.search),
-                ).marginOnly(top: 8),
+                ).marginOnly(top: 12),
                 automaticallyImplyLeading: false,
                 centerTitle: true,
                 elevation: 1.0,

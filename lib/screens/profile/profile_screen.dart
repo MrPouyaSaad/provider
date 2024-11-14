@@ -26,12 +26,13 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             children: [
               MyDecoratedContainer(
+                color: themeData.colorScheme.primary,
                 child: Row(
                   children: [
                     Icon(
                       CupertinoIcons.person_circle,
                       size: 62,
-                      color: themeData.colorScheme.secondary,
+                      color: themeData.colorScheme.surface,
                     ),
                     const SizedBox(width: 12),
                     Column(
@@ -39,14 +40,17 @@ class ProfileScreen extends StatelessWidget {
                         Text(
                           'بازرگانی غفاری',
                           style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
+                              color: themeData.colorScheme.surface,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           '458541258875',
                           style: TextStyle(
                               fontSize: 12,
-                              color: themeData.colorScheme.secondary),
+                              color: themeData.colorScheme.surface
+                                  .withOpacity(0.8)),
                         ),
                       ],
                     ),
@@ -59,8 +63,21 @@ class ProfileScreen extends StatelessWidget {
                           ),
                         );
                       },
-                      child: Text('ویرایش'),
-                    )
+                      style: TextButton.styleFrom(
+                        foregroundColor: themeData.colorScheme.surface,
+                        // backgroundColor: themeData.colorScheme.primary,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: Constants.primaryRadius),
+                        side: BorderSide(
+                          width: 1,
+                          color: themeData.colorScheme.surface,
+                        ),
+                      ),
+                      child: Text(
+                        'ویرایش',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ).marginOnly(left: 6)
                   ],
                 ),
               ).marginSymmetric(horizontal: Constants.primaryPadding),
