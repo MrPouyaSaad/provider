@@ -157,7 +157,7 @@ class _CodeScreenState extends State<CodeScreen> {
                                 },
                                 keyboardType: TextInputType.number,
                               ),
-                            ).marginOnly(bottom: Constants.primaryPadding),
+                            ),
                           ],
                         ),
                       // Text(
@@ -168,6 +168,7 @@ class _CodeScreenState extends State<CodeScreen> {
                       //       fontWeight: FontWeight.bold,
                       //       fontSize: 12),
                       // ),
+                      if (_currentStep < 2) SizedBox(height: 16),
 
                       SizedBox(
                         width: double.infinity,
@@ -199,36 +200,24 @@ class _CodeScreenState extends State<CodeScreen> {
                                   }),
                       ),
                       SizedBox(height: 8),
-                      if (_currentStep == 2)
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'شماره را اشتباه وارد کردید؟',
-                              style: TextStyle(
-                                fontSize: 11,
-                                color: themeData.colorScheme.onSurface,
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Text(
-                                'ویرایش',
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: themeData
-                                      .colorScheme.surfaceContainerHighest,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold,
-                                  color: themeData
-                                      .colorScheme.surfaceContainerHighest,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ).marginSymmetric(horizontal: Constants.primaryPadding),
+
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(
+                          'ویرایش اطلاعات',
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            decorationColor:
+                                themeData.colorScheme.surfaceContainerHighest,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color:
+                                themeData.colorScheme.surfaceContainerHighest,
+                          ),
+                        ),
+                      ).marginSymmetric(horizontal: Constants.primaryPadding),
                     ],
                   ),
                 ),
