@@ -1,4 +1,4 @@
-package com.example.provider
+package com.vizi_dasht
 
 import io.flutter.embedding.android.FlutterActivity
 

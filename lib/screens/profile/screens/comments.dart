@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/widgets/button.dart';
+import 'package:vizi_dasht/widgets/button.dart';
 
 import '../../../common/const.dart';
 

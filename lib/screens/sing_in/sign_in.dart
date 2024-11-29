@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/common/const.dart';
-import 'package:provider/screens/sing_in/code_screen.dart';
-import 'package:provider/screens/sing_in/first_info.dart';
-import 'package:provider/widgets/button.dart';
-import 'package:provider/widgets/text_field.dart';
+import 'package:vizi_dasht/common/const.dart';
+import 'package:vizi_dasht/screens/sing_in/code_screen.dart';
+import 'package:vizi_dasht/screens/sing_in/first_info.dart';
+import 'package:vizi_dasht/widgets/button.dart';
+import 'package:vizi_dasht/widgets/text_field.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});

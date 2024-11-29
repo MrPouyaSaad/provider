@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/common/const.dart';
-import 'package:provider/root.dart';
-import 'package:provider/widgets/button.dart';
-import 'package:provider/widgets/text_field.dart';
+import 'package:vizi_dasht/common/const.dart';
+import 'package:vizi_dasht/root.dart';
+import 'package:vizi_dasht/widgets/button.dart';
+import 'package:vizi_dasht/widgets/text_field.dart';
 
 class CodeScreen extends StatefulWidget {
   const CodeScreen({super.key, this.isSingUp = false});

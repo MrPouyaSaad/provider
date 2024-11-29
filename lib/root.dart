@@ -1,11 +1,11 @@
 import 'package:floating_snackbar/floating_snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/screens/profile/profile_screen.dart';
-import 'package:provider/screens/home/home_screen.dart';
-import 'package:provider/screens/oreders/orders_screen.dart';
-import 'package:provider/screens/products/products_screen.dart';
-import 'package:provider/widgets/badge.dart';
+import 'package:vizi_dasht/screens/profile/profile_screen.dart';
+import 'package:vizi_dasht/screens/home/home_screen.dart';
+import 'package:vizi_dasht/screens/oreders/orders_screen.dart';
+import 'package:vizi_dasht/screens/products/products_screen.dart';
+import 'package:vizi_dasht/widgets/badge.dart';
 
 const int homeIndex = 0;
 const int ordersIndex = 1;

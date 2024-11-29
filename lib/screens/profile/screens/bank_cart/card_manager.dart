@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/screens/profile/screens/bank_cart/add_cart.dart';
+import 'package:vizi_dasht/screens/profile/screens/bank_cart/add_cart.dart';
 
 class BankCardManagerPage extends StatefulWidget {
   @override

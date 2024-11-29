@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/common/const.dart';
-import 'package:provider/screens/oreders/order_details_screen.dart';
+import 'package:vizi_dasht/common/const.dart';
+import 'package:vizi_dasht/screens/oreders/order_details_screen.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});

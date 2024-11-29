@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/screens/home/finance.dart';
+import 'package:vizi_dasht/screens/home/finance.dart';
 
 import '../../../common/const.dart';
 import 'criticism.dart';

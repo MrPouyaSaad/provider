@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/common/const.dart';
-import 'package:provider/widgets/title.dart';
+import 'package:vizi_dasht/common/const.dart';
+import 'package:vizi_dasht/widgets/title.dart';
 
 class FAQScreen extends StatelessWidget {
   @override

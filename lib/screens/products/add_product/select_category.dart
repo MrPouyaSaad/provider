@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/common/const.dart';
-import 'package:provider/widgets/button.dart';
+import 'package:vizi_dasht/common/const.dart';
+import 'package:vizi_dasht/widgets/button.dart';
 import 'add_product_details.dart';
 
 class AddProduct extends StatefulWidget {

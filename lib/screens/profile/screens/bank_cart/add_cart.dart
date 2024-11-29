@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/common/const.dart';
-import 'package:provider/widgets/text_field.dart';
+import 'package:vizi_dasht/common/const.dart';
+import 'package:vizi_dasht/widgets/text_field.dart';
 
 import '../../../../widgets/button.dart';
 

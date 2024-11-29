@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/common/const.dart';
-import 'package:provider/screens/profile/screens/bank_cart/card_manager.dart';
-import 'package:provider/screens/profile/screens/comments.dart';
-import 'package:provider/screens/profile/screens/f_a_q.dart';
-import 'package:provider/screens/profile/screens/user_info/user_info_screen.dart';
-import 'package:provider/widgets/decorated_container.dart';
-import 'package:provider/widgets/dvider.dart';
+import 'package:vizi_dasht/common/const.dart';
+import 'package:vizi_dasht/screens/profile/screens/bank_cart/card_manager.dart';
+import 'package:vizi_dasht/screens/profile/screens/comments.dart';
+import 'package:vizi_dasht/screens/profile/screens/f_a_q.dart';
+import 'package:vizi_dasht/screens/profile/screens/user_info/user_info_screen.dart';
+import 'package:vizi_dasht/widgets/decorated_container.dart';
+import 'package:vizi_dasht/widgets/dvider.dart';
 import 'screens/drawer.dart';
 import 'screens/criticism.dart';
 

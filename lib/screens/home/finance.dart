@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/common/const.dart';
-import 'package:provider/widgets/decorated_container.dart';
-import 'package:provider/widgets/dvider.dart';
-import 'package:provider/widgets/factor.dart';
-import 'package:provider/widgets/title.dart';
+import 'package:vizi_dasht/common/const.dart';
+import 'package:vizi_dasht/widgets/decorated_container.dart';
+import 'package:vizi_dasht/widgets/factor.dart';
+import 'package:vizi_dasht/widgets/title.dart';
 
 class FinanceScreen extends StatelessWidget {
   const FinanceScreen({super.key});

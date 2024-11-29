@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/common/const.dart';
+import 'package:vizi_dasht/common/const.dart';
 
 class OrdersPieChart extends StatefulWidget {
   final int totalOrders;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/screens/products/add_product/add_product_details.dart';
-import 'package:provider/screens/products/add_product/select_category.dart';
+import 'package:vizi_dasht/screens/products/add_product/add_product_details.dart';
+import 'package:vizi_dasht/screens/products/add_product/select_category.dart';
 
 import '../../common/const.dart';
 import '../../widgets/text_field.dart';

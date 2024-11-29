@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/common/theme/theme.dart';
-import 'package:provider/screens/sing_in/sign_in.dart';
+
+import 'common/theme/theme.dart';
+import 'screens/sing_in/sign_in.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
     return MediaQuery(
       data: mediaQueryData.copyWith(textScaler: constrainedTextScaleFactor),
       child: MaterialApp(
-        title: 'Visita Provider',
+        title: 'ViziDasht',
         debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.light,
         theme: MyTheme.lightTheme,

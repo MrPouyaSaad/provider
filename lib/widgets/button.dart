@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/common/const.dart';
+import 'package:vizi_dasht/common/const.dart';
 
 class MyElevatedButton extends StatelessWidget {
   const MyElevatedButton({

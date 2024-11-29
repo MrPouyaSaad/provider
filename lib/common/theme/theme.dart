@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/common/const.dart';
+
+import '../const.dart';
 
 // const String iranSans = 'iran-sans';
 const String yekanBakh = 'yekan-bakh';
