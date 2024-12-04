@@ -8,15 +8,19 @@ class FactorItem extends StatelessWidget {
     required this.title,
     required this.secTitle,
     this.color,
+    this.isSelectable = false,
     this.textColor,
   });
   final String title;
   final String secTitle;
   final Color? color;
   final Color? textColor;
+  final bool isSelectable;
   @override
   Widget build(BuildContext context) {
     final ptimaryTextColor = textColor ?? Color(0xff52525b);
+    final secTextStyle = TextStyle(
+        fontSize: 12, color: ptimaryTextColor, fontWeight: FontWeight.bold);
     return Container(
       padding: const EdgeInsets.all(Constants.primaryPadding / 3),
       margin:
@@ -40,14 +44,17 @@ class FactorItem extends StatelessWidget {
             width: Constants.primaryPadding / 2,
           ),
           Expanded(
-            child: SelectableText(
-              secTitle,
-              style: TextStyle(
-                  fontSize: 12,
-                  color: ptimaryTextColor,
-                  fontWeight: FontWeight.bold),
-              textAlign: TextAlign.end,
-            ),
+            child: isSelectable
+                ? SelectableText(
+                    secTitle,
+                    style: secTextStyle,
+                    textAlign: TextAlign.end,
+                  )
+                : Text(
+                    secTitle,
+                    style: secTextStyle,
+                    textAlign: TextAlign.end,
+                  ),
           ),
         ],
       ),

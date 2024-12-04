@@ -57,7 +57,8 @@ class BestProductListItem extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
-          boxShadow: Constants.primaryBoxShadow(context),
+          boxShadow: Constants.primaryBoxShadow(context,
+              blurRadius: 6, colorOpacity: 0.1),
           borderRadius: Constants.primaryRadius,
         ),
         child: Column(
@@ -94,7 +95,7 @@ class BestProductListItem extends StatelessWidget {
                   ),
                 ],
               ).paddingOnly(right: 6),
-            )
+            ).marginSymmetric(horizontal: 8)
           ],
         ),
       ),

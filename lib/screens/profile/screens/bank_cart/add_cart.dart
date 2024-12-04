@@ -45,15 +45,15 @@ class _AddOrEditBankCardPageState extends State<AddOrEditBankCardPage> {
     });
   }
 
-  void _extractAccountNumberFromShaba() {
-    String shaba = _shabaNumberController.text;
-    if (shaba.length > 6) {
-      String accountNumber = shaba.substring(6);
-      setState(() {
-        _accountNumberController.text = accountNumber;
-      });
-    }
-  }
+  // void _extractAccountNumberFromShaba() {
+  //   String shaba = _shabaNumberController.text;
+  //   if (shaba.length > 6) {
+  //     String accountNumber = shaba.substring(6);
+  //     setState(() {
+  //       _accountNumberController.text = accountNumber;
+  //     });
+  //   }
+  // }
 
   @override
   void initState() {
@@ -64,10 +64,10 @@ class _AddOrEditBankCardPageState extends State<AddOrEditBankCardPage> {
       setState(() {});
     });
 
-    _shabaNumberController.addListener(() => setState(() {
-          _extractAccountNumberFromShaba();
-          setState(() {});
-        }));
+    // _shabaNumberController.addListener(() => setState(() {
+    //       _extractAccountNumberFromShaba();
+    //       setState(() {});
+    //     }));
     _accountNumberController.addListener(() => setState(() {}));
     _holderNameController.addListener(() => setState(() {}));
   }

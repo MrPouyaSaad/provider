@@ -33,11 +33,31 @@ class OrderDetailsScreen extends StatelessWidget {
               MyDecoratedContainer(
                   child: Column(
                     children: [
-                      FactorItem(title: 'شناسه سفارش', secTitle: '1458742168V'),
-                      FactorItem(title: 'کد پیگیری', secTitle: 'SSODHJVC152'),
-                      FactorItem(title: 'تاریخ سفارش', secTitle: '1403/09/15'),
-                      FactorItem(title: 'زمان سفارش', secTitle: '14:35:12'),
-                      FactorItem(title: 'مبلغ دریافتی', secTitle: '14,000,000'),
+                      FactorItem(
+                        title: 'شناسه سفارش',
+                        secTitle: '1458742168V',
+                        isSelectable: true,
+                      ),
+                      FactorItem(
+                        title: 'کد پیگیری',
+                        secTitle: 'SSODHJVC152',
+                        isSelectable: true,
+                      ),
+                      FactorItem(
+                        title: 'تاریخ سفارش',
+                        secTitle: '1403/09/15',
+                        isSelectable: true,
+                      ),
+                      FactorItem(
+                        title: 'زمان سفارش',
+                        secTitle: '14:35:12',
+                        isSelectable: true,
+                      ),
+                      FactorItem(
+                        title: 'مبلغ دریافتی',
+                        secTitle: '14,000,000',
+                        isSelectable: true,
+                      ),
                     ],
                   ),
                   color: themeData.colorScheme.surface),

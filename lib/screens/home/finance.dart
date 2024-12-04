@@ -23,20 +23,24 @@ class FinanceScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               bool isDeposit = index.isEven;
               return index == 0
-                  ? MyDecoratedContainer(
-                      color: themeData.colorScheme.primary,
-                      child: Column(
-                        children: [
-                          FactorItem(
-                              title: 'درآمد کل:', secTitle: '170 میلیون تومان'),
-                          FactorItem(
-                              title: 'واریزی کل:',
-                              secTitle: '160 میلیون تومان'),
-                          FactorItem(
-                              title: 'موجودی:', secTitle: '10 میلیون تومان'),
-                        ],
-                      ),
-                    ).marginAll(Constants.primaryPadding)
+                  ? Hero(
+                      tag: 1,
+                      child: MyDecoratedContainer(
+                        color: themeData.colorScheme.primary,
+                        child: Column(
+                          children: [
+                            FactorItem(
+                                title: 'درآمد کل:',
+                                secTitle: '170 میلیون تومان'),
+                            FactorItem(
+                                title: 'واریزی کل:',
+                                secTitle: '160 میلیون تومان'),
+                            FactorItem(
+                                title: 'موجودی:', secTitle: '10 میلیون تومان'),
+                          ],
+                        ),
+                      ).marginAll(Constants.primaryPadding),
+                    )
                   : index == 1
                       ? DashboardTitle(title: 'گردش حساب')
                           .marginSymmetric(horizontal: Constants.primaryPadding)
@@ -80,7 +84,7 @@ class FinanceScreen extends StatelessWidget {
                                         ? 'سفارش 156484131'
                                         : index == 5
                                             ? 'جریمه عدم تحویل مرسوله در زمان مقرر'
-                                            : 'برداشت خودکار درآمد روزانه',
+                                            : 'برداشت خودکار درآمد',
                                     style: TextStyle(
                                         fontSize: 12,
                                         color: themeData.colorScheme.secondary),

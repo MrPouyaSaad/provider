@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vizi_dasht/common/const.dart';
 import 'package:vizi_dasht/screens/home/finance.dart';
-import 'package:vizi_dasht/screens/products/products_list.dart';
+import 'package:vizi_dasht/screens/products/best_products_list.dart';
 import 'package:vizi_dasht/widgets/button.dart';
 import 'package:vizi_dasht/widgets/custom_shadow_box.dart';
 import 'package:vizi_dasht/widgets/factor.dart';

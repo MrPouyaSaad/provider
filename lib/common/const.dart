@@ -23,11 +23,15 @@ class Constants {
   // }
 
   //!
-  static List<BoxShadow> primaryBoxShadow(BuildContext context) {
+  static List<BoxShadow> primaryBoxShadow(BuildContext context,
+      {Color? shadowColor = null,
+      double blurRadius = 9,
+      double colorOpacity = 0.125}) {
+    final themeData = Theme.of(context).colorScheme;
     return [
       BoxShadow(
-        color: Theme.of(context).colorScheme.onSurface.withOpacity(0.125),
-        blurRadius: 9,
+        color: shadowColor ?? themeData.onSurface.withOpacity(colorOpacity),
+        blurRadius: blurRadius,
       ),
     ];
   }

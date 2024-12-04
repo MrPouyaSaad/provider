@@ -61,7 +61,11 @@ class ProductsScreen extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(
                 Constants.primaryPadding, 8, Constants.primaryPadding, 78),
             itemBuilder: (context, index) {
-              final count = index == 3 ? 0 : 15;
+              final count = index == 3
+                  ? 0
+                  : index == 1
+                      ? 5
+                      : 15;
               bool isEmpty = count == 0;
               return GestureDetector(
                 onTap: () {
@@ -132,14 +136,21 @@ class ProductsScreen extends StatelessWidget {
                                     text: '$count بسته ',
                                     style: TextStyle(
                                         fontSize: 13,
+                                        color: count <= 5
+                                            ? themeData
+                                                .colorScheme.errorContainer
+                                            : null,
                                         fontWeight: FontWeight.bold),
                                     children: [
                                       TextSpan(
                                         text: 'باقیمانده ',
                                         style: TextStyle(
-                                          color:
-                                              themeData.colorScheme.secondary,
-                                          fontSize: 12,
+                                          color: count <= 5
+                                              ? themeData
+                                                  .colorScheme.errorContainer
+                                                  .withOpacity(0.7)
+                                              : themeData.colorScheme.secondary,
+                                          fontSize: 11,
                                         ),
                                       ),
                                     ],

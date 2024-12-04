@@ -130,9 +130,9 @@ class _AddProductDetailsState extends State<AddProductDetails> {
                 },
                 selectedItem: selectedProduct,
               ),
-            const SizedBox(height: 20),
             // نمایش محصول انتخاب‌شده
-            if (selectedProduct != null)
+            if (selectedProduct != null) ...[
+              const SizedBox(height: 20),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -155,6 +155,7 @@ class _AddProductDetailsState extends State<AddProductDetails> {
                   ),
                 ],
               ),
+            ],
             Form(
               key: _formKey,
               child: Column(
