@@ -77,7 +77,7 @@ class FinanceScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     isDeposit
-                                        ? 'واریز مبلغ سفارش 156484131'
+                                        ? 'سفارش 156484131'
                                         : index == 5
                                             ? 'جریمه عدم تحویل مرسوله در زمان مقرر'
                                             : 'برداشت خودکار درآمد روزانه',
