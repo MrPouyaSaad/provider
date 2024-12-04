@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vizi_dasht/widgets/decorated_container.dart';
 
 import '../../common/const.dart';
 
@@ -15,7 +16,7 @@ class BestProductsList extends StatelessWidget {
           crossAxisCount: 3,
           crossAxisSpacing: 8,
           mainAxisSpacing: Constants.primaryPadding / 2,
-          childAspectRatio: 0.75),
+          childAspectRatio: 0.65),
       itemCount: 6,
       shrinkWrap: true,
       padding: EdgeInsets.symmetric(horizontal: Constants.primaryPadding),
@@ -55,14 +56,46 @@ class BestProductListItem extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(
-              color: Theme.of(context).colorScheme.surfaceContainerHighest,
-              width: 1),
+          color: Theme.of(context).colorScheme.surface,
+          boxShadow: Constants.primaryBoxShadow(context),
           borderRadius: Constants.primaryRadius,
         ),
-        child: Image.asset(
-          imagePath,
-          fit: BoxFit.contain,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(),
+            Image.asset(
+              imagePath,
+              fit: BoxFit.contain,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.12),
+                borderRadius: Constants.primaryRadius,
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'تعداد',
+                      style:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  MyDecoratedContainer(
+                    color: Theme.of(context).primaryColor,
+                    child: Text(
+                      '1,453',
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.surface,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ).paddingOnly(right: 6),
+            )
+          ],
         ),
       ),
     );
