@@ -1,15 +1,70 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vizi_dasht/widgets/button.dart';
 import 'package:vizi_dasht/widgets/decorated_container.dart';
 import 'package:vizi_dasht/widgets/factor.dart';
 import 'package:vizi_dasht/widgets/title.dart';
 
 import '../../common/const.dart';
 
-class OrderDetailsScreen extends StatelessWidget {
+class OrderDetailsScreen extends StatefulWidget {
   final int orderId;
 
   const OrderDetailsScreen({required this.orderId, Key? key}) : super(key: key);
+
+  @override
+  State<OrderDetailsScreen> createState() => _OrderDetailsScreenState();
+}
+
+class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
+  void showCancelItemDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Directionality(
+          textDirection: TextDirection.rtl,
+          child: AlertDialog(
+            title: Text('لغو سفارش',
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            content: Text('آیا از لغو این سفارش اطمینان دارید؟'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(); // بستن دیالوگ
+                },
+                child: Text(
+                  'خیر',
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.primaryContainer),
+                ),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                    foregroundColor: Theme.of(context).colorScheme.surface,
+                    backgroundColor:
+                        Theme.of(context).colorScheme.errorContainer),
+                onPressed: () {
+                  // عملیات لغو آیتم
+                  Navigator.of(context).pop(); // بستن دیالوگ
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('آیتم با موفقیت لغو شد'),
+                      backgroundColor:
+                          Theme.of(context).colorScheme.errorContainer,
+                      duration: Duration(seconds: 3),
+                    ),
+                  );
+                },
+                child: Text('بله'),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,27 +178,68 @@ class OrderDetailsScreen extends StatelessWidget {
                             ),
                           ).marginSymmetric(
                               horizontal: Constants.primaryPadding + 8),
-                          Flexible(
-                            child: MyDecoratedContainer(
-                              color: themeData.colorScheme.primary,
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 5, horizontal: 8),
-                              child: Text(
-                                '15,000,000 تومان',
-                                style: TextStyle(
-                                    color: themeData.colorScheme.surface,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold),
+                          Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  showCancelItemDialog(context);
+                                },
+                                child: MyDecoratedContainer(
+                                  color: themeData.colorScheme.errorContainer,
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 5, horizontal: 8),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        'لغو',
+                                        style: TextStyle(
+                                            color:
+                                                themeData.colorScheme.surface,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(width: 4),
+                                      Icon(
+                                        Icons.cancel,
+                                        color: themeData.colorScheme.surface,
+                                        size: 16,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ),
-                          )
+                              SizedBox(width: 8),
+                              MyDecoratedContainer(
+                                color: themeData.colorScheme.primary,
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 5, horizontal: 8),
+                                child: Text(
+                                  '15,000,000 تومان',
+                                  style: TextStyle(
+                                      color: themeData.colorScheme.surface,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ).marginOnly(bottom: Constants.primaryPadding),
               ),
               SizedBox(height: 16),
+
+              SizedBox(
+                width: double.infinity,
+                height: Constants.primaryButtonHeight,
+                child: MyElevatedButton(
+                  title: 'لغو کل سفارش',
+                  onTap: () {},
+                  backgroundColor: themeData.colorScheme.errorContainer,
+                ),
+              )
             ],
           ).marginAll(Constants.primaryPadding),
         ),

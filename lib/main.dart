@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 import 'common/theme/theme.dart';
 import 'screens/sing_in/sign_in.dart';

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vizi_dasht/common/const.dart';
@@ -18,9 +20,36 @@ class _CodeScreenState extends State<CodeScreen> {
   final _formKey = GlobalKey<FormState>();
   int _currentStep = 2;
 
+// متغیرهای مربوط به تایمر
+  Timer? _timer;
+  int _start = 10; // 2 دقیقه معادل 120 ثانیه
+
+  void startTimer() {
+    _start = 10;
+    if (_timer != null) {
+      _timer!.cancel();
+    }
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_start > 0) {
+          _start--;
+        } else {
+          _timer?.cancel();
+        }
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel(); // وقتی ویجت از بین رفت، تایمر متوقف شود
+    super.dispose();
+  }
+
   @override
   void initState() {
     controller = TextEditingController(text: '12345');
+    startTimer();
     super.initState();
   }
 
@@ -136,6 +165,44 @@ class _CodeScreenState extends State<CodeScreen> {
                                   fontSize: 12),
                             ),
                             SizedBox(height: Constants.primaryPadding),
+                            _start > 0
+                                ? Text(
+                                    '$_start ثانیه تا ارسال مجدد',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: themeData.colorScheme.onSurface,
+                                    ),
+                                  ).marginSymmetric(
+                                    vertical: Constants.primaryPadding,
+                                    horizontal: Constants.primaryPadding)
+                                : Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'کد تایید را دریافت نکردید؟',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color:
+                                              themeData.colorScheme.onSurface,
+                                        ),
+                                      ).marginSymmetric(
+                                        vertical: Constants.primaryPadding,
+                                      ),
+                                      TextButton(
+                                          onPressed: () {
+                                            startTimer();
+                                          },
+                                          child: Text(
+                                            'ارسال مجدد',
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              color:
+                                                  themeData.colorScheme.primary,
+                                            ),
+                                          ))
+                                    ],
+                                  ).marginSymmetric(
+                                    horizontal: Constants.primaryPadding),
                             Form(
                               key: _formKey,
                               child: MyTextField(
@@ -169,7 +236,7 @@ class _CodeScreenState extends State<CodeScreen> {
                       //       fontSize: 12),
                       // ),
                       if (_currentStep < 2) SizedBox(height: 16),
-
+                      SizedBox(height: 8),
                       SizedBox(
                         width: double.infinity,
                         height: Constants.primaryButtonHeight,
