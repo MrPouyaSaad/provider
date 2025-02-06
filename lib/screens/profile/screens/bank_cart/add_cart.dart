@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vizi_dasht/common/const.dart';
@@ -75,9 +76,13 @@ class _AddOrEditBankCardPageState extends State<AddOrEditBankCardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('افزودن کارت بانکی'),
-      ),
+      appBar: AppBar(title: Text('افزودن کارت بانکی'), actions: [
+        IconButton(
+          onPressed: () {},
+          color: Theme.of(context).colorScheme.error,
+          icon: Icon(CupertinoIcons.delete),
+        ),
+      ]),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,

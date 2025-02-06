@@ -8,6 +8,7 @@ import 'package:vizi_dasht/screens/profile/screens/bank_cart/card_manager.dart';
 import 'package:vizi_dasht/screens/profile/screens/comments.dart';
 import 'package:vizi_dasht/screens/profile/screens/f_a_q.dart';
 import 'package:vizi_dasht/screens/profile/screens/user_info/user_info_screen.dart';
+import 'package:vizi_dasht/screens/profile/support/support.dart';
 import 'package:vizi_dasht/widgets/decorated_container.dart';
 import 'package:vizi_dasht/widgets/dvider.dart';
 import 'screens/drawer.dart';
@@ -169,7 +170,11 @@ class ProfileScreen extends StatelessWidget {
                 icon: Icons.headset_mic_sharp,
                 value: 1,
                 isEven: false,
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).push(CupertinoPageRoute(
+                    builder: (context) => SupportScreen(),
+                  ));
+                },
               ),
               DrawerTile(
                 title: 'خروج از حساب',
