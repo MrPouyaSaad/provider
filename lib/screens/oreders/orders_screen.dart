@@ -37,12 +37,11 @@ class OrdersScreen extends StatelessWidget {
         ),
         body: SafeArea(
           child: ListView.builder(
-            itemCount: 10, // تعداد سفارش‌ها
+            itemCount: 10,
             padding: EdgeInsets.symmetric(horizontal: Constants.primaryPadding),
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  // هدایت به صفحه جزئیات سفارش
                   Navigator.of(context).push(
                     CupertinoPageRoute(
                       builder: (context) => OrderDetailsScreen(orderId: index),
@@ -63,19 +62,42 @@ class OrdersScreen extends StatelessWidget {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            '14,000,000 تومان',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: themeData.colorScheme.onSurface,
-                            ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '14,000,000 تومان',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: themeData.colorScheme.onSurface,
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              if (index.isEven)
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 3, horizontal: 9),
+                                  decoration: BoxDecoration(
+                                    color: themeData.colorScheme.primary,
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: Text(
+                                    'جدید',
+                                    style: TextStyle(
+                                        color: themeData.colorScheme.surface,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12),
+                                  ),
+                                ),
+                            ],
                           ),
                           Column(
                             children: [
                               Text('تاریخ: 2024/09/15', style: style),
-                              SizedBox(height: 8),
+                              SizedBox(height: 12),
                               Text('ساعت: 12:53:12', style: style),
                             ],
                           ),
@@ -83,31 +105,32 @@ class OrdersScreen extends StatelessWidget {
                       ).marginOnly(top: 16, left: 16, right: 16),
                       SizedBox(height: 20),
                       SizedBox(
-                        height: 100, // ارتفاع لیست افقی آیتم‌ها
+                        height: 100,
                         child: ListView.builder(
                           padding: EdgeInsets.only(bottom: 16),
-                          scrollDirection: Axis.horizontal, // نمایش افقی
-                          itemCount: 5, // تعداد آیتم‌های سفارش
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 5,
                           itemBuilder: (context, itemIndex) {
                             return Container(
-                                height: 84,
-                                width: 84,
-                                margin: EdgeInsets.symmetric(
-                                  horizontal: 8,
+                              height: 84,
+                              width: 84,
+                              margin: EdgeInsets.symmetric(
+                                horizontal: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: Constants.primaryRadius,
+                                color: themeData.colorScheme.secondary
+                                    .withOpacity(0.1),
+                                border: Border.all(
+                                    color: themeData.colorScheme.secondary),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: Constants.primaryRadius,
+                                child: Image.asset(
+                                  'assets/images/1526890419.jpg',
                                 ),
-                                decoration: BoxDecoration(
-                                  borderRadius: Constants.primaryRadius,
-                                  color: themeData.colorScheme.secondary
-                                      .withOpacity(0.1),
-                                  border: Border.all(
-                                      color: themeData.colorScheme.secondary),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: Constants.primaryRadius,
-                                  child: Image.asset(
-                                    'assets/images/1526890419.jpg',
-                                  ),
-                                ));
+                              ),
+                            );
                           },
                         ),
                       ),

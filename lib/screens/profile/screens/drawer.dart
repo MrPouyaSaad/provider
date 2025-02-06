@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:vizi_dasht/screens/home/finance.dart';
+import 'package:vizi_dasht/widgets/badge.dart';
 
 import '../../../common/const.dart';
 import 'criticism.dart';
@@ -63,6 +64,7 @@ class MyDrawer extends StatelessWidget {
           ),
           DrawerTile(
             title: 'آموزش',
+            value: 1,
             icon: Icons.cast_for_education,
             isEven: false,
             onTap: () {
@@ -100,6 +102,7 @@ class MyDrawer extends StatelessWidget {
             title: 'پشتیبانی',
             icon: Icons.headset_mic_sharp,
             isEven: false,
+            value: 1,
             onTap: () {},
           ),
           DrawerTile(
@@ -119,11 +122,13 @@ class DrawerTile extends StatelessWidget {
     super.key,
     this.isEven = false,
     this.isEnd = false,
+    this.value = 0,
     required this.title,
     required this.icon,
     required this.onTap,
   });
   final bool isEven;
+  final int value;
   final bool isEnd;
   final String title;
   final IconData icon;
@@ -153,6 +158,7 @@ class DrawerTile extends StatelessWidget {
             ? themeData.colorScheme.errorContainer
             : themeData.colorScheme.primary,
       ),
+      trailing: isEnd ? null : CounterBadge(value: value),
       onTap: onTap,
     );
   }

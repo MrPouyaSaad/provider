@@ -1,5 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 
 class CounterBadge extends StatelessWidget {
   const CounterBadge({
@@ -9,14 +9,16 @@ class CounterBadge extends StatelessWidget {
   });
   final int value;
   final bool isActive;
+
   @override
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
     return Visibility(
       visible: value > 0,
       child: Container(
-        height: 18,
-        width: 18,
+        height: 22,
+        width: 22,
+        padding: EdgeInsets.all(isActive ? 2 : 3),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           border: isActive
@@ -31,13 +33,36 @@ class CounterBadge extends StatelessWidget {
           value.toString(),
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 12,
+            fontSize: 13,
+            fontWeight: FontWeight.bold,
             color: isActive
                 ? themeData.colorScheme.primary
                 : themeData.colorScheme.surface,
           ),
         ),
       ),
+    );
+  }
+}
+
+class RippleBadge extends StatelessWidget {
+  const RippleBadge({super.key, this.isActive = false, required this.value});
+  final bool isActive;
+  final int value;
+  @override
+  Widget build(BuildContext context) {
+    return RippleAnimation(
+      child: CounterBadge(
+        value: value,
+        isActive: isActive,
+      ),
+      color: Theme.of(context).primaryColor,
+      delay: const Duration(milliseconds: 350),
+      repeat: true,
+      minRadius: 10,
+      maxRadius: 15,
+      ripplesCount: 6,
+      duration: const Duration(milliseconds: 6 * 350),
     );
   }
 }

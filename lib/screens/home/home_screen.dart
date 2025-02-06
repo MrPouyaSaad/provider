@@ -356,16 +356,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<BarChartGroupData> getBarChartMonthlyReport(BuildContext context) {
-    // مقادیر مربوط به هر ماه (این مقادیر را می‌توان دینامیک کرد)
     List<double> monthlySales = [10, 15, 8, 12, 18, 20, 25, 30, 17, 14, 19, 22];
 
     return List.generate(monthlySales.length, (index) {
-      // تولید داده‌ها برای هر ماه
       return BarChartGroupData(
-        x: index + 1, // شماره ماه
+        x: index + 1,
         barRods: [
           BarChartRodData(
-            toY: monthlySales[index], // مقدار فروش ماهانه
+            toY: monthlySales[index],
             color: Theme.of(context).colorScheme.secondaryContainer,
             borderRadius: BorderRadius.vertical(
               top: Radius.circular(12),

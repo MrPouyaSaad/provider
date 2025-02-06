@@ -70,6 +70,7 @@ class BestProductListItem extends StatelessWidget {
               fit: BoxFit.contain,
             ),
             Container(
+              margin: EdgeInsets.only(bottom: 8),
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primary.withOpacity(0.12),
                 borderRadius: Constants.primaryRadius,

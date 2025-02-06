@@ -114,30 +114,30 @@ class _RootScreenState extends State<RootScreen> {
                 label: 'داشبورد',
               ),
               BottomNavigationBarItem(
-                  activeIcon: Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      Icon(Icons.shopping_bag),
-                      Positioned(
-                        right: -10,
-                        child: CounterBadge(value: 5, isActive: true),
-                      )
-                    ],
-                  ),
-                  icon: Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      Icon(
-                        Icons.shopping_bag,
-                        color: deActiveColor,
-                      ),
-                      Positioned(
-                        right: -10,
-                        child: CounterBadge(value: 5),
-                      )
-                    ],
-                  ),
-                  label: 'سفارشات'),
+                activeIcon: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Icon(Icons.shopping_bag),
+                    Positioned(
+                      right: -10,
+                      top: -10,
+                      child: CounterBadge(value: 5, isActive: true),
+                    ),
+                  ],
+                ),
+                icon: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Icon(Icons.shopping_bag, color: deActiveColor),
+                    Positioned(
+                      right: -10,
+                      top: -10,
+                      child: RippleBadge(value: 5),
+                    ),
+                  ],
+                ),
+                label: 'سفارشات',
+              ),
               BottomNavigationBarItem(
                   activeIcon: Icon(Icons.widgets),
                   icon: Icon(
@@ -146,10 +146,30 @@ class _RootScreenState extends State<RootScreen> {
                   ),
                   label: 'محصولات من'),
               BottomNavigationBarItem(
-                  activeIcon: Icon(CupertinoIcons.person_fill),
-                  icon: Icon(
-                    CupertinoIcons.person_fill,
-                    color: deActiveColor,
+                  activeIcon: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Icon(CupertinoIcons.person_fill),
+                      Positioned(
+                        right: -10,
+                        top: -10,
+                        child: CounterBadge(value: 5, isActive: true),
+                      ),
+                    ],
+                  ),
+                  icon: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Icon(
+                        CupertinoIcons.person_fill,
+                        color: deActiveColor,
+                      ),
+                      Positioned(
+                        right: -10,
+                        top: -10,
+                        child: CounterBadge(value: 5),
+                      ),
+                    ],
                   ),
                   label: 'پروفایل'),
             ],

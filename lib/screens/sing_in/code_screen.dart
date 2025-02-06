@@ -71,6 +71,8 @@ class _CodeScreenState extends State<CodeScreen> {
                 Text(
                   '${Constants.appName}',
                   style: TextStyle(
+                      wordSpacing: -2,
+                      letterSpacing: -2,
                       color: themeData.colorScheme.surface,
                       fontSize: 32,
                       fontWeight: FontWeight.bold),

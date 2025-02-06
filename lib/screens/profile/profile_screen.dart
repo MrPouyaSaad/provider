@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vizi_dasht/common/const.dart';
+import 'package:vizi_dasht/screens/profile/message.dart';
+import 'package:vizi_dasht/screens/profile/screens/Fines.dart';
 import 'package:vizi_dasht/screens/profile/screens/bank_cart/card_manager.dart';
 import 'package:vizi_dasht/screens/profile/screens/comments.dart';
 import 'package:vizi_dasht/screens/profile/screens/f_a_q.dart';
@@ -93,11 +95,22 @@ class ProfileScreen extends StatelessWidget {
                   ));
                 },
               ),
+              DrawerTile(
+                title: 'پیام',
+                icon: Icons.message,
+                value: 2,
+                onTap: () {
+                  Navigator.of(context).push(CupertinoPageRoute(
+                    builder: (context) => MessageScreen(),
+                  ));
+                },
+              ),
 
               DrawerTile(
                 title: 'نظرات',
-                icon: Icons.comment,
-                isEven: false,
+                icon: Icons.comment_outlined,
+                isEven: true,
+                value: 6,
                 onTap: () {
                   Navigator.of(context).push(
                     CupertinoPageRoute(
@@ -106,17 +119,7 @@ class ProfileScreen extends StatelessWidget {
                   );
                 },
               ),
-              DrawerTile(
-                title: 'آموزش',
-                icon: Icons.cast_for_education,
-                isEven: true,
-                onTap: () {
-                  // Navigator.of(context, rootNavigator: true)
-                  //     .push(CupertinoPageRoute(
-                  //   builder: (context) => const ReferralScreen(),
-                  // ));
-                },
-              ),
+
               DrawerTile(
                 title: 'پیشنهاد و انتقاد',
                 icon: Icons.feed,
@@ -127,6 +130,28 @@ class ProfileScreen extends StatelessWidget {
                       builder: (context) => const CriticismScreen(),
                     ),
                   );
+                },
+              ),
+              DrawerTile(
+                title: 'آموزش',
+                icon: Icons.cast_for_education,
+                value: 1,
+                isEven: true,
+                onTap: () {
+                  // Navigator.of(context, rootNavigator: true)
+                  //     .push(CupertinoPageRoute(
+                  //   builder: (context) => const ReferralScreen(),
+                  // ));
+                },
+              ),
+              DrawerTile(
+                title: 'جریمه ها',
+                icon: Icons.error_rounded,
+                value: 1,
+                onTap: () {
+                  Navigator.of(context).push(CupertinoPageRoute(
+                    builder: (context) => Fines(),
+                  ));
                 },
               ),
               DrawerTile(
@@ -142,6 +167,7 @@ class ProfileScreen extends StatelessWidget {
               DrawerTile(
                 title: 'پشتیبانی',
                 icon: Icons.headset_mic_sharp,
+                value: 1,
                 isEven: false,
                 onTap: () {},
               ),

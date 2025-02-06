@@ -37,6 +37,8 @@ class _SignInScreenState extends State<SignInScreen> {
               Text(
                 '${Constants.appName}',
                 style: TextStyle(
+                    wordSpacing: -2,
+                    letterSpacing: -2,
                     color: themeData.colorScheme.surface,
                     fontSize: 32,
                     fontWeight: FontWeight.bold),
