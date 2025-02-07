@@ -12,6 +12,7 @@ import 'package:vizi_dasht/screens/profile/screens/user_info/user_info_screen.da
 import 'package:vizi_dasht/screens/profile/support/support.dart';
 import 'package:vizi_dasht/widgets/decorated_container.dart';
 import 'package:vizi_dasht/widgets/dvider.dart';
+import 'package:vizi_dasht/widgets/start.dart';
 import 'screens/drawer.dart';
 import 'screens/criticism.dart';
 
@@ -82,6 +83,26 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
               ).marginSymmetric(horizontal: Constants.primaryPadding),
+              MyDivider().marginSymmetric(horizontal: Constants.primaryPadding),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('امتیاز شما'),
+                  SellerRating(ratingPercentage: 0.5),
+                  Text.rich(TextSpan(children: [
+                    TextSpan(
+                        text: '2.5 ',
+                        style: TextStyle(
+                            fontSize: 13, fontWeight: FontWeight.bold)),
+                    TextSpan(
+                        text: 'از 5',
+                        style: TextStyle(
+                            wordSpacing: -3,
+                            fontSize: 11,
+                            color: themeData.colorScheme.secondary)),
+                  ])),
+                ],
+              ).marginSymmetric(horizontal: Constants.primaryPadding + 4),
               MyDivider().marginSymmetric(horizontal: Constants.primaryPadding),
               DrawerTile(
                 title: 'مدیریت کارت ها',

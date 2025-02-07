@@ -32,10 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 1,
         centerTitle: true,
         backgroundColor: themeData.colorScheme.surface,
-        title: Image.asset(
-          'assets/images/ViziDasht-Logo.png',
-          width: 150,
-        ),
+        title: Image.asset('assets/images/ViziDasht-Logo.png', width: 150),
       ),
       body: SingleChildScrollView(
         child: Column(
