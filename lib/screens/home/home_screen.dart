@@ -7,6 +7,7 @@ import 'package:vizi_dasht/screens/products/best_products_list.dart';
 import 'package:vizi_dasht/widgets/button.dart';
 import 'package:vizi_dasht/widgets/custom_shadow_box.dart';
 import 'package:vizi_dasht/widgets/factor.dart';
+import '../../widgets/circular_indicator.dart';
 import '../../widgets/decorated_container.dart';
 import '../../widgets/dvider.dart';
 import '../../widgets/title.dart';
@@ -31,9 +32,9 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 1,
         centerTitle: true,
         backgroundColor: themeData.colorScheme.surface,
-        title: Text(
-          '${Constants.appName}',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        title: Image.asset(
+          'assets/images/ViziDasht-Logo.png',
+          width: 150,
         ),
       ),
       body: SingleChildScrollView(
@@ -41,12 +42,37 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                DashboardTitle(
-                  title: 'گزارش مالی',
-                  isBottomPadding: false,
-                ),
+                DashboardTitle(title: 'میزان رضایت', isBottomPadding: false),
+                Text.rich(TextSpan(children: [
+                  TextSpan(
+                      text: '88% ',
+                      style:
+                          TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
+                  TextSpan(
+                      text: 'از 16 نظر',
+                      style: TextStyle(
+                          wordSpacing: -3,
+                          fontSize: 11,
+                          color: themeData.colorScheme.secondary)),
+                ])),
+              ],
+            ),
+            SizedBox(height: Constants.primaryPadding),
+
+            RatingSection(
+              withoutReturn: 0.2, // 100%
+              withoutCancel: 0.75, // 100%
+              onTimeDelivery: 1.0, // 100%
+            ),
+            //?Divider
+            MyDivider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                DashboardTitle(title: 'گزارش مالی', isBottomPadding: false),
                 MyTextButton(
                   title: 'جزئیات',
                   onTap: () {
@@ -501,6 +527,30 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class RatingSection extends StatelessWidget {
+  final double withoutReturn;
+  final double withoutCancel;
+  final double onTimeDelivery;
+
+  RatingSection({
+    required this.withoutReturn,
+    required this.withoutCancel,
+    required this.onTimeDelivery,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        ProfileCircularIndicator(title: 'بدون برگشتی', amount: withoutReturn),
+        ProfileCircularIndicator(title: 'بدون لغو', amount: withoutCancel),
+        ProfileCircularIndicator(title: 'ارسال بموقع', amount: onTimeDelivery),
+      ],
     );
   }
 }

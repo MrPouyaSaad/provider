@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:vizi_dasht/common/const.dart';
 import 'package:vizi_dasht/screens/profile/message.dart';
 import 'package:vizi_dasht/screens/profile/screens/Fines.dart';
@@ -21,9 +22,6 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('حساب کاربری'),
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -85,7 +83,6 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ).marginSymmetric(horizontal: Constants.primaryPadding),
               MyDivider().marginSymmetric(horizontal: Constants.primaryPadding),
-              //  SizedBox(height: Constants.primaryPadding),
               DrawerTile(
                 title: 'مدیریت کارت ها',
                 icon: Icons.credit_card,
@@ -106,7 +103,6 @@ class ProfileScreen extends StatelessWidget {
                   ));
                 },
               ),
-
               DrawerTile(
                 title: 'نظرات',
                 icon: Icons.comment_outlined,
@@ -120,7 +116,6 @@ class ProfileScreen extends StatelessWidget {
                   );
                 },
               ),
-
               DrawerTile(
                 title: 'پیشنهاد و انتقاد',
                 icon: Icons.feed,
@@ -166,7 +161,7 @@ class ProfileScreen extends StatelessWidget {
                 },
               ),
               DrawerTile(
-                title: 'پشتیبانی',
+                title: 'مرکز پشتیبانی',
                 icon: Icons.headset_mic_sharp,
                 value: 1,
                 isEven: false,
