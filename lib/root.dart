@@ -153,7 +153,7 @@ class _RootScreenState extends State<RootScreen> {
                       Positioned(
                         right: -10,
                         top: -10,
-                        child: CounterBadge(value: 5, isActive: true),
+                        child: CounterBadge(value: 3, isActive: true),
                       ),
                     ],
                   ),
@@ -167,7 +167,7 @@ class _RootScreenState extends State<RootScreen> {
                       Positioned(
                         right: -10,
                         top: -10,
-                        child: CounterBadge(value: 5),
+                        child: CounterBadge(value: 3),
                       ),
                     ],
                   ),

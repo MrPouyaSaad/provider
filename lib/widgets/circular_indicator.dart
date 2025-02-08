@@ -65,20 +65,26 @@ class ProfileCircularIndicator extends StatelessWidget {
               ),
             ),
             SizedBox(height: 8),
-            CircularPercentIndicator(
-              radius: 35.0,
-              lineWidth: 5.0,
-              percent: amount,
-              center: Text(
-                "${(amount * 100).toStringAsFixed(0)}%",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: primaryColor,
-                ),
-              ),
-              progressColor: primaryColor,
-              backgroundColor: Colors.grey.shade300,
+            TweenAnimationBuilder<double>(
+              tween: Tween(begin: 0, end: amount),
+              duration: const Duration(seconds: 2),
+              builder: (context, value, _) {
+                return CircularPercentIndicator(
+                  radius: 35.0,
+                  lineWidth: 5.0,
+                  percent: value,
+                  center: Text(
+                    "${(value * 100).toStringAsFixed(0)}%",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: primaryColor,
+                    ),
+                  ),
+                  progressColor: primaryColor,
+                  backgroundColor: Colors.grey.shade300,
+                );
+              },
             ),
             SizedBox(height: 8),
             Row(

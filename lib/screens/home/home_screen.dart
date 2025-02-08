@@ -60,8 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: Constants.primaryPadding),
 
             RatingSection(
-              withoutReturn: 0.2, // 100%
-              withoutCancel: 0.75, // 100%
+              withoutReturn: 1.0, // 100%
+              withoutCancel: 1.0, // 100%
               onTimeDelivery: 1.0, // 100%
             ),
             //?Divider

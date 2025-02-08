@@ -152,7 +152,6 @@ class ProfileScreen extends StatelessWidget {
               DrawerTile(
                 title: 'آموزش',
                 icon: Icons.cast_for_education,
-                value: 1,
                 isEven: true,
                 onTap: () {
                   // Navigator.of(context, rootNavigator: true)
@@ -164,7 +163,6 @@ class ProfileScreen extends StatelessWidget {
               DrawerTile(
                 title: 'جریمه ها',
                 icon: Icons.error_rounded,
-                value: 1,
                 onTap: () {
                   Navigator.of(context).push(CupertinoPageRoute(
                     builder: (context) => Fines(),

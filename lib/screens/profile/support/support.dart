@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:vizi_dasht/screens/profile/support/support_req.dart';
+import 'package:vizi_dasht/widgets/badge.dart';
 
 class SupportScreen extends StatelessWidget {
   const SupportScreen({super.key});
@@ -14,6 +17,28 @@ class SupportScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(CupertinoPageRoute(
+                  builder: (context) => SupportRequestPage(),
+                ));
+              },
+              child: _buildSupportSection(
+                context: context,
+                icon: CupertinoIcons.plus,
+                title: "ثبت درخواست پشتیبانی",
+                description:
+                    'میتوانید درخواست خود را ثبت نموده و تیم پشتیبانی در کمترین زمان ممکن پاسخگوی شما خواهند بود.',
+                actionText: 'ثبت درخواست',
+                onAction: () {
+                  Navigator.of(context).push(CupertinoPageRoute(
+                    builder: (context) => SupportRequestPage(),
+                  ));
+                },
+                isReq: true,
+              ),
+            ),
+            const SizedBox(height: 20),
             _buildSupportSection(
               context: context,
               icon: Icons.phone,
@@ -52,6 +77,7 @@ class SupportScreen extends StatelessWidget {
     required String description,
     required String actionText,
     required VoidCallback onAction,
+    bool isReq = false,
   }) {
     return Card(
       elevation: 4,
@@ -75,16 +101,18 @@ class SupportScreen extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(icon, size: 32, color: Colors.blueAccent),
+                  Icon(icon, size: 28, color: Colors.blueAccent),
                   const SizedBox(width: 10),
                   Text(
                     title,
                     style: const TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Colors.blueAccent,
                     ),
                   ),
+                  Spacer(),
+                  if (isReq) CounterBadge(value: 1),
                 ],
               ),
               const SizedBox(height: 10),
