@@ -68,6 +68,7 @@ class ProfileCircularIndicator extends StatelessWidget {
             TweenAnimationBuilder<double>(
               tween: Tween(begin: 0, end: amount),
               duration: const Duration(seconds: 2),
+              curve: Curves.ease,
               builder: (context, value, _) {
                 return CircularPercentIndicator(
                   radius: 35.0,
