@@ -163,7 +163,7 @@ class ProductsScreen extends StatelessWidget {
                           Flexible(
                             child: Container(
                               padding: EdgeInsets.symmetric(
-                                  vertical: 8, horizontal: 16),
+                                  vertical: 6, horizontal: 8),
                               decoration: BoxDecoration(
                                 color: count == 0
                                     ? themeData.colorScheme.secondary
@@ -175,7 +175,7 @@ class ProductsScreen extends StatelessWidget {
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                   color: themeData.colorScheme.surface,
-                                  fontSize: 12,
+                                  fontSize: 13,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),

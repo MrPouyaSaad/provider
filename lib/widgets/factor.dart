@@ -22,7 +22,10 @@ class FactorItem extends StatelessWidget {
     final secTextStyle = TextStyle(
         fontSize: 12, color: ptimaryTextColor, fontWeight: FontWeight.bold);
     return Container(
-      padding: const EdgeInsets.all(Constants.primaryPadding / 3),
+      padding: const EdgeInsets.symmetric(
+        vertical: Constants.primaryPadding / 3,
+        horizontal: Constants.primaryPadding / 2,
+      ),
       margin:
           const EdgeInsets.symmetric(vertical: Constants.primaryPadding / 3),
       decoration: BoxDecoration(
