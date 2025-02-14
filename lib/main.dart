@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:vizi_dasht/root.dart';
 
 import 'common/theme/theme.dart';
 import 'screens/sing_in/sign_in.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         theme: MyTheme.lightTheme,
         home: Directionality(
           textDirection: TextDirection.rtl,
-          child: const SignInScreen(),
+          child: const RootScreen(),
         ),
       ),
     );
