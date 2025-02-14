@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:vizi_dasht/common/const.dart';
 
+final _baseColor = Colors.grey[300]!;
+final _highlightColor = Colors.grey[100]!;
+
 class ShimmerLoadingWidget extends StatelessWidget {
   const ShimmerLoadingWidget({super.key});
 
@@ -14,8 +17,8 @@ class ShimmerLoadingWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Shimmer.fromColors(
-            baseColor: Colors.grey[300]!,
-            highlightColor: Colors.grey[100]!,
+            baseColor: _baseColor,
+            highlightColor: _highlightColor,
             child: Container(
               height: 20,
               width: 200,
@@ -24,8 +27,8 @@ class ShimmerLoadingWidget extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Shimmer.fromColors(
-            baseColor: Colors.grey[300]!,
-            highlightColor: Colors.grey[100]!,
+            baseColor: _baseColor,
+            highlightColor: _highlightColor,
             child: Container(
               height: 150,
               width: double.infinity,
@@ -55,8 +58,8 @@ class ShimmerLoadingWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Shimmer.fromColors(
-            baseColor: Colors.grey[300]!,
-            highlightColor: Colors.grey[100]!,
+            baseColor: _baseColor,
+            highlightColor: _highlightColor,
             child: Container(
               width: 60,
               height: 60,
@@ -73,8 +76,8 @@ class ShimmerLoadingWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Shimmer.fromColors(
-                  baseColor: Colors.grey[300]!,
-                  highlightColor: Colors.grey[100]!,
+                  baseColor: _baseColor,
+                  highlightColor: _highlightColor,
                   child: Container(
                     height: 14,
                     width: double.infinity,
@@ -83,8 +86,8 @@ class ShimmerLoadingWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Shimmer.fromColors(
-                  baseColor: Colors.grey[300]!,
-                  highlightColor: Colors.grey[100]!,
+                  baseColor: _baseColor,
+                  highlightColor: _highlightColor,
                   child: Container(
                     height: 14,
                     width: 150,
