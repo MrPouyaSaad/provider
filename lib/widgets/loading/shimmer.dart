@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:vizi_dasht/common/const.dart';
 
 class ShimmerLoadingWidget extends StatelessWidget {
   const ShimmerLoadingWidget({super.key});
@@ -30,7 +31,7 @@ class ShimmerLoadingWidget extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: Constants.primaryRadius,
               ),
             ),
           ),
@@ -62,7 +63,7 @@ class ShimmerLoadingWidget extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: Constants.primaryRadius,
               ),
             ),
           ),
