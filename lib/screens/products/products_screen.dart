@@ -45,7 +45,10 @@ class ProductsScreen extends StatelessWidget {
                   hintText: 'جستجو',
                   isDense: true,
                   alignLabelWithHint: true,
-                  prefixIcon: Icon(Icons.search),
+                  prefixIcon: Icon(
+                    Icons.search,
+                    size: 26,
+                  ),
                 ).marginOnly(top: 12),
                 automaticallyImplyLeading: false,
                 centerTitle: true,
