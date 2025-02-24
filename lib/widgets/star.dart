@@ -18,6 +18,7 @@ class SellerRating extends StatelessWidget {
       allowHalfRating: true,
       itemCount: 5,
       itemSize: 24,
+      unratedColor: Theme.of(context).colorScheme.secondary.withOpacity(0.35),
       itemPadding: const EdgeInsets.symmetric(horizontal: 2),
       itemBuilder: (context, _) => const Icon(
         CupertinoIcons.star_fill,

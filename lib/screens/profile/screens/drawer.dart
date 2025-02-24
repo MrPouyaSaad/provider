@@ -137,19 +137,28 @@ class DrawerTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     return ListTile(
+      contentPadding:
+          EdgeInsets.symmetric(horizontal: Constants.primaryPadding * 2),
       tileColor: isEven
           ? themeData.colorScheme.primary.withOpacity(0.05)
           : isEnd
               ? themeData.colorScheme.error.withOpacity(0.2)
               : null,
-      title: Text(
-        title,
-        style: TextStyle(
-          color: isEnd ? themeData.colorScheme.errorContainer : null,
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-          wordSpacing: -2,
-        ),
+      title: Row(
+        children: [
+          Expanded(
+            child: Text(
+              title,
+              style: TextStyle(
+                color: isEnd ? themeData.colorScheme.errorContainer : null,
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                wordSpacing: -2,
+              ),
+            ),
+          ),
+          CounterBadge(value: value),
+        ],
       ),
       leading: Icon(
         icon,
@@ -158,7 +167,7 @@ class DrawerTile extends StatelessWidget {
             ? themeData.colorScheme.errorContainer
             : themeData.colorScheme.primary,
       ),
-      trailing: isEnd ? null : CounterBadge(value: value),
+      trailing: isEnd ? null : Icon(Icons.arrow_forward_ios, size: 16),
       onTap: onTap,
     );
   }

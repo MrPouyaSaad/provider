@@ -1,5 +1,25 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+
+Future<String> getAppVersion() async {
+  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+  String appName = packageInfo.appName;
+  String packageName = packageInfo.packageName;
+  String version = packageInfo.version;
+  String buildNumber = packageInfo.buildNumber;
+
+  String formattedVersion = "نسخه $version";
+
+  log("App Name: $appName");
+  log("App Version: $version");
+  log("Package Name: $packageName");
+  log("Build Number: $buildNumber");
+
+  return formattedVersion;
+}
 
 class Constants {
   static final appName = 'ویزی دشت';

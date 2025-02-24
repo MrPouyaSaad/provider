@@ -16,9 +16,9 @@ class CounterBadge extends StatelessWidget {
     return Visibility(
       visible: value > 0,
       child: Container(
-        height: 22,
-        width: 22,
-        padding: EdgeInsets.all(isActive ? 2 : 3),
+        height: 20,
+        width: 20,
+        padding: EdgeInsets.all(isActive ? 2 : 2.5),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           border: isActive
@@ -33,7 +33,7 @@ class CounterBadge extends StatelessWidget {
           value.toString(),
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 13,
+            fontSize: 11,
             fontWeight: FontWeight.bold,
             color: isActive
                 ? themeData.colorScheme.primary
@@ -51,6 +51,7 @@ class RippleBadge extends StatelessWidget {
   final int value;
   @override
   Widget build(BuildContext context) {
+    final ripplesCount = 3;
     return RippleAnimation(
       child: CounterBadge(
         value: value,
@@ -60,9 +61,9 @@ class RippleBadge extends StatelessWidget {
       delay: const Duration(milliseconds: 350),
       repeat: true,
       minRadius: 10,
-      maxRadius: 15,
-      ripplesCount: 6,
-      duration: const Duration(milliseconds: 6 * 350),
+      maxRadius: 14,
+      ripplesCount: ripplesCount,
+      duration: Duration(milliseconds: ripplesCount * 350),
     );
   }
 }

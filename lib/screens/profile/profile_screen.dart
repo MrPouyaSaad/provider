@@ -15,7 +15,7 @@ import 'package:vizi_dasht/screens/profile/support/support.dart';
 import 'package:vizi_dasht/widgets/decorated_container.dart';
 import 'package:vizi_dasht/widgets/dvider.dart';
 import 'package:vizi_dasht/widgets/loading/profile.dart';
-import 'package:vizi_dasht/widgets/start.dart';
+import 'package:vizi_dasht/widgets/star.dart';
 import 'screens/drawer.dart';
 import 'screens/criticism.dart';
 
@@ -92,34 +92,66 @@ class ProfileScreen extends StatelessWidget {
                           ).marginOnly(left: 6)
                         ],
                       ),
-                    ).marginSymmetric(horizontal: Constants.primaryPadding),
-                    MyDivider()
-                        .marginSymmetric(horizontal: Constants.primaryPadding),
+                    ).marginSymmetric(
+                        horizontal: Constants.primaryPadding * 1.5),
+                    MyDivider().marginSymmetric(
+                        horizontal: Constants.primaryPadding * 1.5),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('امتیاز شما'),
+                        Text(
+                          'امتیاز شما',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              wordSpacing: -1,
+                              fontSize: 12,
+                              color: themeData.colorScheme.onSurface),
+                        ),
                         SellerRating(ratingPercentage: 0.5),
-                        Text.rich(TextSpan(children: [
+                        Text.rich(
                           TextSpan(
-                              text: '2.5 ',
-                              style: TextStyle(
-                                  fontSize: 13, fontWeight: FontWeight.bold)),
-                          TextSpan(
-                              text: 'از 5',
-                              style: TextStyle(
-                                  wordSpacing: -3,
-                                  fontSize: 11,
-                                  color: themeData.colorScheme.secondary)),
-                        ])),
+                            children: [
+                              TextSpan(
+                                text: '2.5 ',
+                                style: TextStyle(
+                                    fontSize: 13, fontWeight: FontWeight.bold),
+                              ),
+                              TextSpan(
+                                text: 'از 5',
+                                style: TextStyle(
+                                    wordSpacing: -3,
+                                    fontSize: 11,
+                                    color: themeData.colorScheme.secondary),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
-                    ).marginSymmetric(horizontal: Constants.primaryPadding + 4),
-                    MyDivider()
-                        .marginSymmetric(horizontal: Constants.primaryPadding),
+                    ).marginSymmetric(horizontal: Constants.primaryPadding * 2),
+                    MyDivider().marginSymmetric(
+                        horizontal: Constants.primaryPadding * 1.5),
+                    DrawerTile(
+                      title: 'مرکز پشتیبانی',
+                      icon: Icons.support_agent,
+                      value: 1,
+                      onTap: () {
+                        Navigator.of(context).push(CupertinoPageRoute(
+                          builder: (context) => SupportScreen(),
+                        ));
+                      },
+                    ),
+                    DrawerTile(
+                      title: 'سوالات متدال',
+                      icon: Icons.quiz_outlined,
+                      onTap: () {
+                        Navigator.of(context).push(CupertinoPageRoute(
+                          builder: (context) => FAQScreen(),
+                        ));
+                      },
+                    ),
                     DrawerTile(
                       title: 'مدیریت کارت ها',
                       icon: Icons.credit_card,
-                      isEven: true,
                       onTap: () {
                         Navigator.of(context).push(CupertinoPageRoute(
                           builder: (context) => BankCardManagerPage(),
@@ -128,7 +160,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     DrawerTile(
                       title: 'پیام',
-                      icon: Icons.message,
+                      icon: Icons.chat_bubble_outline,
                       value: 2,
                       onTap: () {
                         Navigator.of(context).push(CupertinoPageRoute(
@@ -138,8 +170,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     DrawerTile(
                       title: 'نظرات',
-                      icon: Icons.comment_outlined,
-                      isEven: true,
+                      icon: Icons.rate_review_outlined,
                       value: 6,
                       onTap: () {
                         Navigator.of(context).push(
@@ -151,8 +182,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     DrawerTile(
                       title: 'پیشنهاد و انتقاد',
-                      icon: Icons.feed,
-                      isEven: false,
+                      icon: Icons.feedback_outlined,
                       onTap: () {
                         Navigator.of(context).push(
                           CupertinoPageRoute(
@@ -163,8 +193,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     DrawerTile(
                       title: 'آموزش',
-                      icon: Icons.cast_for_education,
-                      isEven: true,
+                      icon: Icons.menu_book,
                       onTap: () {
                         // Navigator.of(context, rootNavigator: true)
                         //     .push(CupertinoPageRoute(
@@ -174,7 +203,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     DrawerTile(
                       title: 'جریمه ها',
-                      icon: Icons.error_rounded,
+                      icon: Icons.warning_amber_rounded,
                       onTap: () {
                         Navigator.of(context).push(CupertinoPageRoute(
                           builder: (context) => Fines(),
@@ -182,32 +211,12 @@ class ProfileScreen extends StatelessWidget {
                       },
                     ),
                     DrawerTile(
-                      title: 'سوالات متدال',
-                      icon: Icons.question_answer_outlined,
-                      isEven: true,
-                      onTap: () {
-                        Navigator.of(context).push(CupertinoPageRoute(
-                          builder: (context) => FAQScreen(),
-                        ));
-                      },
-                    ),
-                    DrawerTile(
-                      title: 'مرکز پشتیبانی',
-                      icon: Icons.headset_mic_sharp,
-                      value: 1,
-                      isEven: false,
-                      onTap: () {
-                        Navigator.of(context).push(CupertinoPageRoute(
-                          builder: (context) => SupportScreen(),
-                        ));
-                      },
-                    ),
-                    DrawerTile(
                       title: 'خروج از حساب',
-                      icon: Icons.logout_sharp,
+                      icon: Icons.exit_to_app,
                       isEnd: true,
                       onTap: () {},
                     ),
+                    AppVersionText().marginAll(8),
                   ],
                 ).marginSymmetric(vertical: Constants.primaryPadding),
               ),
@@ -215,6 +224,36 @@ class ProfileScreen extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+}
+
+class AppVersionText extends StatefulWidget {
+  @override
+  _AppVersionTextState createState() => _AppVersionTextState();
+}
+
+class _AppVersionTextState extends State<AppVersionText> {
+  String appVersion = "در حال دریافت...";
+
+  @override
+  void initState() {
+    super.initState();
+    getAppVersion().then((version) {
+      setState(() {
+        appVersion = version;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      appVersion,
+      style: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).colorScheme.secondary.withOpacity(0.6)),
     );
   }
 }

@@ -103,6 +103,10 @@ class _RootScreenState extends State<RootScreen> {
             unselectedItemColor: Theme.of(context).colorScheme.secondary,
             showSelectedLabels: true,
             showUnselectedLabels: true,
+            iconSize: 22,
+            selectedLabelStyle:
+                TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+            unselectedLabelStyle: TextStyle(fontSize: 12),
             type: BottomNavigationBarType.shifting,
             items: [
               BottomNavigationBarItem(
