@@ -126,8 +126,9 @@ class ProductsScreen extends StatelessWidget {
                                     child: Text(
                                       'پاستا نیمه آماده پنه ریگاته با سبزیجات 180 گرمی تک‌ماکارون',
                                       style: TextStyle(
-                                        fontSize: 14,
-                                      ),
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.bold,
+                                          wordSpacing: -1),
                                     ),
                                   ),
                                 ],
