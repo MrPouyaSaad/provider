@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:vizi_dasht/common/const.dart';
 import 'package:vizi_dasht/screens/profile/support/support_req.dart';
 import 'package:vizi_dasht/widgets/badge.dart';
+import 'package:vizi_dasht/widgets/button.dart';
 
 class SupportScreen extends StatelessWidget {
   const SupportScreen({super.key});
@@ -232,6 +234,8 @@ class SupportScreen extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      useSafeArea: true,
+      useRootNavigator: true,
       backgroundColor: Colors.transparent,
       builder: (context) {
         return _CollectPanelBottomSheetContent();
@@ -262,158 +266,159 @@ class _CollectPanelBottomSheetContentState
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 20,
-            spreadRadius: 5,
-          ),
-        ],
-      ),
-      padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
-        left: 16,
-        right: 16,
-        top: 16,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Center(
-            child: Text(
-              'درخواست تغییر وضعیت همکاری',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueAccent,
+    return SafeArea(
+      bottom: true,
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 20,
+                spreadRadius: 5,
               ),
-            ),
+            ],
           ),
-          const SizedBox(height: 16),
-          const Text(
-            'لطفاً دلیل درخواست خود را انتخاب کنید:',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+            left: 16,
+            right: 16,
+            top: 16,
           ),
-          const SizedBox(height: 10),
-
-          Column(
-            children: ['مشکلات فنی', 'عدم نیاز', 'سایر موارد'].map((reason) {
-              return AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
-                margin: const EdgeInsets.symmetric(vertical: 4),
-                decoration: BoxDecoration(
-                  color: selectedReason == reason
-                      ? Colors.blueAccent.withOpacity(0.1)
-                      : Colors.transparent,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: selectedReason == reason
-                        ? Colors.blueAccent
-                        : Colors.grey.withOpacity(0.2),
-                    width: 1.5,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Center(
+                child: Text(
+                  'درخواست تغییر وضعیت همکاری',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blueAccent,
                   ),
                 ),
-                child: RadioListTile<String>(
-                  title: Text(
-                    reason,
-                    style: TextStyle(
-                      fontSize: 14,
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'لطفاً دلیل درخواست خود را انتخاب کنید:',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+              const SizedBox(height: 10),
+
+              Column(
+                children:
+                    ['مشکلات فنی', 'عدم نیاز', 'سایر موارد'].map((reason) {
+                  return AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    margin: const EdgeInsets.symmetric(vertical: 4),
+                    decoration: BoxDecoration(
                       color: selectedReason == reason
-                          ? Colors.blueAccent
-                          : Colors.grey[700],
-                      fontWeight: selectedReason == reason
-                          ? FontWeight.bold
-                          : FontWeight.normal,
+                          ? Colors.blueAccent.withOpacity(0.1)
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: selectedReason == reason
+                            ? Colors.blueAccent
+                            : Colors.grey.withOpacity(0.2),
+                        width: 1.5,
+                      ),
                     ),
-                  ),
-                  value: reason,
-                  groupValue: selectedReason,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedReason = value;
-                      showTextField = value == 'سایر موارد';
-                    });
+                    child: RadioListTile<String>(
+                      title: Text(
+                        reason,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: selectedReason == reason
+                              ? Colors.blueAccent
+                              : Colors.grey[700],
+                          fontWeight: selectedReason == reason
+                              ? FontWeight.bold
+                              : FontWeight.normal,
+                        ),
+                      ),
+                      value: reason,
+                      groupValue: selectedReason,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedReason = value;
+                          showTextField = value == 'سایر موارد';
+                        });
 
-                    if (value == 'سایر موارد') {
-                      Future.delayed(
-                        const Duration(milliseconds: 200),
-                        () {
-                          textFieldFocus.requestFocus();
-                        },
-                      );
+                        if (value == 'سایر موارد') {
+                          Future.delayed(
+                            const Duration(milliseconds: 200),
+                            () {
+                              textFieldFocus.requestFocus();
+                            },
+                          );
+                        }
+                      },
+                      activeColor: Colors.blueAccent,
+                    ),
+                  );
+                }).toList(),
+              ),
+
+              // ✅ TextField برای "سایر موارد"
+              if (showTextField)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: TextField(
+                    controller: otherReasonController,
+                    focusNode: textFieldFocus,
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      hintText: 'لطفاً دلیل خود را وارد کنید',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: Colors.blueAccent),
+                      ),
+                      filled: true,
+                      fillColor: Colors.grey[100],
+                    ),
+                    maxLines: 3,
+                  ),
+                ),
+
+              const SizedBox(height: 20),
+
+              SizedBox(
+                height: Constants.primaryButtonHeight,
+                width: double.infinity,
+                child: MyElevatedButton(
+                  onTap: () {
+                    String reason = selectedReason ?? 'انتخاب نشده';
+                    if (reason == 'سایر موارد') {
+                      reason = otherReasonController.text.trim();
                     }
+                    if (reason.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('لطفاً دلیل را انتخاب یا وارد کنید.'),
+                        ),
+                      );
+                      return;
+                    }
+                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('درخواست شما ثبت شد: $reason'),
+                        backgroundColor: Colors.green,
+                      ),
+                    );
                   },
-                  activeColor: Colors.blueAccent,
+                  title: 'ارسال درخواست',
                 ),
-              );
-            }).toList(),
-          ),
-
-          // ✅ TextField برای "سایر موارد"
-          if (showTextField)
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: TextField(
-                controller: otherReasonController,
-                focusNode: textFieldFocus,
-                autofocus: true,
-                decoration: InputDecoration(
-                  hintText: 'لطفاً دلیل خود را وارد کنید',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Colors.blueAccent),
-                  ),
-                  filled: true,
-                  fillColor: Colors.grey[100],
-                ),
-                maxLines: 3,
               ),
-            ),
 
-          const SizedBox(height: 20),
-
-          ElevatedButton(
-            onPressed: () {
-              String reason = selectedReason ?? 'انتخاب نشده';
-              if (reason == 'سایر موارد') {
-                reason = otherReasonController.text.trim();
-              }
-              if (reason.isEmpty) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('لطفاً دلیل را انتخاب یا وارد کنید.'),
-                  ),
-                );
-                return;
-              }
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('درخواست شما ثبت شد: $reason'),
-                  backgroundColor: Colors.green,
-                ),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blueAccent,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              minimumSize: const Size(double.infinity, 50),
-            ),
-            child: const Text(
-              'ارسال درخواست',
-              style: TextStyle(fontSize: 16, color: Colors.white),
-            ),
+              const SizedBox(height: 16),
+            ],
           ),
-
-          const SizedBox(height: 10),
-        ],
+        ),
       ),
     );
   }
