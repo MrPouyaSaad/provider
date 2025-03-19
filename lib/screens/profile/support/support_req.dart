@@ -35,12 +35,10 @@ class _SupportRequestPageState extends State<SupportRequestPage> {
 
   void _submitSupportRequest() {
     if (_formKey.currentState!.validate()) {
-      // در اینجا می‌توانید درخواست پشتیبانی را ارسال کنید (مثلاً به سرور).
       final subject = _subjectController.text;
       final description = _descriptionController.text;
       final email = _emailController.text;
 
-      // نمایش پیام موفقیت‌آمیز
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('درخواست پشتیبانی شما با موفقیت ثبت شد.'),
@@ -48,7 +46,6 @@ class _SupportRequestPageState extends State<SupportRequestPage> {
         ),
       );
 
-      // پاک کردن فیلدها پس از ارسال
       _subjectController.clear();
       _descriptionController.clear();
       _emailController.clear();
@@ -89,8 +86,6 @@ class _SupportRequestPageState extends State<SupportRequestPage> {
                   return null;
                 },
               ),
-
-              // دکمه ارسال
               SizedBox(
                 height: Constants.primaryButtonHeight,
                 width: double.infinity,
@@ -112,7 +107,6 @@ class SupportRequestStatusWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // درخواست‌های پاسخ داده شده
         Expanded(
           child: GestureDetector(
             onTap: () => Navigator.of(context).push(
@@ -123,7 +117,7 @@ class SupportRequestStatusWidget extends StatelessWidget {
             child: _buildRequestSection(
               isBadge: true,
               title: 'پاسخ داده شده',
-              count: 5, // این مقدار از سرور می‌آید
+              count: 5,
               color: Colors.green[50]!,
               icon: CupertinoIcons.checkmark_seal_fill,
               iconColor: Colors.green,
@@ -131,12 +125,10 @@ class SupportRequestStatusWidget extends StatelessWidget {
           ),
         ),
         SizedBox(width: 12),
-
-        // درخواست‌های در حال بررسی
         Expanded(
           child: _buildRequestSection(
             title: 'در حال بررسی',
-            count: 3, // این مقدار از سرور می‌آید
+            count: 3,
             color: Colors.orange[50]!,
             icon: CupertinoIcons.clock_fill,
             iconColor: Colors.orange,
@@ -165,7 +157,7 @@ class SupportRequestStatusWidget extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
           child: Row(
             children: [
-              Icon(icon, color: iconColor, size: 28), // آیکون وضعیت درخواست
+              Icon(icon, color: iconColor, size: 28),
               SizedBox(width: 10),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
