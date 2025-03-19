@@ -39,7 +39,8 @@ class ProfileScreen extends StatelessWidget {
                     MyDecoratedContainer(
                       gradient: LinearGradient(colors: [
                         themeData.colorScheme.primary,
-                        themeData.colorScheme.primary.withOpacity(0.85),
+                        themeData.colorScheme.primary
+                            .withAlpha((255 * 0.85).toInt()),
                         themeData.colorScheme.primary,
                       ]),
                       child: Row(
@@ -65,7 +66,7 @@ class ProfileScreen extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: themeData.colorScheme.surface
-                                        .withOpacity(0.8)),
+                                        .withAlpha((255 * 0.8).toInt())),
                               ),
                             ],
                           ),
