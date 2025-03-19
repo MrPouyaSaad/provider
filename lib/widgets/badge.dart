@@ -46,24 +46,39 @@ class CounterBadge extends StatelessWidget {
 }
 
 class RippleBadge extends StatelessWidget {
-  const RippleBadge({super.key, this.isActive = false, required this.value});
-  final bool isActive;
-  final int value;
+  const RippleBadge(
+      {super.key,
+      this.isActive = false,
+      this.value,
+      this.child,
+      this.color,
+      this.minRadius = 10,
+      this.maxRadius = 14,
+      this.duration = 500,
+      this.ripplesCount = 3});
+  final bool? isActive;
+  final int? value;
+  final Widget? child;
+  final Color? color;
+  final double minRadius;
+  final double maxRadius;
+  final int duration;
+  final int ripplesCount;
   @override
   Widget build(BuildContext context) {
-    final ripplesCount = 3;
     return RippleAnimation(
-      child: CounterBadge(
-        value: value,
-        isActive: isActive,
-      ),
-      color: Theme.of(context).primaryColor,
+      child: child ??
+          CounterBadge(
+            value: value ?? 0,
+            isActive: isActive ?? false,
+          ),
+      color: color ?? Theme.of(context).primaryColor,
       delay: const Duration(milliseconds: 350),
       repeat: true,
-      minRadius: 10,
-      maxRadius: 14,
+      minRadius: minRadius,
+      maxRadius: maxRadius,
       ripplesCount: ripplesCount,
-      duration: Duration(milliseconds: ripplesCount * 350),
+      duration: Duration(milliseconds: ripplesCount * duration),
     );
   }
 }

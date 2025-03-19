@@ -36,3 +36,79 @@ class MyDecoratedContainer extends StatelessWidget {
     );
   }
 }
+
+class DecoratedContainerWithIcon extends StatelessWidget {
+  const DecoratedContainerWithIcon({
+    super.key,
+    required this.primaryColor,
+    required this.secondryColor,
+    required this.icon,
+    required this.title,
+    required this.caption,
+    this.onTap,
+  });
+
+  final Color primaryColor;
+  final Color secondryColor;
+  final IconData icon;
+  final String title;
+  final String caption;
+  final Function()? onTap;
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
+
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(Constants.primaryPadding / 2),
+        decoration: BoxDecoration(
+          borderRadius: Constants.primaryRadius,
+          color: primaryColor,
+          boxShadow: Constants.primaryBoxShadow(context),
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: Constants.primaryPadding / 8,
+                  vertical: Constants.primaryPadding / 6),
+              decoration: BoxDecoration(
+                borderRadius: Constants.primaryRadius,
+                color: secondryColor,
+              ),
+              child: Icon(
+                icon,
+                color: themeData.colorScheme.surface,
+                size: 38,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                      color: themeData.colorScheme.surface,
+                      wordSpacing: -1.5,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  caption,
+                  style: TextStyle(
+                      wordSpacing: -1,
+                      fontWeight: FontWeight.bold,
+                      color: themeData.colorScheme.surface,
+                      fontSize: 11),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -83,6 +83,15 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              if (widget.orderId == 0)
+                DecoratedContainerWithIcon(
+                  primaryColor: themeData.colorScheme.surfaceContainerHighest,
+                  secondryColor: themeData.colorScheme.surfaceContainerHigh,
+                  icon: Icons.local_shipping_outlined,
+                  title: 'باربر ویزیتوم در راه است!',
+                  caption:
+                      'تأمین‌کننده عزیز، لطفاً برای تحویل سفارش آماده باشید.',
+                ).marginOnly(bottom: 16),
               MyDecoratedContainer(
                   child: Column(
                     children: [
@@ -114,10 +123,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     ],
                   ),
                   color: themeData.colorScheme.surface),
-
-              SizedBox(height: 8),
+              SizedBox(height: 16),
               DashboardTitle(title: 'محصولات ارسالی'),
-              // نمایش لیست آیتم‌های سفارش
               ...List.generate(
                 3,
                 (index) => MyDecoratedContainer(
@@ -228,7 +235,6 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 ).marginOnly(bottom: Constants.primaryPadding),
               ),
               SizedBox(height: 16),
-
               SizedBox(
                 width: double.infinity,
                 height: Constants.primaryButtonHeight,

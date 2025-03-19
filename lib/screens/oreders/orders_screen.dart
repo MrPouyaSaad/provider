@@ -6,6 +6,7 @@ import 'package:vizi_dasht/common/const.dart';
 import 'package:vizi_dasht/screens/oreders/bloc/orders_bloc.dart';
 import 'package:vizi_dasht/screens/oreders/order_details_screen.dart';
 import 'package:vizi_dasht/screens/profile/support/support.dart';
+import 'package:vizi_dasht/widgets/badge.dart';
 import 'package:vizi_dasht/widgets/loading/orders.dart';
 
 class OrdersScreen extends StatelessWidget {
@@ -56,6 +57,7 @@ class OrdersScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(
                         horizontal: Constants.primaryPadding),
                     itemBuilder: (context, index) {
+                      final bool isDeliver = index == 0;
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(
@@ -72,7 +74,12 @@ class OrdersScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: Constants.primaryRadius,
                             color: themeData.colorScheme.surface,
-                            boxShadow: Constants.primaryBoxShadow(context),
+                            boxShadow: Constants.primaryBoxShadow(context,
+                                shadowColor: themeData
+                                    .colorScheme.surfaceContainerHighest
+                                    .withAlpha(isDeliver
+                                        ? (0.4 * 255).toInt()
+                                        : (0.08 * 255).toInt())),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,25 +103,25 @@ class OrdersScreen extends StatelessWidget {
                                         ),
                                       ),
                                       SizedBox(height: 8),
-                                      if (index.isEven)
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 3, horizontal: 9),
-                                          decoration: BoxDecoration(
-                                            color:
-                                                themeData.colorScheme.primary,
-                                            borderRadius:
-                                                BorderRadius.circular(16),
-                                          ),
-                                          child: Text(
-                                            'جدید',
-                                            style: TextStyle(
-                                                color: themeData
-                                                    .colorScheme.surface,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12),
-                                          ),
-                                        ),
+                                      Row(
+                                        children: [
+                                          if (index.isEven)
+                                            LabelContainer(text: 'جدید')
+                                                .marginOnly(left: 8),
+                                          if (isDeliver)
+                                            LabelContainer(
+                                              child: Icon(
+                                                  Icons.local_shipping_outlined,
+                                                  size: 20,
+                                                  color: themeData
+                                                      .colorScheme.surface),
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 9, vertical: 0),
+                                              color: themeData.colorScheme
+                                                  .surfaceContainerHighest,
+                                            )
+                                        ],
+                                      )
                                     ],
                                   ),
                                   Column(
@@ -126,27 +133,28 @@ class OrdersScreen extends StatelessWidget {
                                   ),
                                 ],
                               ).marginOnly(top: 16, left: 16, right: 16),
-                              SizedBox(height: 20),
+                              SizedBox(height: 4),
                               SizedBox(
-                                height: 100,
+                                height: 116,
                                 child: ListView.builder(
-                                  padding: EdgeInsets.only(bottom: 16),
+                                  padding: EdgeInsets.symmetric(vertical: 16),
                                   scrollDirection: Axis.horizontal,
                                   itemCount: 5,
                                   itemBuilder: (context, itemIndex) {
                                     return Container(
                                       height: 84,
                                       width: 84,
+                                      padding: EdgeInsets.all(4),
                                       margin: EdgeInsets.symmetric(
                                         horizontal: 8,
                                       ),
                                       decoration: BoxDecoration(
                                         borderRadius: Constants.primaryRadius,
-                                        color: themeData.colorScheme.secondary
-                                            .withOpacity(0.1),
-                                        border: Border.all(
-                                            color: themeData
-                                                .colorScheme.secondary),
+                                        color: themeData.colorScheme.surface,
+                                        boxShadow: Constants.primaryBoxShadow(
+                                            blurRadius: 4,
+                                            colorOpacity: 0.05,
+                                            context),
                                       ),
                                       child: ClipRRect(
                                         borderRadius: Constants.primaryRadius,
@@ -169,6 +177,41 @@ class OrdersScreen extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+}
+
+class LabelContainer extends StatelessWidget {
+  const LabelContainer({
+    super.key,
+    this.color,
+    this.child,
+    this.text = 'برچسب',
+    this.padding,
+  });
+
+  final Color? color;
+  final Widget? child;
+  final String text;
+  final EdgeInsetsGeometry? padding;
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
+    return Container(
+      padding: padding ?? EdgeInsets.symmetric(vertical: 3, horizontal: 9),
+      decoration: BoxDecoration(
+        color: color ?? themeData.colorScheme.primary,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: child ??
+          Text(
+            text,
+            style: TextStyle(
+                color: themeData.colorScheme.surface,
+                fontWeight: FontWeight.bold,
+                fontSize: 12),
+          ),
     );
   }
 }
