@@ -14,7 +14,7 @@ class MyDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     return Divider(
-            color: color ?? themeData.colorScheme.secondary.withOpacity(0.5))
+            color: color ?? themeData.colorScheme.secondary.withOpacity(0.25))
         .marginSymmetric(vertical: Constants.primaryPadding, horizontal: 4);
   }
 }

@@ -1,9 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:vizi_dasht/common/const.dart';
 import 'package:vizi_dasht/screens/home/finance.dart';
 import 'package:vizi_dasht/screens/products/best_products_list.dart';
@@ -11,8 +9,6 @@ import 'package:vizi_dasht/widgets/button.dart';
 import 'package:vizi_dasht/widgets/custom_shadow_box.dart';
 import 'package:vizi_dasht/widgets/factor.dart';
 import 'package:vizi_dasht/widgets/loading/dashboard.dart';
-import 'package:vizi_dasht/widgets/loading/orders.dart';
-import 'package:vizi_dasht/widgets/loading/shimmer.dart';
 import '../../widgets/circular_indicator.dart';
 import '../../widgets/decorated_container.dart';
 import '../../widgets/dvider.dart';
@@ -73,9 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(height: Constants.primaryPadding),
 
                     RatingSection(
-                      withoutReturn: 1.0, // 100%
-                      withoutCancel: 1.0, // 100%
-                      onTimeDelivery: 1.0, // 100%
+                      withoutReturn: 0.98, // 100%
+                      withoutCancel: 0.70, // 100%
+                      onTimeDelivery: 0.35, // 100%
                     ),
                     //?Divider
                     MyDivider(),

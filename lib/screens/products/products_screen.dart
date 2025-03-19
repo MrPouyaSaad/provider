@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:vizi_dasht/screens/products/add_product/add_product_details.dart';
 import 'package:vizi_dasht/screens/products/add_product/select_category.dart';
 import 'package:vizi_dasht/screens/products/bloc/product_screen_bloc.dart';
+import 'package:vizi_dasht/widgets/button.dart';
 import 'package:vizi_dasht/widgets/loading/product.dart';
 
 import '../../common/const.dart';
@@ -24,16 +25,25 @@ class ProductsScreen extends StatelessWidget {
             return ProductShimmer();
           } else
             return Scaffold(
-              floatingActionButton: FloatingActionButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => AddProduct(),
-                    ),
-                  );
-                },
-                child: Icon(Icons.add),
-              ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerFloat,
+              floatingActionButton: SizedBox(
+                width: double.infinity,
+                height: Constants.primaryButtonHeight,
+                child: MyElevatedButton(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => AddProduct(),
+                      ),
+                    );
+                  },
+                  backgroundColor:
+                      themeData.colorScheme.surfaceContainerHighest,
+                  icon: Icon(Icons.add),
+                  title: 'افزودن محصول جدید',
+                ),
+              ).marginSymmetric(horizontal: 24),
               body: SafeArea(
                 child: NestedScrollView(
                   headerSliverBuilder: (context, innerBoxIsScrolled) {

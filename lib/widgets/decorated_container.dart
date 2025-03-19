@@ -8,11 +8,13 @@ class MyDecoratedContainer extends StatelessWidget {
     required this.child,
     this.color,
     this.padding,
+    this.gradient,
     this.isOutlined = false,
   });
 
   final Widget child;
   final Color? color;
+  final Gradient? gradient;
   final EdgeInsetsGeometry? padding;
   final bool isOutlined;
 
@@ -25,6 +27,7 @@ class MyDecoratedContainer extends StatelessWidget {
         boxShadow: isOutlined ? null : Constants.primaryBoxShadow(context),
         borderRadius: Constants.primaryRadius,
         color: isOutlined ? themeData.surface : color ?? themeData.surface,
+        gradient: gradient,
         border: isOutlined
             ? Border.all(width: 1.5, color: color ?? themeData.primary)
             : null,

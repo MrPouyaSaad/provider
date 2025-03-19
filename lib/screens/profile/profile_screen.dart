@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:vizi_dasht/common/const.dart';
 import 'package:vizi_dasht/screens/profile/bloc/profile_screen_bloc.dart';
 import 'package:vizi_dasht/screens/profile/message.dart';
@@ -38,7 +37,11 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     MyDecoratedContainer(
-                      color: themeData.colorScheme.primary,
+                      gradient: LinearGradient(colors: [
+                        themeData.colorScheme.primary,
+                        themeData.colorScheme.primary.withOpacity(0.85),
+                        themeData.colorScheme.primary,
+                      ]),
                       child: Row(
                         children: [
                           Icon(

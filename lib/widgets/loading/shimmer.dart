@@ -11,7 +11,6 @@ class ShimmerLoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      // رفع مشکل اندازه
       padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,9 +39,8 @@ class ShimmerLoadingWidget extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           ListView.builder(
-            shrinkWrap: true, // اندازه را محدود می‌کند
-            physics:
-                const NeverScrollableScrollPhysics(), // اسکرول جداگانه نمی‌خواهد
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: 3,
             itemBuilder: (context, index) => buildShimmerItem(),
           ),
