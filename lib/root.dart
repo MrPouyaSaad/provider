@@ -1,5 +1,4 @@
 import 'package:floating_snackbar/floating_snackbar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vizi_dasht/screens/profile/profile_screen.dart';
 import 'package:vizi_dasht/screens/home/home_screen.dart';
@@ -80,7 +79,7 @@ class _RootScreenState extends State<RootScreen> {
   @override
   Widget build(BuildContext context) {
     final deActiveColor =
-        Theme.of(context).colorScheme.secondary.withOpacity(0.7);
+        Theme.of(context).colorScheme.secondary.withAlpha((0.7 * 255).toInt());
 
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -106,13 +105,13 @@ class _RootScreenState extends State<RootScreen> {
             iconSize: 22,
             selectedLabelStyle:
                 TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-            unselectedLabelStyle: TextStyle(fontSize: 12),
+            unselectedLabelStyle: TextStyle(fontSize: 11),
             type: BottomNavigationBarType.shifting,
             items: [
               BottomNavigationBarItem(
-                activeIcon: Icon(Icons.donut_small),
+                activeIcon: Icon(Icons.dashboard_outlined),
                 icon: Icon(
-                  Icons.donut_small,
+                  Icons.dashboard_outlined,
                   color: deActiveColor,
                 ),
                 label: 'داشبورد',
@@ -121,7 +120,7 @@ class _RootScreenState extends State<RootScreen> {
                 activeIcon: Stack(
                   clipBehavior: Clip.none,
                   children: [
-                    Icon(Icons.shopping_bag),
+                    Icon(Icons.receipt_long_outlined),
                     Positioned(
                       right: -10,
                       top: -10,
@@ -132,7 +131,7 @@ class _RootScreenState extends State<RootScreen> {
                 icon: Stack(
                   clipBehavior: Clip.none,
                   children: [
-                    Icon(Icons.shopping_bag, color: deActiveColor),
+                    Icon(Icons.receipt_long_outlined, color: deActiveColor),
                     Positioned(
                       right: -10,
                       top: -10,
@@ -143,9 +142,9 @@ class _RootScreenState extends State<RootScreen> {
                 label: 'سفارشات',
               ),
               BottomNavigationBarItem(
-                  activeIcon: Icon(Icons.widgets),
+                  activeIcon: Icon(Icons.storefront_outlined),
                   icon: Icon(
-                    Icons.widgets,
+                    Icons.storefront_outlined,
                     color: deActiveColor,
                   ),
                   label: 'محصولات من'),
@@ -153,7 +152,7 @@ class _RootScreenState extends State<RootScreen> {
                   activeIcon: Stack(
                     clipBehavior: Clip.none,
                     children: [
-                      Icon(CupertinoIcons.person_fill),
+                      Icon(Icons.person_outline),
                       Positioned(
                         right: -10,
                         top: -10,
@@ -165,7 +164,7 @@ class _RootScreenState extends State<RootScreen> {
                     clipBehavior: Clip.none,
                     children: [
                       Icon(
-                        CupertinoIcons.person_fill,
+                        Icons.person_outline,
                         color: deActiveColor,
                       ),
                       Positioned(

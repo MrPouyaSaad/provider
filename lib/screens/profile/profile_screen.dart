@@ -145,7 +145,7 @@ class ProfileScreen extends StatelessWidget {
                       },
                     ),
                     DrawerTile(
-                      title: 'سوالات متدال',
+                      title: 'سوالات متداول',
                       icon: Icons.quiz_outlined,
                       onTap: () {
                         Navigator.of(context).push(CupertinoPageRoute(
@@ -257,7 +257,10 @@ class _AppVersionTextState extends State<AppVersionText> {
       style: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
-          color: Theme.of(context).colorScheme.secondary.withOpacity(0.6)),
+          color: Theme.of(context)
+              .colorScheme
+              .secondary
+              .withAlpha((0.6 * 255).toInt())),
     );
   }
 }

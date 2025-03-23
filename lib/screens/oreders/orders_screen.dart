@@ -6,7 +6,6 @@ import 'package:vizi_dasht/common/const.dart';
 import 'package:vizi_dasht/screens/oreders/bloc/orders_bloc.dart';
 import 'package:vizi_dasht/screens/oreders/order_details_screen.dart';
 import 'package:vizi_dasht/screens/profile/support/support.dart';
-import 'package:vizi_dasht/widgets/badge.dart';
 import 'package:vizi_dasht/widgets/loading/orders.dart';
 
 class OrdersScreen extends StatelessWidget {

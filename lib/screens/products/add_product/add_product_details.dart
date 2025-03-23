@@ -160,6 +160,7 @@ class _AddProductDetailsState extends State<AddProductDetails> {
               key: _formKey,
               child: Column(
                 children: [
+                  SizedBox(height: 16),
                   MyTextField(
                     labelText: 'تعداد موجود برای فروش',
                     keyboardType: TextInputType.number,

@@ -104,13 +104,14 @@ class ProductsScreen extends StatelessWidget {
                         child: Container(
                           padding: EdgeInsets.all(12),
                           margin: EdgeInsets.symmetric(
-                              vertical: Constants.primaryPadding / 2),
+                              vertical: Constants.primaryPadding / 4),
                           decoration: BoxDecoration(
                             borderRadius: Constants.primaryRadius,
                             color: isEmpty
                                 ? Colors.grey.shade200
                                 : themeData.colorScheme.surface,
-                            boxShadow: Constants.primaryBoxShadow(context),
+                            boxShadow: Constants.primaryBoxShadow(context,
+                                colorOpacity: 0.05),
                           ),
                           child: Column(
                             children: [
