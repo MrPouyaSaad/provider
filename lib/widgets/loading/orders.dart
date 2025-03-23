@@ -14,15 +14,12 @@ class OrdersShimmer extends StatelessWidget {
         if (index == 0) {
           return AppBar(
             leading: ShimmerCircle(width: 5, height: 5).marginOnly(right: 16),
-            actions: [
-              ShimmerCircle(width: 40, height: 40).marginOnly(left: 16),
-            ],
             title: Text('سفارشات'),
             centerTitle: true,
           );
         }
         return ShimmerBox(width: double.infinity, height: 160)
-            .marginOnly(bottom: 16, top: 8, left: 16, right: 16);
+            .marginOnly(bottom: 8, top: 8, left: 16, right: 16);
       },
     );
   }

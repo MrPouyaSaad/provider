@@ -5,8 +5,9 @@ import 'package:get/get.dart';
 import 'package:vizi_dasht/common/const.dart';
 import 'package:vizi_dasht/screens/oreders/bloc/orders_bloc.dart';
 import 'package:vizi_dasht/screens/oreders/order_details_screen.dart';
-import 'package:vizi_dasht/screens/profile/support/support.dart';
 import 'package:vizi_dasht/widgets/loading/orders.dart';
+
+import '../../widgets/decorated_container.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});
@@ -33,22 +34,13 @@ class OrdersScreen extends StatelessWidget {
                   title: Text('سفارشات'),
                   centerTitle: true,
                   leading: IconButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => SupportScreen(),
-                      ));
-                    },
-                    icon: Icon(Icons.headset_mic_sharp),
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.history,
+                      size: 24,
+                      opticalSize: 24,
+                    ),
                   ),
-                  actions: [
-                    TextButton(
-                      onPressed: () {},
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.history),
-                      ),
-                    )
-                  ],
                 ),
                 body: SafeArea(
                   child: ListView.builder(
@@ -57,6 +49,17 @@ class OrdersScreen extends StatelessWidget {
                         horizontal: Constants.primaryPadding),
                     itemBuilder: (context, index) {
                       final bool isDeliver = index == 0;
+                      if (isDeliver)
+                        return DecoratedContainerWithIcon(
+                          primaryColor:
+                              themeData.colorScheme.surfaceContainerHighest,
+                          secondryColor:
+                              themeData.colorScheme.surfaceContainerHigh,
+                          icon: Icons.local_shipping_outlined,
+                          title: 'باربر ویزیتوم در راه است!',
+                          caption:
+                              'تأمین‌کننده عزیز، لطفاً برای تحویل سفارشات آماده باشید.',
+                        ).marginOnly(bottom: 16);
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(
@@ -76,9 +79,7 @@ class OrdersScreen extends StatelessWidget {
                             boxShadow: Constants.primaryBoxShadow(context,
                                 shadowColor: themeData
                                     .colorScheme.surfaceContainerHighest
-                                    .withAlpha(isDeliver
-                                        ? (0.4 * 255).toInt()
-                                        : (0.08 * 255).toInt())),
+                                    .withAlpha((0.08 * 255).toInt())),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,7 +94,7 @@ class OrdersScreen extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        '14,000,000 تومان',
+                                        '10,821,000 تومان',
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
@@ -107,18 +108,6 @@ class OrdersScreen extends StatelessWidget {
                                           if (index.isEven)
                                             LabelContainer(text: 'جدید')
                                                 .marginOnly(left: 8),
-                                          if (isDeliver)
-                                            LabelContainer(
-                                              child: Icon(
-                                                  Icons.local_shipping_outlined,
-                                                  size: 20,
-                                                  color: themeData
-                                                      .colorScheme.surface),
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 9, vertical: 0),
-                                              color: themeData.colorScheme
-                                                  .surfaceContainerHighest,
-                                            )
                                         ],
                                       )
                                     ],

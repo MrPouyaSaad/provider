@@ -83,15 +83,14 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (widget.orderId == 0)
-                DecoratedContainerWithIcon(
-                  primaryColor: themeData.colorScheme.surfaceContainerHighest,
-                  secondryColor: themeData.colorScheme.surfaceContainerHigh,
-                  icon: Icons.local_shipping_outlined,
-                  title: 'باربر ویزیتوم در راه است!',
-                  caption:
-                      'تأمین‌کننده عزیز، لطفاً برای تحویل سفارش آماده باشید.',
-                ).marginOnly(bottom: 16),
+              DecoratedContainerWithIcon(
+                primaryColor: themeData.colorScheme.surfaceContainerHighest,
+                secondryColor: themeData.colorScheme.surfaceContainerHigh,
+                icon: Icons.local_shipping_outlined,
+                title: 'باربر ویزیتوم در راه است!',
+                caption:
+                    'تأمین‌کننده عزیز، لطفاً برای تحویل سفارش آماده باشید.',
+              ).marginOnly(bottom: 16),
               MyDecoratedContainer(
                   child: Column(
                     children: [

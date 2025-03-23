@@ -16,9 +16,9 @@ class CounterBadge extends StatelessWidget {
     return Visibility(
       visible: value > 0,
       child: Container(
-        height: 20,
-        width: 20,
-        padding: EdgeInsets.all(isActive ? 2 : 2.5),
+        height: 18,
+        width: 18,
+        //  padding: EdgeInsets.all(isActive ? 1.5 : 2),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           border: isActive
@@ -29,15 +29,17 @@ class CounterBadge extends StatelessWidget {
               ? themeData.colorScheme.surface
               : themeData.colorScheme.primary,
         ),
-        child: Text(
-          value.toString(),
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 11,
-            fontWeight: FontWeight.bold,
-            color: isActive
-                ? themeData.colorScheme.primary
-                : themeData.colorScheme.surface,
+        child: Center(
+          child: Text(
+            value.toString(),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              color: isActive
+                  ? themeData.colorScheme.primary
+                  : themeData.colorScheme.surface,
+            ),
           ),
         ),
       ),
