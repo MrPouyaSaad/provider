@@ -7,7 +7,8 @@ class OrdersPieChart extends StatefulWidget {
   final int deliveredOrders;
   final int undeliveredOrders;
 
-  OrdersPieChart({
+  const OrdersPieChart({
+    super.key,
     required this.totalOrders,
     required this.deliveredOrders,
     required this.undeliveredOrders,
@@ -24,6 +25,7 @@ class _OrdersPieChartState extends State<OrdersPieChart> {
   Widget build(BuildContext context) {
     final Color delivered = Theme.of(context).primaryColor;
     final Color unDelivered = Theme.of(context).colorScheme.errorContainer;
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -37,6 +39,7 @@ class _OrdersPieChartState extends State<OrdersPieChart> {
                   sections: _buildPieChartSections(delivered, unDelivered),
                   centerSpaceRadius: 60,
                   sectionsSpace: 2,
+                  startDegreeOffset: 180,
                   pieTouchData: PieTouchData(
                     touchCallback: (FlTouchEvent event, pieTouchResponse) {
                       setState(() {
@@ -52,32 +55,38 @@ class _OrdersPieChartState extends State<OrdersPieChart> {
                     },
                   ),
                 ),
+                duration: const Duration(milliseconds: 220),
+                curve: Curves.easeOut,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'سفارشات کل',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    textDirection: TextDirection.rtl,
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     '${widget.totalOrders}',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 26, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
             ],
           ),
         ),
-        SizedBox(height: 16),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        const SizedBox(height: 16),
+        Wrap(
+          spacing: 16,
+          runSpacing: 8,
+          alignment: WrapAlignment.center,
           children: [
             LegendItem(
               color: delivered,
               text: 'تحویل داده شده',
             ),
-            SizedBox(width: 16),
             LegendItem(
               color: unDelivered,
               text: 'تحویل داده نشده',
@@ -90,6 +99,22 @@ class _OrdersPieChartState extends State<OrdersPieChart> {
 
   List<PieChartSectionData> _buildPieChartSections(
       Color delivered, Color unDelivered) {
+    if (widget.totalOrders == 0) {
+      return [
+        PieChartSectionData(
+          value: 1,
+          color: Colors.grey,
+          radius: 100,
+          title: "No Data",
+          titleStyle: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ];
+    }
+
     final double deliveredPercentage =
         (widget.deliveredOrders / widget.totalOrders) * 100;
     final double undeliveredPercentage =
@@ -98,40 +123,56 @@ class _OrdersPieChartState extends State<OrdersPieChart> {
     return [
       PieChartSectionData(
         value: widget.deliveredOrders.toDouble(),
-        title: touchedIndex == 0
-            ? "${deliveredPercentage.toStringAsFixed(1)}%\n${widget.deliveredOrders}"
-            : '${deliveredPercentage.toStringAsFixed(1)}%',
         color: delivered,
-        radius: touchedIndex == 0 ? 110 : 100, // افزایش اندازه در صورت لمس
+        radius: touchedIndex == 0 ? 115 : 100,
+        title: "${deliveredPercentage.round()}%",
         titleStyle: TextStyle(
-          fontSize: touchedIndex == 0 ? 22 : 16,
+          fontSize: 20,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
+        badgeWidget: touchedIndex == 0
+            ? Text(
+                "\n\n${widget.deliveredOrders}",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              )
+            : null,
+        badgePositionPercentageOffset: 0.5,
       ),
       PieChartSectionData(
         value: widget.undeliveredOrders.toDouble(),
-        title: touchedIndex == 1
-            ? "${undeliveredPercentage.toStringAsFixed(1)}%\n${widget.undeliveredOrders}"
-            : '${undeliveredPercentage.toStringAsFixed(1)}%',
         color: unDelivered,
-        radius: touchedIndex == 1 ? 110 : 100, // افزایش اندازه در صورت لمس
+        radius: touchedIndex == 1 ? 115 : 100,
+        title: "${undeliveredPercentage.round()}%",
         titleStyle: TextStyle(
-          fontSize: touchedIndex == 1 ? 22 : 16,
+          fontSize: 20,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
+        badgeWidget: touchedIndex == 1
+            ? Text(
+                "\n\n${widget.undeliveredOrders}",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              )
+            : null,
+        badgePositionPercentageOffset: 0.5,
       ),
     ];
   }
 }
 
-// ویجت برای نمایش راهنمای رنگ و متن
 class LegendItem extends StatelessWidget {
   final Color color;
   final String text;
 
   const LegendItem({
+    super.key,
     required this.color,
     required this.text,
   });
@@ -150,10 +191,11 @@ class LegendItem extends StatelessWidget {
                 BorderRadius.circular(Constants.primaryRadiusValue / 2),
           ),
         ),
-        SizedBox(width: 8),
+        const SizedBox(width: 8),
         Text(
           text,
-          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          textDirection: TextDirection.rtl,
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
         ),
       ],
     );
