@@ -135,7 +135,12 @@ class _RootScreenState extends State<RootScreen> {
                     Positioned(
                       right: -10,
                       top: -10,
-                      child: RippleBadge(value: 5),
+                      child: RippleBadge(
+                        value: 5,
+                        color: Theme.of(context)
+                            .colorScheme
+                            .surfaceContainerHighest,
+                      ),
                     ),
                   ],
                 ),

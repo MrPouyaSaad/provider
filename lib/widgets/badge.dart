@@ -4,12 +4,13 @@ import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 class CounterBadge extends StatelessWidget {
   const CounterBadge({
     super.key,
-    required this.value,
+    this.value = 0,
     this.isActive = false,
+    this.color,
   });
   final int value;
   final bool isActive;
-
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
@@ -27,7 +28,7 @@ class CounterBadge extends StatelessWidget {
           shape: BoxShape.circle,
           color: isActive
               ? themeData.colorScheme.surface
-              : themeData.colorScheme.primary,
+              : color ?? themeData.colorScheme.primary,
         ),
         child: Center(
           child: Text(
@@ -51,7 +52,7 @@ class RippleBadge extends StatelessWidget {
   const RippleBadge(
       {super.key,
       this.isActive = false,
-      this.value,
+      this.value = 0,
       this.child,
       this.color,
       this.minRadius = 10,
@@ -59,7 +60,7 @@ class RippleBadge extends StatelessWidget {
       this.duration = 500,
       this.ripplesCount = 3});
   final bool? isActive;
-  final int? value;
+  final int value;
   final Widget? child;
   final Color? color;
   final double minRadius;
@@ -68,19 +69,23 @@ class RippleBadge extends StatelessWidget {
   final int ripplesCount;
   @override
   Widget build(BuildContext context) {
-    return RippleAnimation(
-      child: child ??
-          CounterBadge(
-            value: value ?? 0,
-            isActive: isActive ?? false,
-          ),
-      color: color ?? Theme.of(context).primaryColor,
-      delay: const Duration(milliseconds: 350),
-      repeat: true,
-      minRadius: minRadius,
-      maxRadius: maxRadius,
-      ripplesCount: ripplesCount,
-      duration: Duration(milliseconds: ripplesCount * duration),
+    return Visibility(
+      visible: child != null || value > 0,
+      child: RippleAnimation(
+        child: child ??
+            CounterBadge(
+              color: color,
+              value: value,
+              isActive: isActive ?? false,
+            ),
+        color: color ?? Theme.of(context).primaryColor,
+        delay: const Duration(milliseconds: 350),
+        repeat: true,
+        minRadius: minRadius,
+        maxRadius: maxRadius,
+        ripplesCount: ripplesCount,
+        duration: Duration(milliseconds: ripplesCount * duration),
+      ),
     );
   }
 }
