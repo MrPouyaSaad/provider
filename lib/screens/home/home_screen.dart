@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Column(
                           children: [
                             FactorItem(
-                              title: 'درامد کل:',
+                              title: 'درآمد کل:',
                               secTitle: '150,000,000 تومان',
                             ),
                             FactorItem(

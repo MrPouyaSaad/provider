@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:vizi_dasht/root.dart';
 import 'package:vizi_dasht/screens/sing_in/sign_in.dart';
 import 'common/theme/theme.dart';
 
