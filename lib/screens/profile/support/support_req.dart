@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vizi_dasht/common/const.dart';
@@ -23,13 +25,11 @@ class _SupportRequestPageState extends State<SupportRequestPage> {
   final _formKey = GlobalKey<FormState>();
   final _subjectController = TextEditingController();
   final _descriptionController = TextEditingController();
-  final _emailController = TextEditingController();
 
   @override
   void dispose() {
     _subjectController.dispose();
     _descriptionController.dispose();
-    _emailController.dispose();
     super.dispose();
   }
 
@@ -37,18 +37,17 @@ class _SupportRequestPageState extends State<SupportRequestPage> {
     if (_formKey.currentState!.validate()) {
       final subject = _subjectController.text;
       final description = _descriptionController.text;
-      final email = _emailController.text;
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('درخواست پشتیبانی شما با موفقیت ثبت شد.'),
+          content: Text('درخواست پشتیبانی شما با موضوع $subjectموفقیت ثبت شد.'),
           backgroundColor: Colors.green,
         ),
       );
+      log('Subject: $subject, Description: $description');
 
       _subjectController.clear();
       _descriptionController.clear();
-      _emailController.clear();
     }
   }
 
@@ -67,6 +66,7 @@ class _SupportRequestPageState extends State<SupportRequestPage> {
               SupportRequestStatusWidget(),
               MyDivider(),
               MyTextField(
+                controller: _subjectController,
                 labelText: 'موضوع',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -76,6 +76,7 @@ class _SupportRequestPageState extends State<SupportRequestPage> {
                 },
               ),
               MyTextField(
+                controller: _descriptionController,
                 labelText: 'توضیحات',
                 maxLines: 20,
                 minLines: 5,

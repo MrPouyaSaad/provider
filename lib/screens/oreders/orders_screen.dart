@@ -7,8 +7,8 @@ import 'package:vizi_dasht/screens/oreders/bloc/orders_bloc.dart';
 import 'package:vizi_dasht/screens/oreders/order_details_screen.dart';
 import 'package:vizi_dasht/widgets/badge.dart';
 import 'package:vizi_dasht/widgets/loading/orders.dart';
-
-import '../../widgets/decorated_container.dart';
+import '../../widgets/deliveri_message.dart';
+import '../../widgets/new_label.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});
@@ -50,42 +50,7 @@ class OrdersScreen extends StatelessWidget {
                         horizontal: Constants.primaryPadding),
                     itemBuilder: (context, index) {
                       final bool isDeliver = index == 0;
-                      if (isDeliver)
-                        return Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            RippleBadge(
-                              maxRadius: 12,
-                              color:
-                                  themeData.colorScheme.surfaceContainerHighest,
-                              child: Container(
-                                padding: EdgeInsets.all(2),
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: themeData
-                                        .colorScheme.surfaceContainerHighest),
-                                child: Icon(
-                                  size: 22,
-                                  opticalSize: 22,
-                                  Icons.priority_high_rounded,
-                                  color: themeData.colorScheme.surface,
-                                ),
-                              ),
-                            ).marginOnly(left: 10),
-                            Expanded(
-                              child: DecoratedContainerWithIcon(
-                                primaryColor: themeData
-                                    .colorScheme.surfaceContainerHighest,
-                                secondryColor:
-                                    themeData.colorScheme.surfaceContainerHigh,
-                                icon: Icons.local_shipping_outlined,
-                                title: 'باربر ویزیتوم در راه است!',
-                                caption:
-                                    'تأمین‌کننده عزیز، لطفاً برای تحویل سفارشات آماده باشید.',
-                              ),
-                            ),
-                          ],
-                        ).marginOnly(bottom: 16);
+                      if (isDeliver) return DeliveriMessage();
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(
@@ -191,41 +156,6 @@ class OrdersScreen extends StatelessWidget {
           },
         ),
       ),
-    );
-  }
-}
-
-class LabelContainer extends StatelessWidget {
-  const LabelContainer({
-    super.key,
-    this.color,
-    this.child,
-    this.text = 'برچسب',
-    this.padding,
-  });
-
-  final Color? color;
-  final Widget? child;
-  final String text;
-  final EdgeInsetsGeometry? padding;
-
-  @override
-  Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-    return Container(
-      padding: padding ?? EdgeInsets.symmetric(vertical: 3, horizontal: 9),
-      decoration: BoxDecoration(
-        color: color ?? themeData.colorScheme.primary,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: child ??
-          Text(
-            text,
-            style: TextStyle(
-                color: themeData.colorScheme.surface,
-                fontWeight: FontWeight.bold,
-                fontSize: 12),
-          ),
     );
   }
 }

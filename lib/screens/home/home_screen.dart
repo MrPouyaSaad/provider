@@ -7,6 +7,7 @@ import 'package:vizi_dasht/screens/home/finance.dart';
 import 'package:vizi_dasht/screens/products/best_products_list.dart';
 import 'package:vizi_dasht/widgets/button.dart';
 import 'package:vizi_dasht/widgets/custom_shadow_box.dart';
+import 'package:vizi_dasht/widgets/deliveri_message.dart';
 import 'package:vizi_dasht/widgets/factor.dart';
 import 'package:vizi_dasht/widgets/loading/dashboard.dart';
 import '../../widgets/circular_indicator.dart';
@@ -46,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    DeliveriMessage(),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
