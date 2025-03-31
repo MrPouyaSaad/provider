@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:vizi_dasht/common/const.dart';
 import 'package:vizi_dasht/screens/oreders/bloc/orders_bloc.dart';
 import 'package:vizi_dasht/screens/oreders/order_details_screen.dart';
-import 'package:vizi_dasht/widgets/badge.dart';
 import 'package:vizi_dasht/widgets/loading/orders.dart';
 import '../../widgets/deliveri_message.dart';
 import '../../widgets/new_label.dart';
