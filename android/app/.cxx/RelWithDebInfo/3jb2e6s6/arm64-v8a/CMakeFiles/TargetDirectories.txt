@@ -1,0 +1,2 @@
+C:/Users/pouya/Desktop/vizi_dasht/android/app/.cxx/RelWithDebInfo/3jb2e6s6/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/pouya/Desktop/vizi_dasht/android/app/.cxx/RelWithDebInfo/3jb2e6s6/arm64-v8a/CMakeFiles/rebuild_cache.dir
