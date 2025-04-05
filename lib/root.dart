@@ -1,5 +1,10 @@
+import 'dart:io';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:floating_snackbar/floating_snackbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:vizi_dasht/main.dart';
 import 'package:vizi_dasht/screens/profile/profile_screen.dart';
 import 'package:vizi_dasht/screens/home/home_screen.dart';
 import 'package:vizi_dasht/screens/oreders/orders_screen.dart';
@@ -12,7 +17,11 @@ const int productsIndex = 2;
 const int profileIndex = 3;
 
 class RootScreen extends StatefulWidget {
-  const RootScreen({super.key});
+  const RootScreen({
+    super.key,
+    this.screen = homeIndex,
+  });
+  final int screen;
 
   @override
   State<RootScreen> createState() => _RootScreenState();
@@ -70,10 +79,157 @@ class _RootScreenState extends State<RootScreen> {
     return true;
   }
 
+  void handleMessage() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+          builder: (context) => const RootScreen(
+                screen: ordersIndex,
+              )),
+    );
+  }
+
+  checkNotificationPermision() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    final fcmToken = await messaging.getToken();
+    debugPrint(fcmToken);
+    // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    // final token = sharedPreferences.getString('access_token') ?? '';
+    final token =
+        'Test Token'; // Replace with your actual token retrieval logic
+
+    // AuthRepository.authNotifier.value = token;
+
+    // Handling the message when the app is initially opened from a notification
+    FirebaseMessaging.instance
+        .getInitialMessage()
+        .then((RemoteMessage? message) {
+      if (message != null) {
+        handleMessage();
+      }
+    });
+
+    // Handle the message when the app is opened from a notification
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      handleMessage();
+    });
+
+    if (token.isNotEmpty) {
+      // ignore: unused_local_variable
+      FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+      FirebaseMessaging.onMessage.listen(
+        (RemoteMessage message) async {
+          // await notificationRepository.unSeenCount();
+          // NotificationRepository.refreshNotificationListNotifier.value = true;
+          if (message.notification != null) {
+            //
+
+            RemoteNotification notification = message.notification!;
+            AndroidNotification android = message.notification!.android!;
+
+            // If `onMessage` is triggered with a notification, construct our own
+            // local notification to show to users using the created channel.
+
+            flutterLocalNotificationsPlugin.show(
+              notification.hashCode,
+              notification.title,
+              notification.body,
+              NotificationDetails(
+                android: AndroidNotificationDetails(
+                  channel.id,
+                  channel.name,
+                  channelDescription: channel.description,
+                  icon: android.smallIcon,
+                  // other properties...
+                ),
+              ),
+            );
+          }
+        },
+      );
+      if (Platform.isAndroid) {
+        flutterLocalNotificationsPlugin.initialize(
+          const InitializationSettings(
+            android: AndroidInitializationSettings('ic_notif'),
+          ),
+          onDidReceiveNotificationResponse: (details) {
+            if (details.payload != null) {
+              handleMessage();
+            }
+          },
+        );
+
+        await flutterLocalNotificationsPlugin
+            .resolvePlatformSpecificImplementation<
+                AndroidFlutterLocalNotificationsPlugin>()
+            ?.createNotificationChannel(channel);
+      } else if (Platform.isIOS) {
+        await FirebaseMessaging.instance
+            .setForegroundNotificationPresentationOptions(
+          alert: true,
+          badge: true,
+          sound: true,
+        );
+        flutterLocalNotificationsPlugin.initialize(
+          const InitializationSettings(
+            iOS: DarwinInitializationSettings(
+              requestAlertPermission: true,
+              requestSoundPermission: true,
+              requestBadgePermission: true,
+            ),
+          ),
+          onDidReceiveNotificationResponse: (details) {
+            if (details.payload != null) {
+              handleMessage();
+            }
+          },
+        );
+      }
+      //    messaging.configure(
+      //   onMessage: (Map<String, dynamic> message) async {
+      //     print("onMessage: $message");
+      //   },
+      //   onBackgroundMessage: backgroundMessageHandler,
+      //   onLaunch: (Map<String, dynamic> message) async {
+      //     print("onLaunch: $message");
+      //   },
+      //   onResume: (Map<String, dynamic> message) async {
+      //     print("onResume: $message");
+      //   },
+      // );
+      FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+    }
+
+    // ignore: unused_local_variable
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+  }
+
   @override
   void initState() {
-    // cartRepository.count();
     super.initState();
+    selectedScreenIndex = widget.screen;
+    // if (widget.seenCountReq) {
+    //   notificationRepository.unSeenCount();
+    // }
+    checkNotificationPermision();
+  }
+
+  void changeIndex(int index) {
+    setState(() {
+      _history.remove(selectedScreenIndex);
+      _history.add(selectedScreenIndex);
+      selectedScreenIndex = index;
+      canPop = false;
+    });
   }
 
   @override
