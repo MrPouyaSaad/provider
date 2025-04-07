@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,10 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:vizi_dasht/firebase_options.dart';
 import 'package:vizi_dasht/root.dart';
 import 'common/theme/theme.dart';
+
+final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+final FirebaseAnalyticsObserver observer =
+    FirebaseAnalyticsObserver(analytics: analytics);
 
 //? create channel
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
@@ -21,16 +26,12 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
-@pragma('vm:entry-point')
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  log("📩 پیام دریافت شد در پس‌زمینه: ${message.notification?.title}");
-}
-
 //! backgrond notification
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
   // make sure you call `initializeApp` before using other Firebase services.
+  log("📩 پیام دریافت شد در پس‌زمینه: ${message.notification?.title}");
 
   await Firebase.initializeApp();
 }
@@ -118,6 +119,9 @@ class MyApp extends StatelessWidget {
       data: mediaQueryData.copyWith(textScaler: constrainedTextScaleFactor),
       child: MaterialApp(
         title: 'ViziDasht',
+        navigatorObservers: [
+          FirebaseAnalyticsObserver(analytics: analytics),
+        ],
         debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.light,
         theme: MyTheme.lightTheme,
