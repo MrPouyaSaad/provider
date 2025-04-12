@@ -118,9 +118,10 @@ class _AddProductDetailsState extends State<AddProductDetails> {
             const SizedBox(height: 12),
             DropdownSearch<String>(
               popupProps: PopupProps.menu(
-                showSearchBox: true, // فعال‌سازی جستجو
+                showSearchBox: true,
                 searchFieldProps: const TextFieldProps(
                   decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.search, size: 20),
                     border: OutlineInputBorder(),
                     labelText: 'جستجو',
                   ),
@@ -148,16 +149,18 @@ class _AddProductDetailsState extends State<AddProductDetails> {
               items: products.map((product) => product['name']!).toList(),
               dropdownDecoratorProps: DropDownDecoratorProps(
                 dropdownSearchDecoration: InputDecoration(
-                  labelText: 'انتخاب محصول',
+                  // labelText: 'انتخاب محصول',
+                  hintText: 'محصول مورد نظر را انتخاب کنید',
+                  alignLabelWithHint: true,
+                  // floatingLabelBehavior: FloatingLabelBehavior.always,
+
                   contentPadding: EdgeInsets.symmetric(
                     horizontal: Constants.primaryPadding,
                     vertical: 10,
                   ),
                   border: const OutlineInputBorder(),
                 ),
-                baseStyle: const TextStyle(
-                  fontSize: 12, // تنظیم سایز متن برای محصول انتخاب‌شده
-                ),
+                baseStyle: const TextStyle(fontSize: 12),
               ),
               onChanged: (value) {
                 setState(() {
