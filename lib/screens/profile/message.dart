@@ -24,12 +24,6 @@ class MessageScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('پیام‌ها'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: ListView.builder(
         padding: const EdgeInsets.symmetric(vertical: 8),

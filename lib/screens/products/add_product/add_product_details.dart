@@ -92,7 +92,7 @@ class _AddProductDetailsState extends State<AddProductDetails> {
 
   Widget _buildProductSelector(ThemeData theme) {
     return Card(
-      elevation: 2,
+      elevation: 1,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
