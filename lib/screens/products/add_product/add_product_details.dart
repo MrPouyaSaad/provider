@@ -24,6 +24,7 @@ class _AddProductDetailsState extends State<AddProductDetails> {
   bool isDiscount = false;
   final _formKey = GlobalKey<FormState>();
   final discountController = TextEditingController();
+  final scrollController = ScrollController();
 
   // Sample product data
   final List<Map<String, String>> products = [
@@ -64,6 +65,7 @@ class _AddProductDetailsState extends State<AddProductDetails> {
             : null,
       ),
       body: SingleChildScrollView(
+        controller: scrollController,
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,7 +94,7 @@ class _AddProductDetailsState extends State<AddProductDetails> {
 
   Widget _buildProductSelector(ThemeData theme) {
     return Card(
-      elevation: 1,
+      elevation: 3,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
@@ -390,6 +392,14 @@ class _AddProductDetailsState extends State<AddProductDetails> {
         onTap: () {
           if (_formKey.currentState?.validate() ?? false) {
             _submitForm();
+          } else {
+            final startPosition = scrollController.position.minScrollExtent;
+            final duration = Duration(milliseconds: 250);
+            scrollController.animateTo(
+              startPosition,
+              duration: duration,
+              curve: Curves.ease,
+            );
           }
         },
         icon: Icon(

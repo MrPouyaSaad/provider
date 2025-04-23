@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vizi_dasht/common/const.dart';
-import 'package:vizi_dasht/widgets/decorated_container.dart';
 import 'package:vizi_dasht/widgets/text_field.dart';
-
 import '../../../../widgets/button.dart';
 
 class AddOrEditBankCardPage extends StatefulWidget {
