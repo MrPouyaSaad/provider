@@ -123,7 +123,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   ),
                   color: themeData.colorScheme.surface),
               SizedBox(height: 16),
-              DashboardTitle(title: 'محصولات ارسالی'),
+              AppTitle(title: 'محصولات ارسالی'),
               ...List.generate(
                 3,
                 (index) => MyDecoratedContainer(

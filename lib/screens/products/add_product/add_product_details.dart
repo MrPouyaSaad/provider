@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:vizi_dasht/common/const.dart';
 import 'package:vizi_dasht/widgets/button.dart';
 import 'package:vizi_dasht/widgets/text_field.dart';
@@ -118,58 +122,145 @@ class _AddProductDetailsState extends State<AddProductDetails> {
               ],
             ),
             const SizedBox(height: 12),
-            DropdownSearch<String>(
-              popupProps: PopupProps.menu(
-                showSearchBox: true,
-                searchFieldProps: const TextFieldProps(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.search, size: 20),
-                    border: OutlineInputBorder(),
-                    labelText: 'جستجو',
-                  ),
-                ),
-                itemBuilder: (context, item, isSelected) {
-                  final product =
-                      products.firstWhere((product) => product['name'] == item);
-                  return ListTile(
-                    leading: Image.asset(
-                      product['image']!,
-                      width: 40,
-                      height: 40,
-                      fit: BoxFit.cover,
-                    ),
-                    title: Text(
-                      product['name']!,
-                      style: const TextStyle(fontSize: 14),
-                    ),
-                  );
-                },
-                menuProps: MenuProps(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              items: products.map((product) => product['name']!).toList(),
-              dropdownDecoratorProps: DropDownDecoratorProps(
-                dropdownSearchDecoration: InputDecoration(
-                  // labelText: 'انتخاب محصول',
-                  hintText: 'محصول مورد نظر را انتخاب کنید',
-                  alignLabelWithHint: true,
-                  // floatingLabelBehavior: FloatingLabelBehavior.always,
+            Row(
+              children: [
+                Expanded(
+                  child: DropdownSearch<String>(
+                    popupProps: PopupProps.menu(
+                      showSearchBox: true,
+                      searchFieldProps: const TextFieldProps(
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.search, size: 20),
+                          border: OutlineInputBorder(),
+                          labelText: 'جستجو',
+                        ),
+                      ),
+                      itemBuilder: (context, item, isSelected) {
+                        final product = products
+                            .firstWhere((product) => product['name'] == item);
+                        return ListTile(
+                          leading: Image.asset(
+                            product['image']!,
+                            width: 40,
+                            height: 40,
+                            fit: BoxFit.cover,
+                          ),
+                          title: Text(
+                            product['name']!,
+                            style: const TextStyle(fontSize: 14),
+                          ),
+                        );
+                      },
+                      menuProps: MenuProps(
+                        animationDuration: Duration(milliseconds: 300),
+                        barrierCurve: Curves.easeInOut,
+                        barrierDismissible: true,
+                        borderRadius: BorderRadius.circular(10),
+                        positionCallback: (popupButton, overlay) {
+                          final buttonRect =
+                              popupButton.localToGlobal(Offset.zero) &
+                                  popupButton.size;
 
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: Constants.primaryPadding,
-                    vertical: 10,
+                          return RelativeRect.fromRect(
+                            Rect.fromLTRB(
+                              32,
+                              buttonRect.bottom,
+                              overlay.size.width - 32,
+                              overlay.size.height,
+                            ),
+                            Offset.zero & overlay.size,
+                          );
+                        },
+                      ),
+                    ),
+                    items: products.map((product) => product['name']!).toList(),
+                    dropdownDecoratorProps: DropDownDecoratorProps(
+                      dropdownSearchDecoration: InputDecoration(
+                        // labelText: 'انتخاب محصول',
+                        hintText: 'محصول مورد نظر را انتخاب کنید',
+                        alignLabelWithHint: true,
+                        // floatingLabelBehavior: FloatingLabelBehavior.always,
+
+                        contentPadding: EdgeInsets.symmetric(
+                          horizontal: Constants.primaryPadding,
+                          vertical: 10,
+                        ),
+                        border: const OutlineInputBorder(),
+                      ),
+                      baseStyle: const TextStyle(fontSize: 12),
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedProduct = value;
+                      });
+                    },
+                    selectedItem: selectedProduct,
                   ),
-                  border: const OutlineInputBorder(),
                 ),
-                baseStyle: const TextStyle(fontSize: 12),
-              ),
-              onChanged: (value) {
-                setState(() {
-                  selectedProduct = value;
-                });
-              },
-              selectedItem: selectedProduct,
+                SizedBox(width: 8),
+                SizedBox(
+                  height: Constants.primaryButtonHeight - 4,
+                  // width: double.infinity,
+                  child: MyElevatedButton(
+                    child: Icon(Icons.qr_code_scanner, size: 30),
+                    // title: 'اسکن بارکد',
+                    onTap: () async {
+                      final status = await Permission.camera.request();
+
+                      if (status.isGranted) {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          backgroundColor: Colors.black87,
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.vertical(top: Radius.circular(16)),
+                          ),
+                          builder: (context) {
+                            return SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.75,
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  MobileScanner(
+                                    onDetect: (capture) {
+                                      final barcode = capture.barcodes.first;
+                                      final value = barcode.rawValue;
+                                      if (value != null) {
+                                        log('📦 Barcode: $value');
+                                        Navigator.of(context).pop();
+                                      }
+                                    },
+                                  ),
+                                  Positioned(
+                                    top: MediaQuery.of(context).size.height *
+                                            0.85 /
+                                            2 -
+                                        1,
+                                    child: Container(
+                                      width: 250,
+                                      height: 2,
+                                      color: Colors.redAccent,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      } else {
+                        Get.snackbar(
+                          'دسترسی رد شد',
+                          'اجازه دسترسی به دوربین داده نشده است.',
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                        );
+                      }
+                    },
+                  ),
+                )
+              ],
             ),
           ],
         ),
@@ -297,12 +388,39 @@ class _AddProductDetailsState extends State<AddProductDetails> {
             _buildSectionHeader(icon: Icons.attach_money, title: 'قیمت‌گذاری'),
             const SizedBox(height: 12),
             _buildFormField(
+              padding: EdgeInsets.zero,
               label: 'قیمت هر بسته',
               isRequired: true,
               keyboardType: TextInputType.number,
               prefix: 'تومان',
               icon: Icons.money,
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'میانگین قیمت',
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                    wordSpacing: -2,
+                    color: theme.colorScheme.onSurface,
+                  ),
+                ),
+                MyTextButton(
+                  title: '188 هزار تومان',
+                  onTap: () {
+                    setState(() {});
+                  },
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                    color: theme.colorScheme.primary,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 8),
             _buildFormField(
               label: 'قیمت 5 بسته',
               isRequired: false,
@@ -361,12 +479,15 @@ class _AddProductDetailsState extends State<AddProductDetails> {
     bool isRequired = true,
     String? hint,
     String? prefix,
+    EdgeInsetsGeometry padding = const EdgeInsets.only(bottom: 12),
     IconData? icon,
     TextInputType? keyboardType,
+    TextEditingController? controller,
   }) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
+      padding: padding,
       child: MyTextField(
+        controller: controller,
         keyboardType: keyboardType,
         pbottom: 8,
         contentPadding: const EdgeInsets.symmetric(
@@ -461,6 +582,29 @@ class _AddProductDetailsState extends State<AddProductDetails> {
             child: const Text('حذف محصول'),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class BarcodeScannerPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('اسکن بارکد')),
+      body: MobileScanner(
+        onDetect: (capture) {
+          final barcode = capture.barcodes.first;
+          if (barcode.rawValue != null) {
+            debugPrint('Barcode found: ${barcode.rawValue}');
+            Get.back(); // خروج از صفحه اسکن
+            Get.snackbar(
+              'بارکد خوانده شد',
+              'کد: ${barcode.rawValue}',
+              snackPosition: SnackPosition.BOTTOM,
+            );
+          }
+        },
       ),
     );
   }

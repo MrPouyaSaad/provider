@@ -42,7 +42,7 @@ class FinanceScreen extends StatelessWidget {
                       ).marginAll(Constants.primaryPadding),
                     )
                   : index == 1
-                      ? DashboardTitle(title: 'گردش حساب')
+                      ? AppTitle(title: 'گردش حساب')
                           .marginSymmetric(horizontal: Constants.primaryPadding)
                       : Container(
                           padding: const EdgeInsets.symmetric(

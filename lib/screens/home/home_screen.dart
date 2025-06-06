@@ -52,15 +52,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        DashboardTitle(
-                            title: 'میزان رضایت', isBottomPadding: false),
+                        AppTitle(title: 'میزان رضایت', isBottomPadding: false),
                         Text.rich(TextSpan(children: [
                           TextSpan(
                               text: '88% ',
                               style: TextStyle(
                                   fontSize: 13, fontWeight: FontWeight.bold)),
                           TextSpan(
-                              text: 'از 16 نظر',
+                              text: 'از 16 مرسوله',
                               style: TextStyle(
                                   wordSpacing: -3,
                                   fontSize: 11,
@@ -80,8 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        DashboardTitle(
-                            title: 'گزارش مالی', isBottomPadding: false),
+                        AppTitle(title: 'گزارش مالی', isBottomPadding: false),
                         MyTextButton(
                           title: 'جزئیات',
                           onTap: () {
@@ -118,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     //?Divider
                     MyDivider(),
 
-                    DashboardTitle(
+                    AppTitle(
                       title: 'گزارش فروش امروز',
                       subTitle: 'تا 15:45:12',
                       isBottomPadding: false,
@@ -146,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     MyDivider(),
 
                     //? best products Chart
-                    DashboardTitle(title: 'تعداد سفارش هفتگی'),
+                    AppTitle(title: 'تعداد سفارش هفتگی'),
                     CustomShadowBox(
                       child: AspectRatio(
                         aspectRatio: 1.5,
@@ -302,7 +300,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     //?Divider
                     MyDivider(),
                     //? Orders Chart
-                    DashboardTitle(title: 'تعداد سفارش ماهانه'),
+                    AppTitle(title: 'تعداد سفارش ماهانه'),
                     CustomShadowBox(
                       child: AspectRatio(
                         aspectRatio: 1.5,
@@ -373,7 +371,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     //?
                     MyDivider(),
 
-                    DashboardTitle(
+                    AppTitle(
                       title: 'پرفروش ترین محصولات',
                       isBottomPadding: false,
                     ),
@@ -381,7 +379,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     //? Divider
                     MyDivider(),
                     //? Pie Chart
-                    DashboardTitle(
+                    AppTitle(
                       title: 'تعداد کل سفارشات',
                       isBottomPadding: false,
                     ),
