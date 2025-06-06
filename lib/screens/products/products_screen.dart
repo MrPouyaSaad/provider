@@ -10,6 +10,7 @@ import 'package:vizi_dasht/widgets/title.dart';
 
 import '../../common/const.dart';
 import '../../widgets/text_field.dart';
+import 'rec_add_product.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});
@@ -35,7 +36,7 @@ class ProductsScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => AddProduct(),
+                        builder: (context) => CategorySelectionScreen(),
                       ),
                     );
                   },
@@ -95,58 +96,7 @@ class ProductsScreen extends StatelessWidget {
                           children: [
                             AppTitle(title: 'محصولات پیشنهادی')
                                 .marginOnly(right: 16),
-                            SizedBox(
-                              height: 208,
-                              child: ListView.builder(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 4, horizontal: 16),
-                                itemBuilder: (context, index) => Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: Constants.primaryRadius,
-                                    boxShadow:
-                                        Constants.primaryBoxShadow(context),
-                                  ),
-                                  margin: EdgeInsets.symmetric(horizontal: 8),
-                                  padding: EdgeInsets.all(8),
-                                  width: 200,
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                          width: 100,
-                                          height: 100,
-                                          child: Image.asset(
-                                            'assets/images/1509547706.jpg',
-                                            fit: BoxFit.cover,
-                                          )),
-                                      SizedBox(
-                                          height: Constants.primaryPadding / 2),
-                                      Text(
-                                        'پاستا نیمه آماده پنه ریگاته با سبزیجات 180 گرمی تک‌ماکارون',
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
-                                            wordSpacing: -2),
-                                      ),
-                                      SizedBox(
-                                          height: Constants.primaryPadding / 2),
-                                      SizedBox(
-                                        width: double.infinity,
-                                        child: MyElevatedButton(
-                                          title: 'افزودن',
-                                          onTap: () {},
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                itemCount: 5,
-                                scrollDirection: Axis.horizontal,
-                                shrinkWrap: true,
-                              ),
-                            ),
+                            RecomendedAddProducts(),
                           ],
                         ).marginOnly(top: 8, bottom: 16);
                       else

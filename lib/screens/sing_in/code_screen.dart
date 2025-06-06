@@ -246,7 +246,7 @@ class _CodeScreenState extends State<CodeScreen> {
                             title: 'ورود',
                             backgroundColor:
                                 themeData.colorScheme.surfaceContainerHighest,
-                            forgroundColor: themeData.colorScheme.surface,
+                            foregroundColor: themeData.colorScheme.surface,
                             onTap: widget.isSingUp
                                 ? (_currentStep == 2)
                                     ? () {

@@ -100,7 +100,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       child: MyElevatedButton(
                         title: 'ورود',
                         backgroundColor: themeData.colorScheme.primary,
-                        forgroundColor: themeData.colorScheme.surface,
+                        foregroundColor: themeData.colorScheme.surface,
                         onTap: () {
                           if (_formKey.currentState!.validate()) {
                             Navigator.of(context).push(

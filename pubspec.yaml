@@ -57,6 +57,7 @@ dependencies:
   permission_handler: ^11.4.0
   firebase_analytics: ^11.4.5
   mobile_scanner: ^6.0.10
+  blur: ^4.0.2
  
 
 dev_dependencies:

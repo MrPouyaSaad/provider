@@ -22,7 +22,7 @@ class BestProductsList extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: Constants.primaryPadding),
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        final String img = '6260100320116(1).jpg';
+        final String img = '1509547706.jpg';
 
         return BestProductListItem(
           imagePath: 'assets/images/$img',

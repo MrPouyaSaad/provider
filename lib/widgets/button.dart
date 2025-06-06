@@ -12,7 +12,7 @@ class MyElevatedButton extends StatelessWidget {
     this.style,
     this.child,
     this.backgroundColor,
-    this.forgroundColor,
+    this.foregroundColor,
   });
 
   final String title;
@@ -21,7 +21,7 @@ class MyElevatedButton extends StatelessWidget {
   final Widget? child;
   final Function()? onTap;
   final Color? backgroundColor;
-  final Color? forgroundColor;
+  final Color? foregroundColor;
   final bool isPadding;
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class MyElevatedButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(Constants.primaryRadiusValue),
           ),
           backgroundColor: backgroundColor ?? themeData.colorScheme.primary,
-          foregroundColor: forgroundColor ?? themeData.colorScheme.surface,
+          foregroundColor: foregroundColor ?? themeData.colorScheme.surface,
         ),
         icon: icon,
         label: child ??

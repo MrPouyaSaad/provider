@@ -175,7 +175,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: MyElevatedButton(
                           title: 'ثبت نام',
                           backgroundColor: themeData.colorScheme.primary,
-                          forgroundColor: themeData.colorScheme.surface,
+                          foregroundColor: themeData.colorScheme.surface,
                           onTap: () {
                             if (_formKey.currentState!.validate()) {
                               Navigator.of(context).push(
