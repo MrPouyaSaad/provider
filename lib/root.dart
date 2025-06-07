@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:vizi_dasht/main.dart';
 import 'package:vizi_dasht/screens/profile/profile_screen.dart';
-import 'package:vizi_dasht/screens/home/home_screen.dart';
+import 'package:vizi_dasht/screens/dashboard/home_screen.dart';
 import 'package:vizi_dasht/screens/oreders/orders_screen.dart';
 import 'package:vizi_dasht/screens/products/products_screen.dart';
 import 'package:vizi_dasht/widgets/badge.dart';
