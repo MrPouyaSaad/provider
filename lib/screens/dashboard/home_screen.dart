@@ -513,30 +513,32 @@ class ProductViewRep extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AppTitle(title: 'آمار بازدید محصولات'),
-        Row(
-          children: [
-            Expanded(
-              child: buildModernStatCard(
-                context,
-                title: 'بازدید امروز',
-                value: '1,245',
-                unit: 'بازدید',
-                icon: Icons.trending_up,
-                gradient: Constants.blueGradientColors,
+        CustomShadowBox(
+          child: Row(
+            children: [
+              Expanded(
+                child: buildModernStatCard(
+                  context,
+                  title: 'بازدید امروز',
+                  value: '1,245',
+                  unit: 'بازدید',
+                  icon: Icons.trending_up,
+                  gradient: Constants.blueGradientColors,
+                ),
               ),
-            ),
-            SizedBox(width: 12),
-            Expanded(
-              child: buildModernStatCard(
-                context,
-                title: 'بازدید ماهانه',
-                value: '32,856',
-                unit: 'بازدید',
-                icon: Icons.bar_chart,
-                gradient: Constants.greenGradientColors,
+              SizedBox(width: 12),
+              Expanded(
+                child: buildModernStatCard(
+                  context,
+                  title: 'بازدید ماهانه',
+                  value: '32,856',
+                  unit: 'بازدید',
+                  icon: Icons.bar_chart,
+                  gradient: Constants.greenGradientColors,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         SizedBox(height: 12),
         buildModernStatCard(
