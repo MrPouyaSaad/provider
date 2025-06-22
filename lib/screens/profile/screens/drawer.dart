@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:vizi_dasht/screens/home/finance.dart';
+import 'package:vizi_dasht/screens/dashboard/finance.dart';
 import 'package:vizi_dasht/widgets/badge.dart';
 
 import '../../../common/const.dart';

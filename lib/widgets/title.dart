@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import '../common/const.dart';
 import '../common/custom_underline.dart';
 
-class DashboardTitle extends StatelessWidget {
-  const DashboardTitle(
+class AppTitle extends StatelessWidget {
+  const AppTitle(
       {super.key,
       required this.title,
       this.isBottomPadding = true,
@@ -39,7 +39,7 @@ class DashboardTitle extends StatelessWidget {
           ),
       ],
     ).marginOnly(
-       // top: Constants.primaryPadding,
+        // top: Constants.primaryPadding,
         bottom: isBottomPadding ? Constants.primaryPadding : 0);
   }
 }
