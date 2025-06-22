@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vizi_dasht/common/const.dart';
 import 'package:vizi_dasht/widgets/badge.dart';
 import 'package:vizi_dasht/widgets/dvider.dart';
 
@@ -12,11 +13,9 @@ class DeliveriOnWayWidegt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
     return Expanded(
       child: DecoratedContainerWithIcon(
-        primaryColor: themeData.colorScheme.surfaceContainerHighest,
-        secondryColor: themeData.colorScheme.surfaceContainerHigh,
+        colors: Constants.blueGradientColors,
         icon: Icons.local_shipping_outlined,
         title: 'باربر ویزیتوم در راه است!',
         caption: 'تأمین‌کننده عزیز، لطفاً برای تحویل سفارشات آماده باشید.',
@@ -39,12 +38,14 @@ class DeliveriMessage extends StatelessWidget {
           children: [
             RippleBadge(
               maxRadius: 12,
+              gradient: Constants.blueGradientColors,
               color: themeData.colorScheme.surfaceContainerHighest,
               child: Container(
                 padding: EdgeInsets.all(2),
                 decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: themeData.colorScheme.surfaceContainerHighest),
+                  gradient: Constants.myGradient(Constants.blueGradientColors),
+                  shape: BoxShape.circle,
+                ),
                 child: Icon(
                   size: 22,
                   opticalSize: 22,

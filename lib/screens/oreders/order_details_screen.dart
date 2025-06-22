@@ -6,6 +6,7 @@ import 'package:vizi_dasht/widgets/factor.dart';
 import 'package:vizi_dasht/widgets/title.dart';
 
 import '../../common/const.dart';
+import '../../widgets/deliveri_message.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
   final int orderId;
@@ -83,14 +84,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              DecoratedContainerWithIcon(
-                primaryColor: themeData.colorScheme.surfaceContainerHighest,
-                secondryColor: themeData.colorScheme.surfaceContainerHigh,
-                icon: Icons.local_shipping_outlined,
-                title: 'باربر ویزیتوم در راه است!',
-                caption:
-                    'تأمین‌کننده عزیز، لطفاً برای تحویل سفارش آماده باشید.',
-              ).marginOnly(bottom: 16),
+              DeliveriOnWayWidegt().marginOnly(bottom: 16),
               MyDecoratedContainer(
                   child: Column(
                     children: [

@@ -43,16 +43,14 @@ class MyDecoratedContainer extends StatelessWidget {
 class DecoratedContainerWithIcon extends StatelessWidget {
   const DecoratedContainerWithIcon({
     super.key,
-    required this.primaryColor,
-    required this.secondryColor,
+    required this.colors,
     required this.icon,
     required this.title,
     required this.caption,
     this.onTap,
   });
 
-  final Color primaryColor;
-  final Color secondryColor;
+  final List<Color> colors;
   final IconData icon;
   final String title;
   final String caption;
@@ -67,7 +65,7 @@ class DecoratedContainerWithIcon extends StatelessWidget {
         padding: const EdgeInsets.all(Constants.primaryPadding / 2),
         decoration: BoxDecoration(
           borderRadius: Constants.primaryRadius,
-          color: primaryColor,
+          gradient: Constants.myGradient(colors),
           boxShadow: Constants.primaryBoxShadow(context),
         ),
         child: Row(
@@ -78,7 +76,7 @@ class DecoratedContainerWithIcon extends StatelessWidget {
                   vertical: Constants.primaryPadding / 6),
               decoration: BoxDecoration(
                 borderRadius: Constants.primaryRadius,
-                color: secondryColor,
+                gradient: Constants.myGradient(colors),
               ),
               child: Icon(
                 icon,
