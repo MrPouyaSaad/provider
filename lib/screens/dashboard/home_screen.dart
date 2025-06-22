@@ -40,19 +40,19 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         title: Image.asset('assets/images/ViziDasht-Logo.png', width: 150),
       ),
-      body: SingleChildScrollView(
-        child: BlocProvider(
-          create: (context) => HomeBloc()..add(HomeStarted()),
-          child: BlocBuilder<HomeBloc, HomeState>(
-            builder: (context, state) {
-              if (state is HomeLoading) {
-                return DashboardShimmer();
-              } else
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      body: BlocProvider(
+        create: (context) => HomeBloc()..add(HomeStarted()),
+        child: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
+            if (state is HomeLoading) {
+              return DashboardShimmer();
+            } else
+              return Expanded(
+                child: ListView(
+                  padding: const EdgeInsets.only(
+                      top: Constants.primaryPadding,
+                      bottom: Constants.primaryPadding),
                   children: [
-                    //
-                    SizedBox(height: Constants.primaryPadding),
                     //
                     DeliveriMessage()
                         .marginSymmetric(horizontal: Constants.primaryPadding),
@@ -89,9 +89,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     AllOrdersRep()
                         .marginSymmetric(horizontal: Constants.primaryPadding),
                   ],
-                );
-            },
-          ),
+                ),
+              );
+          },
         ),
       ),
     );
@@ -116,6 +116,7 @@ class AllOrdersRep extends StatelessWidget {
           deliveredOrders: 39,
           undeliveredOrders: 11,
         ),
+        SizedBox(height: Constants.primaryPadding)
       ],
     );
   }
