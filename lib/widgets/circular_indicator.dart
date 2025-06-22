@@ -44,10 +44,12 @@ class ProfileCircularIndicator extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         margin: EdgeInsets.symmetric(horizontal: 4),
         decoration: BoxDecoration(
-          border: Border.all(
-            width: 0.5,
-            color: themeData.colorScheme.secondary.withOpacity(0.5),
-          ),
+          color: themeData.colorScheme.surface,
+          boxShadow: Constants.primaryBoxShadow(context, colorOpacity: 0.03),
+          // border: Border.all(
+          //   width: 0.5,
+          //   color: themeData.colorScheme.secondary.withOpacity(0.5),
+          // ),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
