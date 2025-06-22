@@ -85,7 +85,7 @@ class BestProductListItem extends StatelessWidget {
                     ),
                   ),
                   MyDecoratedContainer(
-                    color: Theme.of(context).primaryColor,
+                    gradient: Constants.blueGradientColors,
                     child: Text(
                       '1,453',
                       style: TextStyle(

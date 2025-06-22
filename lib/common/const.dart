@@ -43,17 +43,33 @@ class Constants {
   // }
 
   //!
+
+  static final blueGradientColors = [Color(0xFF6A11CB), Color(0xFF2575FC)];
+  static final greenGradientColors = [Color(0xFF11998E), Color(0xFF38EF7D)];
+  static final redGradientColors = [Color(0xFFFF416C), Color(0xFFFF4B2B)];
+  static final pinkGradientColors = [Color(0xFF9C27B0), Color(0xFFE91E63)];
+  static final yellowGradientColors = [Color(0xFFFFC107), Color(0xFFFF8F00)];
+  static final silverGradientColors = [Color(0xFFB0BEC5), Color(0xFF78909C)];
+  static final brownGradientColors = [Color(0xFF8D6E63), Color(0xFF5D4037)];
+
+  static LinearGradient myGradient(List<Color> colors) {
+    return LinearGradient(
+        begin: Alignment.topLeft, end: Alignment.bottomRight, colors: colors);
+  }
+
   static List<BoxShadow> primaryBoxShadow(BuildContext context,
       {Color? shadowColor = null,
-      double blurRadius = 6,
+      double blurRadius = 15,
       double colorOpacity = 0.08}) {
     final themeData = Theme.of(context).colorScheme;
     return [
       BoxShadow(
-        color: shadowColor ??
-            themeData.onSurface.withAlpha((colorOpacity * 255).toInt()),
-        blurRadius: blurRadius,
-      ),
+          color: shadowColor != null
+              ? shadowColor.withOpacity(0.3)
+              : themeData.onSurface.withOpacity(colorOpacity),
+          blurRadius: blurRadius,
+          spreadRadius: 1,
+          offset: Offset(0, 5))
     ];
   }
 

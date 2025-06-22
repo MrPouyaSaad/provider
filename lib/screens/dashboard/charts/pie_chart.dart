@@ -23,9 +23,6 @@ class _OrdersPieChartState extends State<OrdersPieChart> {
 
   @override
   Widget build(BuildContext context) {
-    final Color delivered = Theme.of(context).primaryColor;
-    final Color unDelivered = Theme.of(context).colorScheme.errorContainer;
-
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -36,7 +33,7 @@ class _OrdersPieChartState extends State<OrdersPieChart> {
             children: [
               PieChart(
                 PieChartData(
-                  sections: _buildPieChartSections(delivered, unDelivered),
+                  sections: _buildPieChartSections(),
                   centerSpaceRadius: 60,
                   sectionsSpace: 2,
                   startDegreeOffset: 180,
@@ -84,11 +81,11 @@ class _OrdersPieChartState extends State<OrdersPieChart> {
           alignment: WrapAlignment.center,
           children: [
             LegendItem(
-              color: delivered,
+              colors: Constants.blueGradientColors,
               text: 'تحویل داده شده',
             ),
             LegendItem(
-              color: unDelivered,
+              colors: Constants.redGradientColors,
               text: 'تحویل داده نشده',
             ),
           ],
@@ -97,8 +94,7 @@ class _OrdersPieChartState extends State<OrdersPieChart> {
     );
   }
 
-  List<PieChartSectionData> _buildPieChartSections(
-      Color delivered, Color unDelivered) {
+  List<PieChartSectionData> _buildPieChartSections() {
     if (widget.totalOrders == 0) {
       return [
         PieChartSectionData(
@@ -123,7 +119,7 @@ class _OrdersPieChartState extends State<OrdersPieChart> {
     return [
       PieChartSectionData(
         value: widget.deliveredOrders.toDouble(),
-        color: delivered,
+        gradient: Constants.myGradient(Constants.blueGradientColors),
         radius: touchedIndex == 0 ? 115 : 100,
         title: "${deliveredPercentage.round()}%",
         titleStyle: TextStyle(
@@ -144,7 +140,7 @@ class _OrdersPieChartState extends State<OrdersPieChart> {
       ),
       PieChartSectionData(
         value: widget.undeliveredOrders.toDouble(),
-        color: unDelivered,
+        gradient: Constants.myGradient(Constants.redGradientColors),
         radius: touchedIndex == 1 ? 115 : 100,
         title: "${undeliveredPercentage.round()}%",
         titleStyle: TextStyle(
@@ -168,12 +164,12 @@ class _OrdersPieChartState extends State<OrdersPieChart> {
 }
 
 class LegendItem extends StatelessWidget {
-  final Color color;
+  final List<Color> colors;
   final String text;
 
   const LegendItem({
     super.key,
-    required this.color,
+    required this.colors,
     required this.text,
   });
 
@@ -186,7 +182,7 @@ class LegendItem extends StatelessWidget {
           width: 16,
           height: 16,
           decoration: BoxDecoration(
-            color: color,
+            gradient: Constants.myGradient(colors),
             borderRadius:
                 BorderRadius.circular(Constants.primaryRadiusValue / 2),
           ),

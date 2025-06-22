@@ -37,12 +37,12 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     MyDecoratedContainer(
-                      gradient: LinearGradient(colors: [
+                      gradient: [
                         themeData.colorScheme.primary,
                         themeData.colorScheme.primary
                             .withAlpha((255 * 0.85).toInt()),
                         themeData.colorScheme.primary,
-                      ]),
+                      ],
                       child: Row(
                         children: [
                           Icon(
