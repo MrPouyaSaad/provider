@@ -638,9 +638,9 @@ class LowStockList extends StatelessWidget {
             ),
           ],
         ).marginSymmetric(horizontal: Constants.primaryPadding),
-        SizedBox(height: 8),
+        SizedBox(height: 6),
         SizedBox(
-          height: 84,
+          height: 68,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
 
@@ -649,11 +649,11 @@ class LowStockList extends StatelessWidget {
             itemBuilder: (context, index) {
               return buildLowStockItem(
                 context,
-                name: 'product.name',
+                name: 'ماکارونی پاستا 200 گرم',
                 stock: 1,
                 image: 'assets/images/1509547706.jpg',
               ).marginOnly(
-                  right: index == 0 ? 16 : 0, left: 16, top: 8, bottom: 8);
+                  right: index == 0 ? 16 : 0, left: index == 4 ? 16 : 12);
             },
           ),
         ),
@@ -675,8 +675,7 @@ Widget buildLowStockItem(
       : [Color(0xFFFFB347), Color(0xFFFF8C00)];
 
   return Container(
-    width: 200, // عرض ثابت برای یکپارچگی
-
+    width: 200,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(16),
       gradient: LinearGradient(
@@ -684,13 +683,7 @@ Widget buildLowStockItem(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       ),
-      boxShadow: [
-        BoxShadow(
-          color: colors.last.withOpacity(0.15),
-          blurRadius: 6,
-          offset: Offset(2, 2),
-        ),
-      ],
+      boxShadow: Constants.primaryBoxShadow(context),
     ),
     child: Material(
       color: Colors.transparent,
@@ -704,7 +697,6 @@ Widget buildLowStockItem(
           padding: EdgeInsets.all(12),
           child: Row(
             children: [
-              // تصویر محصول
               Container(
                 width: 48,
                 height: 48,
@@ -714,24 +706,13 @@ Widget buildLowStockItem(
                     color: Colors.white.withOpacity(0.8),
                     width: 2,
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 6,
-                      offset: Offset(2, 2),
-                    ),
-                  ],
+                  boxShadow: Constants.primaryBoxShadow(context),
                 ),
                 child: ClipOval(
-                  child: Image.asset(
-                    image,
-                    fit: BoxFit.cover,
-                  ),
+                  child: Image.asset(image, fit: BoxFit.cover),
                 ),
               ),
               SizedBox(width: 12),
-
-              // اطلاعات محصول
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -750,7 +731,10 @@ Widget buildLowStockItem(
                     SizedBox(height: 4),
                     Text(
                       '$stock عدد باقی مانده',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
+                        wordSpacing: -2,
                         color: Colors.white.withOpacity(0.9),
                         fontSize: 12,
                       ),
