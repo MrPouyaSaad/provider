@@ -46,6 +46,7 @@ class OrdersScreen extends StatelessWidget {
                   child: ListView.builder(
                     itemCount: 10,
                     padding: EdgeInsets.symmetric(
+                        vertical: Constants.primaryPadding,
                         horizontal: Constants.primaryPadding),
                     itemBuilder: (context, index) {
                       final bool isDeliver = index == 0;
@@ -67,9 +68,9 @@ class OrdersScreen extends StatelessWidget {
                             borderRadius: Constants.primaryRadius,
                             color: themeData.colorScheme.surface,
                             boxShadow: Constants.primaryBoxShadow(context,
+                                colorOpacity: 0.03,
                                 shadowColor: themeData
-                                    .colorScheme.surfaceContainerHighest
-                                    .withAlpha((0.10 * 255).toInt())),
+                                    .colorScheme.surfaceContainerHighest),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,12 +93,15 @@ class OrdersScreen extends StatelessWidget {
                                               themeData.colorScheme.onSurface,
                                         ),
                                       ),
-                                      SizedBox(height: 8),
+                                      SizedBox(height: 4),
                                       Row(
                                         children: [
                                           if (index.isEven)
-                                            LabelContainer(text: 'جدید')
-                                                .marginOnly(left: 8),
+                                            LabelContainer(
+                                              text: 'جدید',
+                                              gradient: Constants
+                                                  .primaryGradientColors,
+                                            ).marginOnly(left: 8),
                                         ],
                                       )
                                     ],
@@ -105,23 +109,22 @@ class OrdersScreen extends StatelessWidget {
                                   Column(
                                     children: [
                                       Text('تاریخ: 2024/09/15', style: style),
-                                      SizedBox(height: 12),
+                                      SizedBox(height: 8),
                                       Text('ساعت: 12:53:12', style: style),
                                     ],
                                   ),
                                 ],
                               ).marginOnly(top: 16, left: 16, right: 16),
-                              SizedBox(height: 4),
                               SizedBox(
-                                height: 116,
+                                height: 104,
                                 child: ListView.builder(
                                   padding: EdgeInsets.symmetric(vertical: 16),
                                   scrollDirection: Axis.horizontal,
                                   itemCount: 5,
                                   itemBuilder: (context, itemIndex) {
                                     return Container(
-                                      height: 84,
-                                      width: 84,
+                                      height: 72,
+                                      width: 72,
                                       padding: EdgeInsets.all(4),
                                       margin: EdgeInsets.symmetric(
                                         horizontal: 8,

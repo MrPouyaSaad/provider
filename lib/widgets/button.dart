@@ -13,6 +13,7 @@ class MyElevatedButton extends StatelessWidget {
     this.child,
     this.backgroundColor,
     this.foregroundColor,
+    this.gradient,
   });
 
   final String title;
@@ -22,29 +23,56 @@ class MyElevatedButton extends StatelessWidget {
   final Function()? onTap;
   final Color? backgroundColor;
   final Color? foregroundColor;
+  final List<Color>? gradient;
   final bool isPadding;
+
   @override
   Widget build(BuildContext context) {
-    ThemeData themeData = Theme.of(context);
+    final themeData = Theme.of(context);
+
+    final buttonContent = Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (icon != null) icon!,
+        if (icon != null && (child != null || title.isNotEmpty))
+          const SizedBox(width: 8),
+        child ??
+            Text(
+              title,
+              style: style ??
+                  TextStyle(
+                    color: foregroundColor ?? themeData.colorScheme.surface,
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+      ],
+    );
 
     return Directionality(
       textDirection: TextDirection.ltr,
-      child: ElevatedButton.icon(
-        onPressed: onTap,
-        style: ElevatedButton.styleFrom(
-          padding: isPadding ? null : EdgeInsets.all(0),
-          shape: RoundedRectangleBorder(
+      child: Material(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(Constants.primaryRadiusValue),
+        child: Ink(
+          decoration: BoxDecoration(
+            gradient: gradient != null ? Constants.myGradient(gradient!) : null,
+            color: gradient == null
+                ? backgroundColor ?? themeData.colorScheme.primary
+                : null,
             borderRadius: BorderRadius.circular(Constants.primaryRadiusValue),
           ),
-          backgroundColor: backgroundColor ?? themeData.colorScheme.primary,
-          foregroundColor: foregroundColor ?? themeData.colorScheme.surface,
-        ),
-        icon: icon,
-        label: child ??
-            Text(
-              title,
-              style: style ?? const TextStyle(fontWeight: FontWeight.bold),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(Constants.primaryRadiusValue),
+            onTap: onTap,
+            child: Padding(
+              padding: isPadding
+                  ? const EdgeInsets.symmetric(horizontal: 16, vertical: 12)
+                  : EdgeInsets.zero,
+              child: buttonContent,
             ),
+          ),
+        ),
       ),
     );
   }

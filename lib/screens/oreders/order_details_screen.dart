@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vizi_dasht/widgets/button.dart';
+import 'package:vizi_dasht/widgets/custom_shadow_box.dart';
 import 'package:vizi_dasht/widgets/decorated_container.dart';
+import 'package:vizi_dasht/widgets/dvider.dart';
 import 'package:vizi_dasht/widgets/factor.dart';
 import 'package:vizi_dasht/widgets/title.dart';
 
@@ -25,13 +27,14 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
         return Directionality(
           textDirection: TextDirection.rtl,
           child: AlertDialog(
+            backgroundColor: Theme.of(context).colorScheme.surface,
             title: Text('لغو سفارش',
                 style: TextStyle(fontWeight: FontWeight.bold)),
             content: Text('آیا از لغو این سفارش اطمینان دارید؟'),
             actions: [
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).pop(); // بستن دیالوگ
+                  Navigator.of(context).pop();
                 },
                 child: Text(
                   'خیر',
@@ -41,9 +44,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
               ),
               TextButton(
                 style: TextButton.styleFrom(
-                    foregroundColor: Theme.of(context).colorScheme.surface,
-                    backgroundColor:
-                        Theme.of(context).colorScheme.errorContainer),
+                  foregroundColor: Theme.of(context).colorScheme.surface,
+                  backgroundColor: Constants.errorGradientColors.last,
+                ),
                 onPressed: () {
                   // عملیات لغو آیتم
                   Navigator.of(context).pop(); // بستن دیالوگ
@@ -85,43 +88,37 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               DeliveriOnWayWidegt().marginOnly(bottom: 16),
-              MyDecoratedContainer(
-                  child: Column(
-                    children: [
-                      FactorItem(
-                        title: 'شناسه سفارش',
-                        secTitle: '1458742168V',
-                        isSelectable: true,
-                      ),
-                      FactorItem(
-                        title: 'کد پیگیری',
-                        secTitle: 'SSODHJVC152',
-                        isSelectable: true,
-                      ),
-                      FactorItem(
-                        title: 'تاریخ سفارش',
-                        secTitle: '1403/09/15',
-                        isSelectable: true,
-                      ),
-                      FactorItem(
-                        title: 'زمان سفارش',
-                        secTitle: '14:35:12',
-                        isSelectable: true,
-                      ),
-                      FactorItem(
-                        title: 'مبلغ دریافتی',
-                        secTitle: '14,000,000',
-                        isSelectable: true,
-                      ),
-                    ],
-                  ),
-                  color: themeData.colorScheme.surface),
+              CustomShadowBox(
+                child: Column(
+                  children: [
+                    FactorItem(
+                      title: 'شناسه سفارش',
+                      secTitle: '1458742168K',
+                      isSelectable: true,
+                    ),
+                    FactorItem(
+                      title: 'تاریخ سفارش',
+                      secTitle: '1403/09/15',
+                      isSelectable: true,
+                    ),
+                    FactorItem(
+                      title: 'زمان سفارش',
+                      secTitle: '14:35:12',
+                      isSelectable: true,
+                    ),
+                    FactorItem(
+                      title: 'مبلغ دریافتی',
+                      secTitle: '14,000,000',
+                      isSelectable: true,
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(height: 16),
               AppTitle(title: 'محصولات ارسالی'),
               ...List.generate(
                 3,
-                (index) => MyDecoratedContainer(
-                  color: themeData.colorScheme.surface,
+                (index) => CustomShadowBox(
                   child: Column(
                     children: [
                       Row(
@@ -151,7 +148,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         children: [
                           MyDecoratedContainer(
                             isOutlined: true,
-                            color: themeData.colorScheme.primary,
+                            color: Constants.greenGradientColors.first,
+                            borderRadius: BorderRadius.circular(50),
                             padding: EdgeInsets.symmetric(
                                 vertical: 2, horizontal: 4),
                             child: Row(
@@ -161,14 +159,16 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                 Text(
                                   '5',
                                   style: TextStyle(
-                                      color: themeData.colorScheme.primary,
+                                      color:
+                                          Constants.primaryGradientColors.last,
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
                                   '×',
                                   style: TextStyle(
-                                      color: themeData.colorScheme.primary,
+                                      color:
+                                          Constants.primaryGradientColors.last,
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -184,6 +184,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                 },
                                 child: MyDecoratedContainer(
                                   color: themeData.colorScheme.errorContainer,
+                                  gradient: Constants.errorGradientColors,
                                   padding: EdgeInsets.symmetric(
                                       vertical: 5, horizontal: 8),
                                   child: Row(
@@ -209,6 +210,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                               SizedBox(width: 8),
                               MyDecoratedContainer(
                                 color: themeData.colorScheme.primary,
+                                gradient: Constants.primaryGradientColors,
                                 padding: EdgeInsets.symmetric(
                                     vertical: 5, horizontal: 8),
                                 child: Text(
@@ -235,6 +237,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   title: 'لغو کل سفارش',
                   onTap: () {},
                   backgroundColor: themeData.colorScheme.errorContainer,
+                  gradient: Constants.errorGradientColors,
                 ),
               )
             ],

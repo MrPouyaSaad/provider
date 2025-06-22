@@ -81,7 +81,7 @@ class _OrdersPieChartState extends State<OrdersPieChart> {
           alignment: WrapAlignment.center,
           children: [
             LegendItem(
-              colors: Constants.blueGradientColors,
+              colors: Constants.primaryGradientColors,
               text: 'تحویل داده شده',
             ),
             LegendItem(
@@ -119,7 +119,7 @@ class _OrdersPieChartState extends State<OrdersPieChart> {
     return [
       PieChartSectionData(
         value: widget.deliveredOrders.toDouble(),
-        gradient: Constants.myGradient(Constants.blueGradientColors),
+        gradient: Constants.myGradient(Constants.primaryGradientColors),
         radius: touchedIndex == 0 ? 115 : 100,
         title: "${deliveredPercentage.round()}%",
         titleStyle: TextStyle(

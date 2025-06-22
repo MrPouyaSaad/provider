@@ -524,7 +524,7 @@ class ProductViewRep extends StatelessWidget {
                   value: '1,245',
                   unit: 'بازدید',
                   icon: Icons.trending_up,
-                  gradient: Constants.blueGradientColors,
+                  gradient: Constants.primaryGradientColors,
                 ),
               ),
               SizedBox(width: 12),
@@ -832,7 +832,7 @@ class FinanceRep extends StatelessWidget {
             ));
           },
           child: MyDecoratedContainer(
-            gradient: Constants.blueGradientColors,
+            gradient: Constants.primaryGradientColors,
             child: Column(
               children: [
                 FactorItem(
@@ -1029,7 +1029,7 @@ List<BarChartGroupData> getBarChartWeeklyReport(BuildContext context) {
         BarChartRodData(
           width: 20,
           toY: dailySales[index].toDouble(),
-          gradient: Constants.myGradient(Constants.blueGradientColors),
+          gradient: Constants.myGradient(Constants.primaryGradientColors),
           borderRadius: Constants.primaryRadius,
         ),
       ],

@@ -28,7 +28,7 @@ class ProfileCircularIndicator extends StatelessWidget {
     } else if (amount > 0.7) {
       rate = 'خوب';
       icon = CupertinoIcons.checkmark_alt_circle_fill;
-      primaryColors = Constants.blueGradientColors;
+      primaryColors = Constants.primaryGradientColors;
     } else if (amount > 0.5) {
       rate = 'متوسط';
       icon = CupertinoIcons.exclamationmark_circle_fill;

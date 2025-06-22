@@ -44,9 +44,10 @@ class Constants {
 
   //!
 
-  static final blueGradientColors = [Color(0xFF6A11CB), Color(0xFF2575FC)];
+  static final primaryGradientColors = [Color(0xFF6A11CB), Color(0xFF2575FC)];
   static final greenGradientColors = [Color(0xFF11998E), Color(0xFF38EF7D)];
   static final redGradientColors = [Color(0xFFFF416C), Color(0xFFFF4B2B)];
+  static final errorGradientColors = [Color(0xFFFF4D4D), Color(0xFFF00000)];
   static final pinkGradientColors = [Color(0xFF9C27B0), Color(0xFFE91E63)];
   static final yellowGradientColors = [Color(0xFFFFC107), Color(0xFFFF8F00)];
   static final silverGradientColors = [Color(0xFFB0BEC5), Color(0xFF78909C)];

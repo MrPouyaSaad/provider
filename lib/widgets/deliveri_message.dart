@@ -15,7 +15,7 @@ class DeliveriOnWayWidegt extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: DecoratedContainerWithIcon(
-        colors: Constants.blueGradientColors,
+        colors: Constants.primaryGradientColors,
         icon: Icons.local_shipping_outlined,
         title: 'باربر ویزیتوم در راه است!',
         caption: 'تأمین‌کننده عزیز، لطفاً برای تحویل سفارشات آماده باشید.',
@@ -38,12 +38,13 @@ class DeliveriMessage extends StatelessWidget {
           children: [
             RippleBadge(
               maxRadius: 12,
-              gradient: Constants.blueGradientColors,
+              gradient: Constants.primaryGradientColors,
               color: themeData.colorScheme.surfaceContainerHighest,
               child: Container(
                 padding: EdgeInsets.all(2),
                 decoration: BoxDecoration(
-                  gradient: Constants.myGradient(Constants.blueGradientColors),
+                  gradient:
+                      Constants.myGradient(Constants.primaryGradientColors),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
