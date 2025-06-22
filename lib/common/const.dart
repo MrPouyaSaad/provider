@@ -60,12 +60,12 @@ class Constants {
   static List<BoxShadow> primaryBoxShadow(BuildContext context,
       {Color? shadowColor = null,
       double blurRadius = 15,
-      double colorOpacity = 0.08}) {
+      double colorOpacity = 0.15}) {
     final themeData = Theme.of(context).colorScheme;
     return [
       BoxShadow(
           color: shadowColor != null
-              ? shadowColor.withOpacity(0.3)
+              ? shadowColor.withOpacity(colorOpacity)
               : themeData.onSurface.withOpacity(colorOpacity),
           blurRadius: blurRadius,
           spreadRadius: 1,

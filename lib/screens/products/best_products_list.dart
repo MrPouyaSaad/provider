@@ -57,8 +57,7 @@ class BestProductListItem extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
-          boxShadow: Constants.primaryBoxShadow(context,
-              blurRadius: 6, colorOpacity: 0.1),
+          boxShadow: Constants.primaryBoxShadow(context, colorOpacity: 0.03),
           borderRadius: Constants.primaryRadius,
         ),
         child: Column(

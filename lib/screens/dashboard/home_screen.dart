@@ -52,6 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     //
+                    SizedBox(height: Constants.primaryPadding),
+                    //
                     DeliveriMessage()
                         .marginSymmetric(horizontal: Constants.primaryPadding),
                     //
@@ -329,13 +331,8 @@ class MostViewProductRep extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               color: Theme.of(context).colorScheme.surface,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  blurRadius: 16,
-                  offset: Offset(0, 8),
-                ),
-              ],
+              boxShadow:
+                  Constants.primaryBoxShadow(context, colorOpacity: 0.03),
             ),
             child: Column(
               children: [
@@ -895,13 +892,7 @@ class AmazingProductMng extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               gradient: Constants.myGradient(Constants.pinkGradientColors),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.purple.withOpacity(0.3),
-                    blurRadius: 15,
-                    spreadRadius: 1,
-                    offset: Offset(0, 5))
-              ],
+              boxShadow: Constants.primaryBoxShadow(context),
             ),
             child: Stack(
               children: [
