@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:vizi_dasht/widgets/button.dart';
 import 'package:vizi_dasht/widgets/custom_shadow_box.dart';
 import 'package:vizi_dasht/widgets/decorated_container.dart';
-import 'package:vizi_dasht/widgets/dvider.dart';
 import 'package:vizi_dasht/widgets/factor.dart';
 import 'package:vizi_dasht/widgets/title.dart';
 

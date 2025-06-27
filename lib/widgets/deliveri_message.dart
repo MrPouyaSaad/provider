@@ -13,13 +13,11 @@ class DeliveriOnWayWidegt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: DecoratedContainerWithIcon(
-        colors: Constants.primaryGradientColors,
-        icon: Icons.local_shipping_outlined,
-        title: 'باربر ویزیتوم در راه است!',
-        caption: 'تأمین‌کننده عزیز، لطفاً برای تحویل سفارشات آماده باشید.',
-      ),
+    return DecoratedContainerWithIcon(
+      colors: Constants.primaryGradientColors,
+      icon: Icons.local_shipping_outlined,
+      title: 'باربر ویزیتوم در راه است!',
+      caption: 'تأمین‌کننده عزیز، لطفاً برای تحویل سفارشات آماده باشید.',
     );
   }
 }
@@ -55,7 +53,7 @@ class DeliveriMessage extends StatelessWidget {
                 ),
               ),
             ).marginOnly(left: 10),
-            DeliveriOnWayWidegt(),
+            Expanded(child: DeliveriOnWayWidegt()),
           ],
         ),
         MyDivider(),

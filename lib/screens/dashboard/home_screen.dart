@@ -47,49 +47,54 @@ class _HomeScreenState extends State<HomeScreen> {
             if (state is HomeLoading) {
               return DashboardShimmer();
             } else
-              return Expanded(
-                child: ListView(
-                  padding: const EdgeInsets.only(
-                      top: Constants.primaryPadding,
-                      bottom: Constants.primaryPadding),
-                  children: [
-                    //
-                    DeliveriMessage()
-                        .marginSymmetric(horizontal: Constants.primaryPadding),
-                    //
-                    Euphoria(themeData: themeData)
-                        .marginSymmetric(horizontal: Constants.primaryPadding),
-                    //
-                    AmazingProductMng()
-                        .marginSymmetric(horizontal: Constants.primaryPadding),
-                    //
-                    FinanceRep(themeData: themeData)
-                        .marginSymmetric(horizontal: Constants.primaryPadding),
-                    //
-                    SalesRep(themeData: themeData)
-                        .marginSymmetric(horizontal: Constants.primaryPadding),
-                    //
-                    LowStockList(),
-                    //
-                    WeeklyOrdersRep(dailySales: dailySales)
-                        .marginSymmetric(horizontal: Constants.primaryPadding),
-                    //
-                    ProductViewRep()
-                        .marginSymmetric(horizontal: Constants.primaryPadding),
-                    //
-                    MostViewProductRep()
-                        .marginSymmetric(horizontal: Constants.primaryPadding),
-                    //
-                    MonthlyOrdersRep()
-                        .marginSymmetric(horizontal: Constants.primaryPadding),
-                    //
-                    BestSalesProducts()
-                        .marginSymmetric(horizontal: Constants.primaryPadding),
-                    //
-                    AllOrdersRep()
-                        .marginSymmetric(horizontal: Constants.primaryPadding),
-                  ],
-                ),
+              return ListView.builder(
+                itemCount: 12,
+                physics: const BouncingScrollPhysics(),
+                padding: const EdgeInsets.only(
+                    top: Constants.primaryPadding,
+                    bottom: Constants.primaryPadding),
+                itemBuilder: (context, index) {
+                  switch (index) {
+                    case 0:
+                      return DeliveriMessage().marginSymmetric(
+                          horizontal: Constants.primaryPadding);
+                    case 1:
+                      return Euphoria(themeData: themeData).marginSymmetric(
+                          horizontal: Constants.primaryPadding);
+                    case 2:
+                      return AmazingProductMng().marginSymmetric(
+                          horizontal: Constants.primaryPadding);
+                    case 3:
+                      return FinanceRep(themeData: themeData).marginSymmetric(
+                          horizontal: Constants.primaryPadding);
+                    case 4:
+                      return SalesRep(themeData: themeData).marginSymmetric(
+                          horizontal: Constants.primaryPadding);
+                    case 5:
+                      return LowStockList();
+                    case 6:
+                      return WeeklyOrdersRep(dailySales: dailySales)
+                          .marginSymmetric(
+                              horizontal: Constants.primaryPadding);
+                    case 7:
+                      return ProductViewRep().marginSymmetric(
+                          horizontal: Constants.primaryPadding);
+                    case 8:
+                      return MostViewProductRep().marginSymmetric(
+                          horizontal: Constants.primaryPadding);
+                    case 9:
+                      return MonthlyOrdersRep().marginSymmetric(
+                          horizontal: Constants.primaryPadding);
+                    case 10:
+                      return BestSalesProducts().marginSymmetric(
+                          horizontal: Constants.primaryPadding);
+                    case 11:
+                      return AllOrdersRep().marginSymmetric(
+                          horizontal: Constants.primaryPadding);
+                    default:
+                      return SizedBox.shrink();
+                  }
+                },
               );
           },
         ),
