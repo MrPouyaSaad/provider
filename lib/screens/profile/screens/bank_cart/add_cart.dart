@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vizi_dasht/common/const.dart';
 import 'package:vizi_dasht/widgets/text_field.dart';
-
 import '../../../../widgets/button.dart';
 
 class AddOrEditBankCardPage extends StatefulWidget {
@@ -75,6 +74,7 @@ class _AddOrEditBankCardPageState extends State<AddOrEditBankCardPage> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
     return Scaffold(
       appBar: AppBar(title: Text('افزودن کارت بانکی'), actions: [
         IconButton(
@@ -83,11 +83,29 @@ class _AddOrEditBankCardPageState extends State<AddOrEditBankCardPage> {
           icon: Icon(CupertinoIcons.delete),
         ),
       ]),
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
+      body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
           child: Column(
             children: [
+              Container(
+                padding: const EdgeInsets.only(right: Constants.primaryPadding),
+                decoration: BoxDecoration(
+                  border: Border(
+                      right: BorderSide(
+                          width: 2.5, color: themeData.colorScheme.error)),
+                ),
+                child: Text(
+                  'کارت بانکی باید به نام شما و منطبق با اطلاعات هویتی ثبت‌شده باشد.',
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      wordSpacing: -2,
+                      color: themeData.colorScheme.error,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12),
+                ),
+              ).marginSymmetric(horizontal: Constants.primaryPadding),
+              SizedBox(height: 20),
               // پیش‌نمایش کارت
               BankCardWidget(
                 bankName: _bankName ?? 'نام بانک',

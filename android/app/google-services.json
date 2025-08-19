@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "766808964045",
+    "project_id": "vizitom-f3d2f",
+    "storage_bucket": "vizitom-f3d2f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766808964045:android:1292beabaedd1bc2786284",
+        "android_client_info": {
+          "package_name": "com.vizi_dasht"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZobF3_hdaRM85A03voR32_Cux39SzWrg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

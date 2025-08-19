@@ -5,10 +5,9 @@ import 'package:get/get.dart';
 import 'package:vizi_dasht/common/const.dart';
 import 'package:vizi_dasht/screens/oreders/bloc/orders_bloc.dart';
 import 'package:vizi_dasht/screens/oreders/order_details_screen.dart';
-import 'package:vizi_dasht/widgets/badge.dart';
 import 'package:vizi_dasht/widgets/loading/orders.dart';
-
-import '../../widgets/decorated_container.dart';
+import '../../widgets/deliveri_message.dart';
+import '../../widgets/new_label.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});
@@ -47,45 +46,11 @@ class OrdersScreen extends StatelessWidget {
                   child: ListView.builder(
                     itemCount: 10,
                     padding: EdgeInsets.symmetric(
+                        vertical: Constants.primaryPadding,
                         horizontal: Constants.primaryPadding),
                     itemBuilder: (context, index) {
                       final bool isDeliver = index == 0;
-                      if (isDeliver)
-                        return Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            RippleBadge(
-                              maxRadius: 12,
-                              color:
-                                  themeData.colorScheme.surfaceContainerHighest,
-                              child: Container(
-                                padding: EdgeInsets.all(2),
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: themeData
-                                        .colorScheme.surfaceContainerHighest),
-                                child: Icon(
-                                  size: 22,
-                                  opticalSize: 22,
-                                  Icons.priority_high_rounded,
-                                  color: themeData.colorScheme.surface,
-                                ),
-                              ),
-                            ).marginOnly(left: 10),
-                            Expanded(
-                              child: DecoratedContainerWithIcon(
-                                primaryColor: themeData
-                                    .colorScheme.surfaceContainerHighest,
-                                secondryColor:
-                                    themeData.colorScheme.surfaceContainerHigh,
-                                icon: Icons.local_shipping_outlined,
-                                title: 'باربر ویزیتوم در راه است!',
-                                caption:
-                                    'تأمین‌کننده عزیز، لطفاً برای تحویل سفارشات آماده باشید.',
-                              ),
-                            ),
-                          ],
-                        ).marginOnly(bottom: 16);
+                      if (isDeliver) return DeliveriMessage();
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(
@@ -103,9 +68,9 @@ class OrdersScreen extends StatelessWidget {
                             borderRadius: Constants.primaryRadius,
                             color: themeData.colorScheme.surface,
                             boxShadow: Constants.primaryBoxShadow(context,
+                                colorOpacity: 0.03,
                                 shadowColor: themeData
-                                    .colorScheme.surfaceContainerHighest
-                                    .withAlpha((0.10 * 255).toInt())),
+                                    .colorScheme.surfaceContainerHighest),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,12 +93,15 @@ class OrdersScreen extends StatelessWidget {
                                               themeData.colorScheme.onSurface,
                                         ),
                                       ),
-                                      SizedBox(height: 8),
+                                      SizedBox(height: 4),
                                       Row(
                                         children: [
                                           if (index.isEven)
-                                            LabelContainer(text: 'جدید')
-                                                .marginOnly(left: 8),
+                                            LabelContainer(
+                                              text: 'جدید',
+                                              gradient: Constants
+                                                  .primaryGradientColors,
+                                            ).marginOnly(left: 8),
                                         ],
                                       )
                                     ],
@@ -141,23 +109,22 @@ class OrdersScreen extends StatelessWidget {
                                   Column(
                                     children: [
                                       Text('تاریخ: 2024/09/15', style: style),
-                                      SizedBox(height: 12),
+                                      SizedBox(height: 8),
                                       Text('ساعت: 12:53:12', style: style),
                                     ],
                                   ),
                                 ],
                               ).marginOnly(top: 16, left: 16, right: 16),
-                              SizedBox(height: 4),
                               SizedBox(
-                                height: 116,
+                                height: 104,
                                 child: ListView.builder(
                                   padding: EdgeInsets.symmetric(vertical: 16),
                                   scrollDirection: Axis.horizontal,
                                   itemCount: 5,
                                   itemBuilder: (context, itemIndex) {
                                     return Container(
-                                      height: 84,
-                                      width: 84,
+                                      height: 72,
+                                      width: 72,
                                       padding: EdgeInsets.all(4),
                                       margin: EdgeInsets.symmetric(
                                         horizontal: 8,
@@ -191,41 +158,6 @@ class OrdersScreen extends StatelessWidget {
           },
         ),
       ),
-    );
-  }
-}
-
-class LabelContainer extends StatelessWidget {
-  const LabelContainer({
-    super.key,
-    this.color,
-    this.child,
-    this.text = 'برچسب',
-    this.padding,
-  });
-
-  final Color? color;
-  final Widget? child;
-  final String text;
-  final EdgeInsetsGeometry? padding;
-
-  @override
-  Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-    return Container(
-      padding: padding ?? EdgeInsets.symmetric(vertical: 3, horizontal: 9),
-      decoration: BoxDecoration(
-        color: color ?? themeData.colorScheme.primary,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: child ??
-          Text(
-            text,
-            style: TextStyle(
-                color: themeData.colorScheme.surface,
-                fontWeight: FontWeight.bold,
-                fontSize: 12),
-          ),
     );
   }
 }

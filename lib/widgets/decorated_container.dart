@@ -7,6 +7,7 @@ class MyDecoratedContainer extends StatelessWidget {
     super.key,
     required this.child,
     this.color,
+    this.borderRadius,
     this.padding,
     this.gradient,
     this.isOutlined = false,
@@ -14,9 +15,10 @@ class MyDecoratedContainer extends StatelessWidget {
 
   final Widget child;
   final Color? color;
-  final Gradient? gradient;
+  final List<Color>? gradient;
   final EdgeInsetsGeometry? padding;
   final bool isOutlined;
+  final BorderRadiusGeometry? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,13 @@ class MyDecoratedContainer extends StatelessWidget {
     return Container(
       padding: padding ?? EdgeInsets.all(8),
       decoration: BoxDecoration(
-        boxShadow: isOutlined ? null : Constants.primaryBoxShadow(context),
-        borderRadius: Constants.primaryRadius,
+        boxShadow: isOutlined
+            ? null
+            : Constants.primaryBoxShadow(context,
+                shadowColor: gradient != null ? gradient!.last : null),
+        borderRadius: borderRadius ?? Constants.primaryRadius,
         color: isOutlined ? themeData.surface : color ?? themeData.surface,
-        gradient: gradient,
+        gradient: gradient != null ? Constants.myGradient(gradient!) : null,
         border: isOutlined
             ? Border.all(width: 1.5, color: color ?? themeData.primary)
             : null,
@@ -40,16 +45,14 @@ class MyDecoratedContainer extends StatelessWidget {
 class DecoratedContainerWithIcon extends StatelessWidget {
   const DecoratedContainerWithIcon({
     super.key,
-    required this.primaryColor,
-    required this.secondryColor,
+    required this.colors,
     required this.icon,
     required this.title,
     required this.caption,
     this.onTap,
   });
 
-  final Color primaryColor;
-  final Color secondryColor;
+  final List<Color> colors;
   final IconData icon;
   final String title;
   final String caption;
@@ -64,7 +67,7 @@ class DecoratedContainerWithIcon extends StatelessWidget {
         padding: const EdgeInsets.all(Constants.primaryPadding / 2),
         decoration: BoxDecoration(
           borderRadius: Constants.primaryRadius,
-          color: primaryColor,
+          gradient: Constants.myGradient(colors),
           boxShadow: Constants.primaryBoxShadow(context),
         ),
         child: Row(
@@ -75,7 +78,7 @@ class DecoratedContainerWithIcon extends StatelessWidget {
                   vertical: Constants.primaryPadding / 6),
               decoration: BoxDecoration(
                 borderRadius: Constants.primaryRadius,
-                color: secondryColor,
+                gradient: Constants.myGradient(colors),
               ),
               child: Icon(
                 icon,

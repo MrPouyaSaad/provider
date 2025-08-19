@@ -14,7 +14,7 @@ class CustomShadowBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: themeData.colorScheme.surface,
         borderRadius: Constants.primaryRadius,
-        boxShadow: Constants.primaryBoxShadow(context),
+        boxShadow: Constants.primaryBoxShadow(context, colorOpacity: 0.03),
       ),
       child: child,
     );

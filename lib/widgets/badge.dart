@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
+import 'package:vizi_dasht/common/const.dart';
 
 class CounterBadge extends StatelessWidget {
   const CounterBadge({
@@ -7,10 +8,12 @@ class CounterBadge extends StatelessWidget {
     this.value = 0,
     this.isActive = false,
     this.color,
+    this.gradient,
   });
   final int value;
   final bool isActive;
   final Color? color;
+  final List<Color>? gradient;
   @override
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
@@ -26,9 +29,12 @@ class CounterBadge extends StatelessWidget {
               ? Border.all(width: 1, color: themeData.colorScheme.primary)
               : null,
           shape: BoxShape.circle,
-          color: isActive
-              ? themeData.colorScheme.surface
-              : color ?? themeData.colorScheme.primary,
+          gradient: gradient != null ? Constants.myGradient(gradient!) : null,
+          color: gradient == null
+              ? isActive
+                  ? themeData.colorScheme.surface
+                  : color ?? themeData.colorScheme.primary
+              : null,
         ),
         child: Center(
           child: Text(
@@ -55,6 +61,7 @@ class RippleBadge extends StatelessWidget {
       this.value = 0,
       this.child,
       this.color,
+      this.gradient,
       this.minRadius = 10,
       this.maxRadius = 14,
       this.duration = 500,
@@ -67,6 +74,7 @@ class RippleBadge extends StatelessWidget {
   final double maxRadius;
   final int duration;
   final int ripplesCount;
+  final List<Color>? gradient;
   @override
   Widget build(BuildContext context) {
     return Visibility(
@@ -74,6 +82,7 @@ class RippleBadge extends StatelessWidget {
       child: RippleAnimation(
         child: child ??
             CounterBadge(
+              gradient: gradient,
               color: color,
               value: value,
               isActive: isActive ?? false,

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:vizi_dasht/common/const.dart';
 
 class ProfileCircularIndicator extends StatelessWidget {
   const ProfileCircularIndicator({
@@ -16,31 +17,26 @@ class ProfileCircularIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     String rate = 'نامشخص';
     IconData icon = CupertinoIcons.question_circle_fill;
-    Color iconColor = Colors.grey;
-    Color primaryColor = Colors.grey;
+    List<Color> primaryColors = Constants.silverGradientColors;
 
     final themeData = Theme.of(context);
 
     if (amount > 0.9) {
       rate = 'عالی';
       icon = CupertinoIcons.checkmark_alt_circle_fill;
-      iconColor = themeData.colorScheme.tertiary;
-      primaryColor = themeData.colorScheme.tertiary.withOpacity(0.75);
+      primaryColors = Constants.greenGradientColors;
     } else if (amount > 0.7) {
       rate = 'خوب';
       icon = CupertinoIcons.checkmark_alt_circle_fill;
-      iconColor = themeData.colorScheme.primaryFixedDim;
-      primaryColor = themeData.colorScheme.primaryFixedDim.withOpacity(0.75);
+      primaryColors = Constants.primaryGradientColors;
     } else if (amount > 0.5) {
       rate = 'متوسط';
       icon = CupertinoIcons.exclamationmark_circle_fill;
-      iconColor = themeData.colorScheme.secondaryContainer;
-      primaryColor = themeData.colorScheme.secondaryContainer.withOpacity(0.75);
+      primaryColors = Constants.yellowGradientColors;
     } else {
       rate = 'ضعیف';
       icon = CupertinoIcons.xmark_circle_fill;
-      iconColor = themeData.colorScheme.errorContainer;
-      primaryColor = themeData.colorScheme.errorContainer.withOpacity(0.75);
+      primaryColors = Constants.redGradientColors;
     }
 
     return Expanded(
@@ -48,10 +44,12 @@ class ProfileCircularIndicator extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         margin: EdgeInsets.symmetric(horizontal: 4),
         decoration: BoxDecoration(
-          border: Border.all(
-            width: 0.5,
-            color: themeData.colorScheme.secondary.withOpacity(0.5),
-          ),
+          color: themeData.colorScheme.surface,
+          boxShadow: Constants.primaryBoxShadow(context, colorOpacity: 0.03),
+          // border: Border.all(
+          //   width: 0.5,
+          //   color: themeData.colorScheme.secondary.withOpacity(0.5),
+          // ),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
@@ -79,10 +77,10 @@ class ProfileCircularIndicator extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: primaryColor,
+                      color: primaryColors.last,
                     ),
                   ),
-                  progressColor: primaryColor,
+                  linearGradient: Constants.myGradient(primaryColors),
                   backgroundColor: Colors.grey.shade300,
                 );
               },
@@ -96,14 +94,14 @@ class ProfileCircularIndicator extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.bold,
-                    color: iconColor,
+                    color: primaryColors.last,
                   ),
                 ),
                 const SizedBox(width: 2),
                 Icon(
                   icon,
                   size: 18,
-                  color: iconColor,
+                  color: primaryColors.last,
                 ),
               ],
             ),

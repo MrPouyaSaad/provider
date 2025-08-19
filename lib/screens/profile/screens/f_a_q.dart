@@ -127,7 +127,7 @@ class FAQCategoryItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DashboardTitle(title: category),
+          AppTitle(title: category),
           ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),

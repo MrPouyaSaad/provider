@@ -1,100 +1,210 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:vizi_dasht/common/const.dart';
 import 'package:vizi_dasht/widgets/button.dart';
+
 import 'add_product_details.dart';
 
-class AddProduct extends StatefulWidget {
-  const AddProduct({super.key});
+class CategorySelectionScreen extends StatefulWidget {
+  const CategorySelectionScreen({super.key});
 
   @override
-  State<AddProduct> createState() => _AddProductState();
+  State<CategorySelectionScreen> createState() =>
+      _CategorySelectionScreenState();
 }
 
-class _AddProductState extends State<AddProduct> {
-  int? selectedIndex; // متغیر برای ذخیره آیتم انتخاب‌شده
-  final int itemCount = 10; // تعداد آیتم‌ها
+class _CategorySelectionScreenState extends State<CategorySelectionScreen> {
+  int? selectedCategoryIndex;
+  final List<Map<String, dynamic>> categories = [
+    {
+      'name': 'الکترونیک',
+      'icon': Icons.electrical_services,
+      'color': Colors.blue
+    },
+    {'name': 'پوشاک', 'icon': Icons.checkroom, 'color': Colors.pink},
+    {'name': 'لوازم خانگی', 'icon': Icons.home, 'color': Colors.orange},
+    {
+      'name': 'کتاب و لوازم تحریر',
+      'icon': Icons.menu_book,
+      'color': Colors.purple
+    },
+    {'name': 'ورزشی', 'icon': Icons.sports_soccer, 'color': Colors.green},
+    {'name': 'زیبایی و سلامت', 'icon': Icons.spa, 'color': Colors.teal},
+    {'name': 'ابزار', 'icon': Icons.build, 'color': Colors.brown},
+    {'name': 'اسباب بازی', 'icon': Icons.toys, 'color': Colors.red},
+    {'name': 'خوراکی', 'icon': Icons.fastfood, 'color': Colors.amber},
+    {'name': 'دیجیتال', 'icon': Icons.computer, 'color': Colors.indigo},
+  ];
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
+      backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        title: const Text("انتخاب دسته بندی"),
+        title: const Text("انتخاب دسته بندی محصول"),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(32),
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+            alignment: Alignment.center,
+            child: Text(
+              "لطفاً دسته‌بندی مناسب برای محصول‌تان را انتخاب کنید.",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                wordSpacing: -2,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[600],
+                fontSize: 13,
+              ),
+            ),
+          ),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        foregroundColor: theme.primaryColor,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: SizedBox(
-        width: MediaQuery.of(context).size.width - Constants.primaryPadding * 2,
+        width: MediaQuery.of(context).size.width - 32,
         height: Constants.primaryButtonHeight,
         child: MyElevatedButton(
-          title: 'تایید',
-          onTap: selectedIndex == null
+          onTap: selectedCategoryIndex == null
               ? null
               : () {
-                  Navigator.of(context).push(
+                  // Navigate to next screen
+                  Navigator.push(
+                    context,
                     CupertinoPageRoute(
-                      builder: (context) => AddProductDetails(id: 1),
+                      builder: (context) => AddProductDetails(
+                        id: selectedCategoryIndex! + 1,
+                      ),
                     ),
                   );
                 },
-          icon: const Icon(Icons.check),
+          backgroundColor: selectedCategoryIndex == null
+              ? Colors.grey.shade400
+              : theme.primaryColor,
+          foregroundColor: Colors.white,
+          child: const Text(
+            "تایید و ادامه",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ),
-      body: SafeArea(
-        child: GridView.builder(
-          padding: const EdgeInsets.only(
-              top: Constants.primaryPadding * 3,
-              bottom: Constants.primaryPadding * 5,
-              left: Constants.primaryPadding * 2,
-              right: Constants.primaryPadding * 2),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, // دو آیتم در هر سطر
-            mainAxisSpacing: 10.0,
-            crossAxisSpacing: 10.0,
-            childAspectRatio: 0.9, // نسبت برای آیتم‌های دایره‌ای
-          ),
-          itemCount: itemCount,
-          itemBuilder: (context, index) {
-            bool isSelected = selectedIndex == index; // بررسی انتخاب آیتم
-            return GestureDetector(
-              onTap: () {
-                setState(() {
-                  if (isSelected) {
-                    selectedIndex =
-                        null; // اگر کلیک مجدد شود، آیتم لغو انتخاب شود
-                  } else {
-                    selectedIndex = index; // آیتم جدید انتخاب شود
-                  }
-                });
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: isSelected
-                        ? Theme.of(context).primaryColor
-                        : Theme.of(context)
-                            .colorScheme
-                            .secondary
-                            .withOpacity(0.25),
-                    width: 3.0,
-                  ),
-                  borderRadius: Constants.primaryRadius,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Flexible(
-                        child: Image.asset('assets/images/1509547706.jpg')),
-                    const SizedBox(height: 10),
-                    Text(
-                      'Item $index',
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                  ],
-                ).paddingAll(Constants.primaryPadding),
+      body: Column(
+        children: [
+          Expanded(
+            child: GridView.builder(
+              padding:
+                  EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 84),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 16.0,
+                crossAxisSpacing: 16.0,
+                childAspectRatio: 1.2,
               ),
-            );
-          },
+              itemCount: categories.length,
+              itemBuilder: (context, index) {
+                final category = categories[index];
+                final isSelected = selectedCategoryIndex == index;
+
+                return CategoryCard(
+                  name: category['name'],
+                  icon: category['icon'],
+                  color: category['color'],
+                  isSelected: isSelected,
+                  onTap: () {
+                    setState(() {
+                      selectedCategoryIndex = isSelected ? null : index;
+                    });
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CategoryCard extends StatelessWidget {
+  final String name;
+  final IconData icon;
+  final Color color;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  const CategoryCard({
+    super.key,
+    required this.name,
+    required this.icon,
+    required this.color,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        decoration: BoxDecoration(
+          color: isSelected ? color.withOpacity(0.1) : Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isSelected ? color : Colors.grey.withOpacity(0.2),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.1),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                color: color.withOpacity(0.2),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                icon,
+                size: 30,
+                color: color,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              name,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: isSelected ? color : Colors.grey[800],
+              ),
+            ),
+            if (isSelected)
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Icon(
+                  Icons.check_circle,
+                  color: color,
+                  size: 20,
+                ),
+              ),
+          ],
         ),
       ),
     );
