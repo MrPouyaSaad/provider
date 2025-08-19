@@ -1,24 +1,40 @@
-# vizi dasht
+<h1 align="center">Vizi Dasht</h1>
+<p align="center">
+  <em>Seller app for the VIZITOM platform</em>
+</p>
 
-A new Flutter project.
+---
 
-## Getting Started
+### 🚀 About the Project
+Vizi Dasht is a Flutter-based **seller application** for the VIZITOM platform.  
+The app provides a smooth and modern experience with advanced features for sellers to manage their products, notifications, and analytics.
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+### ✨ Features
+- 🔔 **Push notifications** with Firebase Cloud Messaging  
+- 📊 **Analytics** integration using Firebase Analytics  
+- 📱 Multiple **UI layouts** for a rich user experience  
+- 🎨 Various **animations** for interactive UI  
+- 🏗 **BLoC architecture** for maintainable and scalable code  
+- ⚡ Fully responsive and optimized for modern devices  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 🛠 Built With
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="40" height="40" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" width="40" height="40" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" width="40" height="40" />
+</p>
 
+---
 
+### 📂 Getting Started
+To get a local copy up and running:
 
-<!-- Platform  Firebase App Id
-web       1:766808964045:web:a0e7d1e44180951c786284
-android   1:766808964045:android:1292beabaedd1bc2786284
-macos     1:766808964045:ios:8e4c0a741ca66147786284
-windows   1:766808964045:web:41e7a6e25b1b8384786284 -->
+```bash
+git clone https://github.com/MrPouyaSaad/vizi-dasht.git
+cd vizi-dasht
+flutter pub get
+flutter run
